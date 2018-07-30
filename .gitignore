@@ -1,0 +1,16 @@
+.DS_Store
+node_modules
+data/player/*.json
+data/account/*.json
+data/banned.json
+*.swp
+coverage/
+*.logs
+*.log
+*.debug
+gulpTODO.md
+log/*.log
+!log/.gitkeep
+
+# ignore api.ai key
+bundles/ranvier-npc-behaviors/APIAIKEY
