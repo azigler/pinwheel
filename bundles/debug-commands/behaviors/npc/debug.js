@@ -5,6 +5,7 @@ module.exports = (srcPath) => {
   const Logger = require(srcPath + 'Logger');
   const Broadcast = require(srcPath + 'Broadcast');
   return  {
+    // TODO: expand and review these listeners
     listeners: {
       spawn: state => function (config) {
         Logger.log(`${this.name} spawned into room ${this.room.title}`);
