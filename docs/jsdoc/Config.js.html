@@ -57,7 +57,7 @@ const Data = require('./Data');
 let __cache = null;
 
 /**
- * Access class for the `ranvier.json` config
+ * Access class for the `pinwheel.json` config
  */
 class Config {
   /**
@@ -96,7 +96,7 @@ class Config {
   }
 
   /**
-   * Load `ranvier.json` from disk
+   * Load `pinwheel.json` from disk
    */
   static load() {
     __cache = Data.parseFile(__dirname + '/../pinwheel.json');
