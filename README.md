@@ -1,4 +1,4 @@
-![Pinwheel](/resources/logo.png "Pinwheel")
+<p align="center"><img src="/resources/logo.png"></p>
 
 # Pinwheel
 
