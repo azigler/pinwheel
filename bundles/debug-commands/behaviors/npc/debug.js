@@ -12,7 +12,6 @@ module.exports = (srcPath) => {
       },
 
       playerEnter: state => function (config, player) {
-        Broadcast.sayAt(player, `${this.name} noticed ${player.name} enter room`);
         Logger.log(`${this.name} noticed ${player.name} enter room`);
       },
 

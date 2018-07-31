@@ -95,6 +95,5 @@ module.exports = (srcPath) => {
       description: 'Send a message to all builders connected',
       audience: new RoleAudience({ minRole: PlayerRoles.BUILDER })
     })
-
   ];
 };

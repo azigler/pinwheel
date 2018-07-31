@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Source: PartyManager.js | Pinwheel</title>
+    <title>Source: ChannelAudience/RoleAudience.js | Pinwheel</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -52,33 +52,28 @@
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
 
-const Party = require('./Party');
+const ChannelAudience = require('../ChannelAudience');
 
 /**
- * Keeps track of active in game parties and is used to create new parties
- * @extends Set
+ * Audience class representing all people with at least the specified role.
+ * @memberof ChannelAudience
+ * @extends ChannelAudience
  */
-class PartyManager extends Set {
-  /**
-   * Create a new party from with a given leader
-   * @param {Player} leader
-   */
-  create(leader) {
-    const party = new Party(leader);
-    this.add(party);
+class RoleAudience extends ChannelAudience {
+  constructor(options) {
+    super(options);
+    if (!options.hasOwnProperty('minRole')) {
+      throw new Error('No role given for role audience');
+    }
+    this.minRole = options.minRole;
   }
 
-  /**
-   * @param {Party} party
-   */
-  disband(party) {
-    this.delete(party);
-    party.disband();
-    party = null;
+  getBroadcastTargets() {
+    return this.state.PlayerManager.filter(player => player.role >= this.minRole &amp;&amp; player !== this.sender);
   }
 }
 
-module.exports = PartyManager;
+module.exports = RoleAudience;
 </code></pre>
         </article>
     </section>
