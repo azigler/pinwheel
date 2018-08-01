@@ -27,8 +27,8 @@ module.exports = srcPath => {
           // Register all of the input events (login, etc.)
           state.InputEventManager.attach(stream);
 
-          stream.write("Connecting...\n");
-          Logger.log("User connected via websocket...");
+          stream.write("Establishing websocket connection...\n");
+          Logger.log("New websocket client connected...");
 
           // @see: bundles/ranvier-events/events/login.js
           stream.emit('intro', stream);

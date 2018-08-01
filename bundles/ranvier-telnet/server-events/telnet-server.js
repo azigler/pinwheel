@@ -41,8 +41,8 @@ module.exports = srcPath => {
           // Register all of the input events (login, etc.)
           state.InputEventManager.attach(stream);
 
-          stream.write("Establishing connection...\n");
-          Logger.log("New client connected...");
+          stream.write("Establishing telnet connection...\n");
+          Logger.log("New telnet client connected...");
 
           // @see: bundles/ranvier-events/events/login.js
           stream.emit('intro', stream);
