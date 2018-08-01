@@ -11,22 +11,24 @@ module.exports = srcPath => {
     requiredRole: PlayerRoles.ADMIN,
     command: state => (time, player) => {
       if (time === 'now') {
-        Broadcast.sayAt(state.PlayerManager, '<b><yellow>Game is shutting down now!</yellow></b>');
+        Broadcast.sayAt(state.PlayerManager, '<b><yellow>The server is shutting down now!</yellow></b>');
         state.PlayerManager.saveAll();
         process.exit();
         return;
       }
 
       if (!time.length || time !== 'sure') {
-        return Broadcast.sayAt(player, 'You must confirm the shutdown with "shutdown sure" or force immediate shutdown with "shutdown now"');
+        return Broadcast.sayAt(player, 'You must confirm the shutdown with <b>shutdown sure</b> or force immediate shutdown with <b>shutdown now</b>.');
       }
 
-      Broadcast.sayAt(state.PlayerManager, `<b><yellow>Game will shut down in ${30} seconds.</yellow></b>`);
+      Broadcast.sayAt(state.PlayerManager, `<b><yellow>The server will shut down in ${30} seconds.</yellow></b>`);
       setTimeout(_ => {
-        Broadcast.sayAt(state.PlayerManager, '<b><yellow>Game is shutting down now!</yellow></b>');
+        Broadcast.sayAt(state.PlayerManager, '<b><yellow>The server is shutting down now!</yellow></b>');
         state.PlayerManager.saveAll();
         process.exit();
       }, 30000);
+
+      // TODO: duplicate and modify into restart command
     }
   };
 };

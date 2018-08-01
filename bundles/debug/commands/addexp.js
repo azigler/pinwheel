@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * Add specified amount of experience to self.
+ */
 module.exports = (srcPath) => {
   const Broadcast = require(srcPath + 'Broadcast');
   const PlayerRoles = require(srcPath + 'PlayerRoles');
@@ -10,15 +13,15 @@ module.exports = (srcPath) => {
       args = args.trim();
 
       if (!args.length) {
-        return Broadcast.sayAt(player, 'damage <amount>');
+        return Broadcast.sayAt(player, '<b>addexp <amount></b>');
       }
 
       const amount = parseInt(args, 10);
       if (isNaN(amount) || amount <= 0) {
-        return Broadcast.sayAt(player, 'Amount must be > 0');
+        return Broadcast.sayAt(player, 'Amount must be greater than 0.');
       }
 
-      player.lowerAttribute('health', amount);
+      player.emit('experience', amount);
     }
   };
 };

@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * Adds a specified passive skill to self.
+ */
 module.exports = (srcPath) => {
   const Broadcast = require(srcPath + 'Broadcast');
   const SkillFlag = require(srcPath + 'SkillFlag');
@@ -9,7 +12,7 @@ module.exports = (srcPath) => {
     requiredRole: PlayerRoles.ADMIN,
     command: (state) => (args, player) => {
       if (!args.length) {
-        return Broadcast.sayAt(player, 'Give a passive skill. giveskill <name>');
+        return Broadcast.sayAt(player, 'Add a passive skill to self. <b>addpassive <name></b>');
       }
 
       const skill = state.SkillManager.get(args);

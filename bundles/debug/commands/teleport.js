@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * Teleport to a room or another player.
+ */
 module.exports = (srcPath) => {
   const Broadcast = require(srcPath + 'Broadcast');
   const PlayerRoles = require(srcPath + 'PlayerRoles');

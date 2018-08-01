@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * IP ban a player
+ * IP ban a player.
  */
 module.exports = srcPath => {
   const B = require(srcPath + 'Broadcast');
@@ -21,7 +21,7 @@ module.exports = srcPath => {
       const [targetName, confirm] = args.split(' ');
 
       if (!confirm || confirm !== 'sure') {
-        return say('Must confirm ban with "ipban player sure"');
+        return say('Must confirm ban with <b>ipban player sure</b>');
       }
 
       const target = state.PlayerManager.getPlayer(targetName);

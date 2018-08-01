@@ -1,7 +1,9 @@
 'use strict';
 
+// TODO: live reboot other files?
+
 /**
- * Command to allow you to reload a command's definition from disk without restarting the server
+ * Allows you to reload a command's definition from disk without restarting the server.
  */
 module.exports = srcPath => {
   const B = require(srcPath + 'Broadcast');

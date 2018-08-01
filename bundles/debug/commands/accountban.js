@@ -21,7 +21,7 @@ module.exports = srcPath => {
       const [targetName, confirm] = args.split(' ');
 
       if (!confirm || confirm !== 'sure') {
-        return say('Must confirm ban with "accountban player sure"');
+        return say('Must confirm ban with <b>accountban player sure</b>');
       }
 
       const target = state.PlayerManager.getPlayer(targetName);

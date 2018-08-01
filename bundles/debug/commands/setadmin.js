@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * Set a player as an administrator.
+ */
 module.exports = (srcPath) => {
   const Broadcast = require(srcPath + 'Broadcast');
   const PlayerRoles = require(srcPath + 'PlayerRoles');
@@ -11,7 +14,7 @@ module.exports = (srcPath) => {
       args = args.trim();
 
       if (!args.length) {
-        return Broadcast.sayAt(player, 'setadmin <player>');
+        return Broadcast.sayAt(player, '<b>setadmin <player></b>');
       }
 
       const target = Parser.parseDot(args, player.room.players);
