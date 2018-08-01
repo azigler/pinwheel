@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * Define all channels for the server.
+ */
 module.exports = (srcPath) => {
   const WorldAudience = require(srcPath + 'ChannelAudience/WorldAudience');
   const AreaAudience = require(srcPath + 'ChannelAudience/AreaAudience');

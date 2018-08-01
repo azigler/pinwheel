@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: add target (default self)
+
 /**
  * Add specified amount of experience to self.
  */

@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: make restart/hot reboot command
+
 /**
  * Shut down the MUD from within the game.
  */

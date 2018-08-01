@@ -1,6 +1,8 @@
 'use strict';
 
-
+/**
+ * Log NPC events to console for debugging purposes.
+ */
 module.exports = (srcPath) => {
   const Logger = require(srcPath + 'Logger');
   const Broadcast = require(srcPath + 'Broadcast');

@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: test this feature
+
 /**
  * Ban a player's account. They will still be able to connect to the game
  * and create other accounts.

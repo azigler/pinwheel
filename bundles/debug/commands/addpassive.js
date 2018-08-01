@@ -1,7 +1,10 @@
 'use strict';
 
+// TODO: accept a target (default self)
+// TODO: change to toggle
+
 /**
- * Adds a specified passive skill to self.
+ * Add specified passive skill to self.
  */
 module.exports = (srcPath) => {
   const Broadcast = require(srcPath + 'Broadcast');

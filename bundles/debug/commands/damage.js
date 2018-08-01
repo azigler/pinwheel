@@ -1,5 +1,8 @@
 'use strict';
 
+// TODO: accept target (default self)
+// TODO: accept attribute (default health)
+
 /**
  * Deal specified amount of damage to self.
  */

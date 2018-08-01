@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: change to toggle or assimilate into promote command (with matching demote)
+
 /**
  * Set a player as an administrator.
  */

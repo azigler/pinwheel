@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: SEE SETADMIN
+
 /**
  * Set a player as a builder.
  */

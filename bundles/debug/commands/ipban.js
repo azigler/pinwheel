@@ -1,7 +1,9 @@
 'use strict';
 
+// TODO: test this feature
+
 /**
- * IP ban a player.
+ * Ban a player by their IP.
  */
 module.exports = srcPath => {
   const B = require(srcPath + 'Broadcast');

@@ -3,7 +3,7 @@
 // TODO: live reboot other files?
 
 /**
- * Allows you to reload a command's definition from disk without restarting the server.
+ * Reload a command's definition from disk without restarting the server.
  */
 module.exports = srcPath => {
   const B = require(srcPath + 'Broadcast');
