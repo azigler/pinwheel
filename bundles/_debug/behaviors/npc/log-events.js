@@ -20,12 +20,12 @@ module.exports = (srcPath) => {
         Logger.log(`${this.name} saw ${player.name} drop ${item.name} in ${this.room.title} (${this.room.entityReference})`);
       },
 
-      combatStart: state => function(config) {
-        Logger.log(`${this.name} started combat.`);
+      combatantAdded: state => function(config, target) {
+        Logger.log(`${this.name} and ${target.name} started fighting in ${this.room.title} (${this.room.entityReference})`);
       },
 
-      combatEnd: state => function(config) {
-        Logger.log(`${this.name} finished combat.`);
+      killed: state => function(config) {
+        Logger.log(`${this.name} died in ${this.room.title} (${this.room.entityReference}).`);
       },
 
       hit: state => function(config, damage, target) {
@@ -41,7 +41,7 @@ module.exports = (srcPath) => {
       },
 
       healed: state => function (config, heal) {
-        Logger.log(`${this.name} was healed ${heal.finalAmount} ${heal.attribute} by ${heal.attacker.name} in ${this.room.title} (${this.room.entityReference})`);
+        Logger.log(`${this.name} was healed ${heal.finalAmount} ${heal.attribute} in ${this.room.title} (${this.room.entityReference})`);
       },
 
       npcLeave: state => function (config, target, destination) {
