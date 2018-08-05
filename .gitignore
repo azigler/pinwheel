@@ -2,6 +2,7 @@
 node_modules
 data/player/*.json
 data/account/*.json
+data/bug/*.txt
 data/banned.json
 *.swp
 coverage/
