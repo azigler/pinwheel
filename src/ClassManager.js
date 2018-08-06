@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Maining list of classes in the game
+ * Main list of classes in the game
  * @see PlayerClass
  * @extends Map
  */
