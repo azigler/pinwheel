@@ -1,6 +1,6 @@
 'use strict';
 
-const TypeUtil = require('./TypeUtil');
+const TypeUtil = require('./Util/TypeUtil');
 
 /**
  * Generic array hash table to store listener definitions `events` is a `Map`

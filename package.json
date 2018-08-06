@@ -20,6 +20,7 @@
     "bcryptjs": "^2.4.0",
     "commander": "^2.16.0",
     "express": "^4.16.3",
+    "humanize-duration": "^3.15.1",
     "js-yaml": "^3.12.0",
     "longjohn": "^0.2.11",
     "optimist": "^0.6.1",
