@@ -6,9 +6,9 @@ const Room = require('./Room');
  * Keeps track of all the individual rooms in the game
  * @property {string} startingRoom EntityReference of the room players should spawn in when created
  */
-class RoomManager {
+class RoomManager extends Map {
   constructor() {
-    this.rooms = new Map();
+    super();
     this.startingRoom = null;
   }
 
@@ -17,21 +17,21 @@ class RoomManager {
    * @return {Room}
    */
   getRoom(entityRef) {
-    return this.rooms.get(entityRef);
+    return this.get(entityRef);
   }
 
   /**
    * @param {Room} room
    */
   addRoom(room) {
-    this.rooms.set(room.entityReference, room);
+    this.set(room.entityReference, room);
   }
 
   /**
    * @param {Room} room
    */
   removeRoom(room) {
-    this.rooms.delete(room.entityReference);
+    this.delete(room.entityReference);
   }
 
   /**

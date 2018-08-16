@@ -5,15 +5,7 @@ const ItemType = require('./ItemType');
 /**
  * Keep track of all items in game
  */
-class ItemManager {
-  constructor() {
-    this.items = new Set();
-  }
-
-  add(item) {
-    this.items.add(item);
-  }
-
+class ItemManager extends Set {
   remove(item) {
     if (item.room) {
       item.room.removeItem(item);
@@ -34,7 +26,7 @@ class ItemManager {
    * @fires Item#updateTick
    */
   tickAll() {
-    for (const item of this.items) {
+    for (const item of this) {
       /**
        * @event Item#updateTick
        */

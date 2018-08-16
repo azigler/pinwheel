@@ -2,29 +2,15 @@
 
 /**
  * Contains registered channels
- *
- * TODO: should probably refactor this to just extend `Map`
  */
-class ChannelManager {
-  constructor() {
-    this.channels = new Map();
-  }
-
-  /**
-   * @param {string} name Channel name
-   * @return {Channel}
-   */
-  get(name) {
-    return this.channels.get(name);
-  }
-
+class ChannelManager extends Map {
   /**
    * @param {Channel} channel
    */
   add(channel) {
-    this.channels.set(channel.name, channel);
+    this.set(channel.name, channel);
     if (channel.aliases) {
-      channel.aliases.forEach(alias => this.channels.set(alias, channel));
+      channel.aliases.forEach(alias => this.set(alias, channel));
     }
   }
 
@@ -32,7 +18,7 @@ class ChannelManager {
    * @param {Channel} channel
    */
   remove(channel) {
-    this.channels.delete(channel.name);
+    this.delete(channel.name);
   }
 
   /**
@@ -40,7 +26,7 @@ class ChannelManager {
    * @return {Channel}
    */
   find(search) {
-    for (const [ name, channel ] of this.channels.entries()) {
+    for (const [ name, channel ] of this.entries()) {
       if (name.indexOf(search) === 0) {
         return channel;
       }

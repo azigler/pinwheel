@@ -3,28 +3,15 @@
 /**
  * Contains all active in game commands
  */
-class CommandManager {
-  constructor() {
-    this.commands = new Map();
-  }
-
-  /**
-   * Get command by name
-   * @param {string}
-   * @return {Command}
-   */
-  get(command) {
-    return this.commands.get(command);
-  }
-
+class CommandManager extends Map {
   /**
    * Add the command and set up aliases
    * @param {Command}
    */
   add(command) {
-    this.commands.set(command.name, command);
+    this.set(command.name, command);
     if (command.aliases) {
-      command.aliases.forEach(alias => this.commands.set(alias, command));
+      command.aliases.forEach(alias => this.set(alias, command));
     }
   }
 
@@ -32,7 +19,7 @@ class CommandManager {
    * @param {Command}
    */
   remove(command) {
-    this.commands.delete(command.name);
+    this.delete(command.name);
   }
 
   /**
@@ -42,7 +29,7 @@ class CommandManager {
    * @return {Command}
    */
   find(search, returnAlias) {
-    for (const [ name, command ] of this.commands.entries()) {
+    for (const [ name, command ] of this.entries()) {
       if (name.indexOf(search) === 0) {
         return returnAlias ? { command, alias: name } : command;
       }

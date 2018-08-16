@@ -7,29 +7,16 @@ const TypeUtil = require('./Util/TypeUtil');
  * whose keys are event names values are the `Set` of listeners to be attached
  * for that event
  */
-class EventManager {
-  constructor() {
-    this.events = new Map();
-  }
-
-  /**
-   * Fetch all listeners for a given event
-   * @param {string} name
-   * @return {Set}
-   */
-  get(name) {
-    return this.events.get(name);
-  }
-
+class EventManager extends Map {
   /**
    * @param {string}   eventName
    * @param {Function} listener
    */
   add(eventName, listener) {
-    if (!this.events.has(eventName)) {
-      this.events.set(eventName, new Set());
+    if (!this.has(eventName)) {
+      this.set(eventName, new Set());
     }
-    this.events.get(eventName).add(listener);
+    this.get(eventName).add(listener);
   }
 
   /**
@@ -38,7 +25,7 @@ class EventManager {
    * @param {Object} config
    */
   attach(emitter, config) {
-    for (const [ event, listeners ] of this.events) {
+    for (const [ event, listeners ] of this) {
       for (const listener of listeners) {
         if (config) {
           emitter.on(event, listener.bind(emitter, config));
@@ -64,7 +51,7 @@ class EventManager {
     if (typeof events === 'string') {
       events = [events];
     } else if (!events) {
-      events = this.events.keys();
+      events = this.keys();
     } else if (!TypeUtil.iterable(events)) {
       throw new TypeError('events list passed to clear() is not iterable');
     }

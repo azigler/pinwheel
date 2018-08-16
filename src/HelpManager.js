@@ -3,23 +3,12 @@
 /**
  * Contain/look up helpfiles
  */
-class HelpManager {
-  constructor() {
-    this.helps = new Map();
-  }
-
-  /**
-   * @param {string} help Helpfile name
-   */
-  get(help) {
-    return this.helps.get(help);
-  }
-
+class HelpManager extends Map {
   /**
    * @param {Helpfile} help
    */
   add(help) {
-    this.helps.set(help.name, help);
+    this.set(help.name, help);
   }
 
   /**
@@ -28,7 +17,7 @@ class HelpManager {
    */
   find(search) {
     const results = new Map();
-    for (const [ name, help ] of this.helps.entries()) {
+    for (const [ name, help ] of this.entries()) {
       if (name.indexOf(search) === 0) {
         results.set(name, help);
         continue;

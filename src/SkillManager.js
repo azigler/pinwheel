@@ -5,31 +5,19 @@ const SkillFlag = require('./SkillFlag');
 /**
  * Keeps track of registered skills
  */
-class SkillManager {
-  constructor() {
-    this.skills = new Map();
-  }
-
-  /**
-   * @param {string} skill Skill name
-   * @return {Skill|undefined}
-   */
-  get(skill) {
-    return this.skills.get(skill);
-  }
-
+class SkillManager extends Map {
   /**
    * @param {Skill} skill
    */
   add(skill) {
-    this.skills.set(skill.id, skill);
+    this.set(skill.id, skill);
   }
 
   /**
    * @param {Skill} skill
    */
   remove(skill) {
-    this.skills.delete(skill.name);
+    this.delete(skill.name);
   }
 
   /**
@@ -39,7 +27,7 @@ class SkillManager {
    * @return {Skill}
    */
   find(search, includePassive = false) {
-    for (const [ id, skill ] of this.skills) {
+    for (const [ id, skill ] of this) {
       if (!includePassive && skill.flags.includes(SkillFlag.PASSIVE)) {
         continue;
       }
