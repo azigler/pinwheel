@@ -19,7 +19,7 @@ class ItemManager extends Set {
       item.inventory.forEach(childItem => this.remove(childItem));
     }
 
-    this.items.delete(item);
+    this.delete(item);
   }
 
   /**
