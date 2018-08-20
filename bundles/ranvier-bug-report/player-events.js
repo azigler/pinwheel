@@ -42,7 +42,7 @@ module.exports = (srcPath) => {
       case 'bug':
         return `PlayerData: ${JSON.stringify(this.serialize())}\nRoomData: ${serializeRoom(room)}`;
       case 'typo':
-        return `PlayerInv: ${JSON.stringify(this.inventory.serialize())}\nRoomData: ${serializeRoom(room)}`;
+        return (this.inventory ? `PlayerInv: ${JSON.stringify(this.inventory.serialize())}\nRoomData: ${serializeRoom(room)}` : '');
       case 'suggestion':
       default:
         return '';
@@ -59,26 +59,17 @@ module.exports = (srcPath) => {
         reportMethod(formattedReport);
         if (Config.get('reportToAdmins')) {
           const message = `New ${type} report from ${this.name}\n=> ${description}`;
-          const role = type === 'bug'
-            ? PlayerRoles.ADMIN
-            : PlayerRoles.BUILDER;
+          const role = PlayerRoles.ADMIN;
           
           const bugReporter = {
             name: 'ATTN',
             role,
-            // implement Broadcastable interface
+            // implements Broadcastable interface
             getBroadcastTargets() {
               return [];
             }
           }
-          // announce bug
-          if (role === PlayerRoles.ADMIN) {
-            state.ChannelManager.get('admin').send(state, bugReporter, message);
-          }
-          // announce typos and suggestions
-          if (role === PlayerRoles.BUILDER) {
-            state.ChannelManager.get('builder').send(state, bugReporter, message);
-          }
+          state.ChannelManager.get('admin').send(state, bugReporter, message);
 
           // save report to disk
           Data.saveBug('bug', `${(new Date()).toISOString()} - ${type}}`, formattedReport);

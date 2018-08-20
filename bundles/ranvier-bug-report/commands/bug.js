@@ -16,6 +16,8 @@ module.exports = srcPath => {
         type: arg0
       });
 
+      // TODO: confirm report before sending, to prevent conflict with debug channel
+
       Broadcast.sayAt(player, `<b>Your ${arg0} report has been submitted as:</b>\n${args}`);
       Broadcast.sayAt(player, '<b>Thanks!</b>');
     }

@@ -97,10 +97,10 @@ module.exports = (srcPath) => {
     }),
 
     new Channel({
-      name: 'builder',
+      name: 'debug',
       color: ['bold', 'magenta'],
-      description: 'Send a message to all builders connected',
-      audience: new RoleAudience({ minRole: PlayerRoles.BUILDER })
+      description: 'Send a message to all testers connected',
+      audience: new RoleAudience({ minRole: PlayerRoles.TESTER })
     })
   ];
 };
