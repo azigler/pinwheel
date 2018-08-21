@@ -1,0 +1,9 @@
+---
+command: consider
+body: |
+  Compares the user's combat level to the target's. Useful for assessing an enemy before a fight, but not always indicative of an enemy's potential strength.
+related:
+  - kill
+keywords:
+  - consider
+  - combat

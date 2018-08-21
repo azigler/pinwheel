@@ -1,0 +1,10 @@
+---
+command: pvp
+body: |
+  Toggle your preference for engaging in player versus player (PvP) combat.
+related:
+  - kill
+keywords:
+  - pvp
+  - player
+  - versus
