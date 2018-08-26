@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * General functions used across the ranvier bundles
+ * Item utility functions
  */
 
 const srcPath = '../'
@@ -10,6 +10,7 @@ const sprintf = require('sprintf-js').sprintf;
 const ItemType = require(srcPath + 'ItemType');
 const B = require(srcPath + 'Broadcast');
 
+// TODO: update item qualities
 const qualityColors = {
   poor: ['bold', 'black'],
   common: ['bold', 'white'],
@@ -49,6 +50,7 @@ exports.display = function (item) {
  * @param {Player}    player
  */
 exports.renderItem = function (state, item, player) {
+  // TODO: refactor and comment
   let buf = qualityColorize(item, '.' + B.line(38) + '.') + '\r\n';
   buf += '| ' + qualityColorize(item, sprintf('%-36s', item.name)) + ' |\r\n';
 
@@ -58,9 +60,9 @@ exports.renderItem = function (state, item, player) {
 
   switch (item.type) {
     case ItemType.WEAPON:
-      buf += sprintf('| %-18s%18s |\r\n', `${props.minDamage} - ${props.maxDamage} Damage`, `Speed ${props.speed}`);
+      buf += sprintf('| %-40s%34s |\r\n', `<b><red>${props.minDamage} - ${props.maxDamage} Damage</red></b>`, `<b><cyan>Speed ${props.speed}</cyan></b>`);
       const dps = ((props.minDamage + props.maxDamage) / 2) / props.speed;
-      buf += sprintf('| %-36s |\r\n', `(${dps.toPrecision(2)} damage per second)`);
+      buf += sprintf('| %-58s |\r\n', `(<b><white>${dps.toPrecision(2)} damage per second)</white></b> `);
       break;
     case ItemType.ARMOR:
       buf += sprintf('| %-36s |\r\n', item.metadata.slot[0].toUpperCase() + item.metadata.slot.slice(1));
@@ -73,22 +75,23 @@ exports.renderItem = function (state, item, player) {
   // copy stats to make sure we don't accidentally modify it
   const stats = Object.assign({}, props.stats);
 
-  // always show armor first
-  if (stats.armor) {
-    buf += sprintf('| %-36s |\r\n', `${stats.armor} Armor`);
-    delete stats.armor;
+  // always show defense first
+  if (stats.defense) {
+    buf += sprintf('| %-58s |\r\n', `<b><green>${stats.defense} Defense</green></b>`);
+    delete stats.defense;
   }
 
-  // non-armor stats
+  // then show non-defense stats
   for (const stat in stats) {
     const value = stats[stat];
     buf += sprintf(
-      '| %-36s |\r\n',
-      (value > 0 ? '+' : '') + value + ' ' + stat[0].toUpperCase() + stat.slice(1)
+      '| %-58s |\r\n',
+      `<b><green>${(value > 0 ? '+' : '') + value + ' ' + stat[0].toUpperCase() + stat.slice(1)}</green></b>`
     );
   }
 
   // custom special effect rendering
+  // TODO: this is currently unused... what is this?
   if (props.specialEffects) {
     props.specialEffects.forEach(effectText => {
       const text = B.wrap(effectText, 36).split(/\r\n/g);

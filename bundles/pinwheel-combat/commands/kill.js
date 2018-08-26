@@ -1,10 +1,9 @@
 'use strict';
 
-const Combat = require('../lib/Combat');
-
 module.exports = (srcPath) => {
   const B = require(srcPath + 'Broadcast');
   const Logger = require(srcPath + 'Logger');
+  const Combat = require(srcPath + 'Combat');
   const CombatErrors = require(srcPath + 'Error/CombatErrors');
 
   return {

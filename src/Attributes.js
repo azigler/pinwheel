@@ -58,7 +58,9 @@ class Attributes extends Map
    * @param {number} delta=0
    */
   add(name, base, delta = 0) {
-    this.set(name, new Attribute(name, base, delta));
+    if (!this.has(name)) {
+      this.set(name, new Attribute(name, base, delta));
+    }
   }
 
   /**
