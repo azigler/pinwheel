@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: iterate over again, multiple passes likely needed
+
 const sprintf = require('sprintf-js').sprintf;
 
 module.exports = (srcPath) => {

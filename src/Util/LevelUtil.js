@@ -3,6 +3,7 @@
 /**
 * These formulas are stolen straight from WoW.
 * See: http://www.wowwiki.com/Formulas:XP_To_Level
+* TODO: alter these formulas?
 */
 
 /**

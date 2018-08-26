@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: format and make pretty/unique
+
 module.exports = (srcPath, bundlePath) => {
   const Broadcast = require(srcPath + 'Broadcast');
   const ItemUtil = require(srcPath + 'Util/ItemUtil');
