@@ -60,9 +60,7 @@ exports.renderItem = function (state, item, player) {
 
   switch (item.type) {
     case ItemType.WEAPON:
-      buf += sprintf('| %-40s%34s |\r\n', `<b><red>${props.minDamage} - ${props.maxDamage} Damage</red></b>`, `<b><cyan>Speed ${props.speed}</cyan></b>`);
-      const dps = ((props.minDamage + props.maxDamage) / 2) / props.speed;
-      buf += sprintf('| %-58s |\r\n', `(<b><white>${dps.toPrecision(2)} damage per second)</white></b> `);
+      buf += sprintf('| %-40s%34s |\r\n', `<b><red>${props.minDamage} - ${props.maxDamage} Damage</red></b>`, `<b><cyan>Lag ${props.lag}</cyan></b>`);
       break;
     case ItemType.ARMOR:
       buf += sprintf('| %-36s |\r\n', item.metadata.slot[0].toUpperCase() + item.metadata.slot.slice(1));
@@ -75,13 +73,13 @@ exports.renderItem = function (state, item, player) {
   // copy stats to make sure we don't accidentally modify it
   const stats = Object.assign({}, props.stats);
 
-  // always show defense first
-  if (stats.defense) {
-    buf += sprintf('| %-58s |\r\n', `<b><green>${stats.defense} Defense</green></b>`);
-    delete stats.defense;
+  // always show armor first
+  if (stats.armor) {
+    buf += sprintf('| %-58s |\r\n', `<b><green>${stats.armor} Armor</green></b>`);
+    delete stats.armor;
   }
 
-  // then show non-defense stats
+  // then show non-armor stats
   for (const stat in stats) {
     const value = stats[stat];
     buf += sprintf(

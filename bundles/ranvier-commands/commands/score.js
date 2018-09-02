@@ -93,9 +93,9 @@ module.exports = (srcPath) => {
       printStat('brawn', false);
 
       // WEAPON DAMAGE
-      const weaponDamage = Combat.getWeaponDamage(p, false);
-      const min = Combat.normalizeWeaponDamage(p, weaponDamage.min, true);
-      const max = Combat.normalizeWeaponDamage(p, weaponDamage.max, true);
+      const weaponDamage = Combat.getWeaponDamage(p);
+      const min = Combat.normalizeWeaponDamage(p, weaponDamage.min);
+      const max = Combat.normalizeWeaponDamage(p, weaponDamage.max);
       const dam = (min + max) / 2
       B.at(p, sprintf(' %-11s: <b>%5s</b> |', '| Wep Dmg ', dam));
 
@@ -106,7 +106,7 @@ module.exports = (srcPath) => {
       printStat('endurance', false);
 
       // WEAPON SPEED
-      B.at(p, sprintf(' %-11s: <b>%5s</b> |', '| Wep Spd ', Combat.getWeaponSpeed(p, false)));
+      B.at(p, sprintf(' %-11s: <b>%5s</b> |', '| Wep Spd ', Combat.getWeaponSpeed(p)));
 
       // BOTTOM OF COWRIES TABLE
       B.at(p, " '" + B.line(12, '<b>-</b>', 'white') + "'");
@@ -115,9 +115,9 @@ module.exports = (srcPath) => {
       // REFLEXES
       printStat('reflexes', false);
 
-      // DEFENSE
+      // ARMOR
       B.at(p, '');
-      printStat('defense', false, 8, 5, true);
+      printStat('armor', false, 8, 5, true);
 
       // INFLUENCE TABLE HEADER
       B.at(p, '  <b><white>Influence</white></b>');
