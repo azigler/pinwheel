@@ -15,7 +15,7 @@ class ItemManager extends Set {
       item.belongsTo.removeItem(item);
     }
 
-    if (item.type === ItemType.CONTAINER && item.inventory) {
+    if (item.inventory) {
       item.inventory.forEach(childItem => this.remove(childItem));
     }
 

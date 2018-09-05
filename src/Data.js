@@ -50,7 +50,7 @@ class Data {
       '.yml': yaml.safeDump,
       '.yaml': yaml.safeDump,
       '.json': function(data) {
-        //Make it prettttty
+        // format the JSON for readability
         return JSON.stringify(data, null, 2);
       }
     };
@@ -69,7 +69,7 @@ class Data {
   }
 
   /**
-   * load/parse a data file (player/account)
+   * Load and parse a data file
    * @param {string} type
    * @param {string} id
    * @return {*}
@@ -79,7 +79,7 @@ class Data {
   }
 
   /**
-   * Save data file (player/account) data to disk
+   * Save data file data to disk
    * @param {string} type
    * @param {string} id
    * @param {*} data
@@ -117,7 +117,7 @@ class Data {
   }
 
   /**
-   * get the file path for a given data file by type (player/account)
+   * Get the file path for a given data file by type
    * @param {string} type
    * @param {string} id
    * @return {string}
@@ -132,6 +132,9 @@ class Data {
       }
       case 'bug': {
         return dataPath + `bug/${id}.txt`;
+      }
+      case 'area': {
+        return dataPath + `area/${id}.json`;
       }
     }
   }

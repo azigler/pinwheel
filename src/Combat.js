@@ -459,6 +459,10 @@ class Combat {
     deadEntity.emit('killed', killer);
 
     if (deadEntity.isNpc) {
+      const area = state.AreaManager.getArea(deadEntity.sourceRoom.area);
+      const room = area.getRoomById(deadEntity.sourceRoom.room);
+      room.removeSpawnedNpc(deadEntity);
+      
       state.MobManager.removeMob(deadEntity);
       deadEntity.room.area.removeNpc(deadEntity);
     }

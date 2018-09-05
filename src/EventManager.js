@@ -3,9 +3,9 @@
 const TypeUtil = require('./Util/TypeUtil');
 
 /**
- * Generic array hash table to store listener definitions `events` is a `Map`
- * whose keys are event names values are the `Set` of listeners to be attached
- * for that event
+ * Generic array hash table to store listener definitions in a `Map`
+ * whose keys are event names and values are the `Set` of listeners
+ * to be attached for that event
  */
 class EventManager extends Map {
   /**
@@ -37,8 +37,8 @@ class EventManager extends Map {
   }
 
   /**
-   * Remove all listeners for a given emitter or only those for the given events
-   * If no events are given it will remove all listeners from all events defined
+   * Remove all listeners for a given emitter or only those for the given events.
+   * If no events are given, it will remove all listeners from all events defined
    * in this manager.
    *
    * Warning: This will remove _all_ listeners for a given event list, this includes

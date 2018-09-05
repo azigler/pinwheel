@@ -1,5 +1,7 @@
 'use strict';
 
+const Data = require('./Data');
+
 /**
  * Stores references to, and handles distribution of, active areas
  * @property {Map<string,Area>} areas
@@ -52,8 +54,18 @@ class AreaManager extends Map {
    */
   distribute(state) {
     for (const [ name, area ] of this) {
+      // load state from disk
+      let data;
+      if (Data.exists('area', name)) {
+        data = Data.load('area', name);
+      }
       for (const [ roomId, room ] of area.rooms) {
-        room.hydrate(state);
+        // pass loaded room state to hydrate
+        if (data) {
+          room.hydrate(state, data[roomId]);
+        } else {
+          room.hydrate(state);
+        }
       }
     }
   }
