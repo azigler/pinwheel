@@ -4,11 +4,12 @@ const TypeUtil = require('./Util/TypeUtil');
 
 /**
  * Generic array hash table to store listener definitions in a `Map`
- * whose keys are event names and values are the `Set` of listeners
- * to be attached for that event
+ * Keys are event names and values are the `Sets` of listeners to be
+ * attached for that event
  */
 class EventManager extends Map {
   /**
+   * Add an event to a Set of listeners
    * @param {string}   eventName
    * @param {Function} listener
    */
@@ -53,7 +54,7 @@ class EventManager extends Map {
     } else if (!events) {
       events = this.keys();
     } else if (!TypeUtil.iterable(events)) {
-      throw new TypeError('events list passed to clear() is not iterable');
+      throw new TypeError('List of events is not iterable');
     }
 
     for (const event of events) {

@@ -4,10 +4,10 @@
  */
 const Metadatable = parentClass => class extends parentClass {
   /**
-   * Set a metadata value.
-   * Warning: Does _not_ autovivify, you will need to create the parent objects if they don't exist
+   * Set a metadata value
+   * Warning: Does _not_ autovivify, you will need to create the parent objects if they don't exist.
    * @param {string} key   Key to set. Supports dot notation e.g., `"foo.bar"`
-   * @param {*}      value Value must be JSON.stringify-able
+   * @param {*}      value Value must be `JSON.stringify`-able
    *
    * @memberof Metadatable
    * @instance

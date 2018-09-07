@@ -3,11 +3,13 @@
 const EventManager = require('./EventManager');
 
 /**
- * BehaviorManager keeps a map of BehaviorName:EventManager which is used
- * during Item and NPC hydrate() methods to attach events
+ * BehaviorManager keeps a Map of [BehaviorName:EventManager] which is used
+ * during Item and NPC hydrate methods to attach events
  */
 class BehaviorManager extends Map {
+
   /**
+   * Add a listener to an event manager
    * @param {string}   behaviorName
    * @param {Function} listener
    */
