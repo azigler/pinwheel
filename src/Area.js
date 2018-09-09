@@ -180,7 +180,6 @@ class Area extends Metadatable(EventEmitter) {
    */
   addNpc(npc) {
     this.npcs.add(npc);
-    npc.currentArea = this.name;
   }
 
   /**
@@ -197,7 +196,6 @@ class Area extends Metadatable(EventEmitter) {
    */
   addItem(item) {
     this.items.add(item);
-    item.currentArea = this.name;
   }
 
   /**
