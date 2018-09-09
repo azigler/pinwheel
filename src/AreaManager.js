@@ -3,11 +3,12 @@
 const Data = require('./Data');
 
 /**
- * Stores references to, and handles distribution of, active areas
+ * Stores references of active areas and handles state
  * @property {Map<string,Area>} areas
  */
 class AreaManager extends Map {
   /**
+   * Gets an area
    * @param {string} name
    * @return Area
    */
@@ -16,6 +17,7 @@ class AreaManager extends Map {
   }
 
   /**
+   * Get an area by entity reference
    * @param {string} entityRef
    * @return Area
    */
@@ -25,6 +27,7 @@ class AreaManager extends Map {
   }
 
   /**
+   * Add an area to the manager
    * @param {Area} area
    */
   addArea(area) {
@@ -32,6 +35,7 @@ class AreaManager extends Map {
   }
 
   /**
+   * Remove an area from the manager
    * @param {Area} area
    */
   removeArea(area) {
