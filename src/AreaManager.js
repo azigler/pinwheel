@@ -8,7 +8,7 @@ const Data = require('./Data');
  */
 class AreaManager extends Map {
   /**
-   * Gets an area
+   * Get an area
    * @param {string} name
    * @return Area
    */
@@ -58,14 +58,17 @@ class AreaManager extends Map {
    */
   distribute(state) {
     for (const [ name, area ] of this) {
-      // load state from disk
-      let data;
+      // hydrate area
+      let data = null;
       if (Data.exists('area', name)) {
         data = Data.load('area', name);
+        area.hydrate(state, data);
+      } else {
+        area.hydrate(state);
       }
       for (const [ roomId, room ] of area.rooms) {
-        // pass loaded room state to hydrate
-        if (data) {
+        // hydrate room
+        if (data !== null) {
           room.hydrate(state, data[roomId]);
         } else {
           room.hydrate(state);
