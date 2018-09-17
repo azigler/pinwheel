@@ -5,7 +5,7 @@ const srcPath = __dirname + '/../';
 
 class HydrationUtil {
   /**
-   * Hydrates a script on an entity
+   * Hydrate a script on an entity
    * @param {entity} entity Entity on which to hydrate the script
    * @param {string} scriptPath Path to the script file
    */
