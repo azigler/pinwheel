@@ -8,7 +8,6 @@ const BehaviorManager = require('./BehaviorManager');
 class EntityFactory extends Map {
   constructor() {
     super();
-    this.scripts = new BehaviorManager();   // Map of entity scripts for the factory
   }
 
   /**
@@ -42,17 +41,6 @@ class EntityFactory extends Map {
   }
 
   /**
-   * Add an event listener from a script to a specific entity
-   * @see BehaviorManager::addListener
-   * @param {string}   entityRef
-   * @param {string}   event
-   * @param {Function} listener
-   */
-  addScriptListener(entityRef, event, listener) {
-    this.scripts.addListener(entityRef, event, listener);
-  }
-
-  /**
    * Create a new instance of a given entity definition. Resulting entity will 
    * _not_ have its contents until it is hydrated.
    * @param {Area}   area
@@ -63,10 +51,6 @@ class EntityFactory extends Map {
   createByType(area, entityRef, Type) {
     const definition = this.getDefinition(entityRef);
     const entity = new Type(area, definition);
-
-    if (this.scripts.has(entityRef)) {
-      this.scripts.get(entityRef).attach(entity);
-    }
 
     return entity;
   }

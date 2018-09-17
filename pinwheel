@@ -44,8 +44,8 @@ const GameServer = require('./src/GameServer');
 const HelpManager = require('./src/HelpManager');
 const ItemFactory = require('./src/ItemFactory');
 const ItemManager = require('./src/ItemManager');
-const MobFactory = require('./src/MobFactory');
-const MobManager = require('./src/MobManager');
+const NpcFactory = require('./src/NpcFactory');
+const NpcManager = require('./src/NpcManager');
 const PartyManager = require('./src/PartyManager');
 const PlayerManager = require('./src/PlayerManager');
 const QuestFactory = require('./src/QuestFactory');
@@ -103,6 +103,7 @@ function init(restartServer) {
   GameState = {
     AccountManager: new AccountManager(),
     AreaManager: new AreaManager(),
+    AreaBehaviorManager: new BehaviorManager(),
     ChannelManager: new ChannelManager(),
     ClassManager: new ClassManager(), // player class manager
     CommandManager: new CommandManager(),
@@ -115,8 +116,8 @@ function init(restartServer) {
     ItemFactory: new ItemFactory(),
     ItemManager: new ItemManager(),
     MobBehaviorManager: new BehaviorManager(),
-    MobFactory: new MobFactory(),
-    MobManager: new MobManager(),
+    NpcFactory: new NpcFactory(),
+    NpcManager: new NpcManager(),
     PartyManager: new PartyManager(),
     PlayerManager: new PlayerManager(),
     QuestFactory: new QuestFactory(),

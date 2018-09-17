@@ -8,7 +8,7 @@ const Data = require('./Data');
  */
 class AreaManager extends Map {
   /**
-   * Get an area
+   * Get an area by name
    * @param {string} name
    * @return Area
    */

@@ -1,22 +1,22 @@
 'use strict';
 
 /**
- * Keeps track of all the individual mobs in the game
+ * Keeps track of all the individual NPCs in the game
  */
-class MobManager extends Map {
+class NpcManager extends Map {
   /**
    * @param {Mob} mob
    */
-  addMob(mob) {
+  addNpc(mob) {
     this.set(mob.uuid, mob);
   }
 
   /**
    * @param {Mob} mob
    */
-  removeMob(mob) {
+  removeNpc(mob) {
     this.delete(mob.uuid);
   }
 }
 
-module.exports = MobManager;
+module.exports = NpcManager;

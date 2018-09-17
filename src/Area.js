@@ -4,26 +4,24 @@ const EventEmitter = require('events');
 const AreaFloor = require('./AreaFloor');
 const Data = require('./Data');
 const Metadatable = require('./Metadatable');
-const fs = require('fs');
-
-const srcPath = __dirname + '/';
+const HydrationUtil = require('./Util/HydrationUtil');
 
 /**
  * Representation of an area
  *
- * @property {string} bundle Bundle containing area
- * @property {string} name Directory name of area
- * @property {string} title Title of area in metadata
- * @property {Map}    map Map object keyed by the floor z-index, each floor is an array with [x][y] indexes for coordinates.
+ * @property {string}     bundle    Bundle containing area
+ * @property {string}     name      Directory name of area
+ * @property {string}     title     Title of area in metadata
+ * @property {Object}     config    Area configuration
+ * @property {Set<Npc>}   npcs      Set of NPCs currently in area
+ * @property {Set<Player>} players  Set of players currently in area
+ * @property {Set<Item>}  items     Set of items currently in area
+ * @property {Map}        map       Map object keyed by the floor z-index, each floor is an array with [x][y] indexes for coordinates.
  * @property {Map<string, Room>} rooms Map of room id to Room
- * @property {Set<Npc>} npcs Set of NPCs currently in area
- * @property {Set<Player>} players Set of players currently in area
- * @property {Set<Item>} items Set of items currently in area
- * @property {Object} config Area configuration
- * @property {string} script Script filename for area
- * @property {Map} behaviors Map of behaviors for area
- * @property {Number} lastRespawnTick Milliseconds since last respawn tick. See {@link Area#updateTick}
- * @property {Object} loadedEntities Object of Sets of entities loaded from this area's data
+ * @property {string}     script    Script filename for area
+ * @property {Map}        behaviors Map of behaviors for area
+ * @property {Object}     loadedEntities Object of Sets of entities loaded from this area's data
+ * @property {Number}     lastRespawnTick Milliseconds since last respawn tick. See {@link Area#updateTick}
  * 
  * @implements {Broadcastable}
  * @extends EventEmitter
@@ -35,21 +33,16 @@ class Area extends Metadatable(EventEmitter) {
     super();
     this.bundle = bundle;
     this.name = name;
-
-    // Arbitrary data bundles are free to shove whatever they want in
-    // WARNING: values must be JSON.stringify-able
-    this.metadata = manifest.metadata || {};
-
-    this.title = manifest.title
-
-    this.npcs = new Set();
-    this.players = new Set();
-    this.items = new Set();
+    this.title = manifest.title;
 
     this.config = Object.assign({
       // default respawn interval (in seconds)
       respawnInterval: 60
     }, manifest.config || {});
+
+    this.npcs = new Set();
+    this.players = new Set();
+    this.items = new Set();
 
     this.map = new Map();
     this.rooms = new Map();
@@ -57,8 +50,7 @@ class Area extends Metadatable(EventEmitter) {
     this.script = manifest.script || '';
     this.behaviors = new Map(Object.entries(manifest.behaviors || {}));
 
-    // List of entityReferences of items, NPCs, and quests from
-    // this area.
+    // list of entityReferences of items, NPCs, and quests from this area.
     this.loadedEntities = {
       items: new Set(),
       npcs: new Set(),
@@ -67,7 +59,11 @@ class Area extends Metadatable(EventEmitter) {
 
     this.lastRespawnTick = -Infinity;
 
-    // Listens to AreaManager's tickAll(state)
+    // arbitrary data bundles are free to shove whatever they want in
+    // WARNING: values must be JSON.stringify-able
+    this.metadata = manifest.metadata || {};
+
+    // listen to AreaManager's tickAll(state)
     this.on('updateTick', state => {
       this.updateTick(state);
     });
@@ -108,7 +104,7 @@ class Area extends Metadatable(EventEmitter) {
 
   /**
    * Assign an NPC to this area
-   * @param {string} entityRef Entity reference of item
+   * @param {string} entityRef Entity reference of NPC
    */
   loadNpc(entityRef) {
     this.loadedEntities.npcs.add(entityRef);
@@ -116,7 +112,7 @@ class Area extends Metadatable(EventEmitter) {
 
   /**
    * Assign a quest to this area
-   * @param {string} entityRef Entity reference of item
+   * @param {string} entityRef Entity reference of quest
    */
   loadQuest(entityRef) {
     this.loadedEntities.quests.add(entityRef);
@@ -191,7 +187,7 @@ class Area extends Metadatable(EventEmitter) {
   }
 
   /**
-   * Add an item from the area
+   * Add an item to the area
    * @param {Item} item
    */
   addItem(item) {
@@ -223,7 +219,28 @@ class Area extends Metadatable(EventEmitter) {
   }
 
   /**
-   * Returns true if the area has the specified behavior
+   * Emit event on self and proxies certain events to other entities in the area.
+   * @param {string} eventName
+   * @param {...*} args
+   * @return {void}
+   */
+  emit(eventName, ...args) {
+    super.emit(eventName, ...args);
+
+    // TODO: expand the list of proxied events
+    const proxiedEvents = [
+    ];
+
+    if (proxiedEvents.includes(eventName)) {
+      const entities = [...this.npcs, ...this.players, ...this.items];
+      for (const entity of entities) {
+        entity.emit(eventName, ...args);
+      }
+    }
+  }
+
+  /**
+   * Return true if the area has the specified behavior
    * @param {string} name
    * @return {boolean}
    */
@@ -232,7 +249,7 @@ class Area extends Metadatable(EventEmitter) {
   }
 
   /**
-   * Returns the specified behavior
+   * Return the specified behavior
    * @param {string} name
    * @return {*}
    */
@@ -249,7 +266,6 @@ class Area extends Metadatable(EventEmitter) {
     // save area's metadata
     data = Object.assign(data, {
       title: this.title,
-      config: this.config,
       script: this.script,
       metadata: this.metadata
     });
@@ -282,36 +298,31 @@ class Area extends Metadatable(EventEmitter) {
   }
 
   /**
-   * Hydrate the area
+   * Hydrate the area, optionally with data
    * @param {GameState} state
    * @param {Object} data
    */
-  hydrate(state, data) {
-    // if data has a script
-    if (data && data.script !== '') {
+  hydrate(state, data = undefined) {
+    // if data is loaded for hydration
+    if (data !== undefined) {
+      this.title = data.title;
+      this.metadata = data.metadata;
       this.script = data.script;
+
+      // if data has behaviors
+      if (Object.entries(data.behaviors).length > 0) {
+        this.behaviors = new Map(Object.entries(data.behaviors));
+      }
     }
-    // if data has behaviors
-    if (data && Object.entries(data.behaviors).length > 0) {
-      this.behaviors = new Map(Object.entries(data.behaviors));
-    }
+
     // if the area has a script
     if (this.script !== '') {
-      const scriptPath = `${srcPath}../bundles/${this.bundle}/areas/${this.name}/scripts/area/${this.script}.js`;
-      if (!fs.existsSync(scriptPath)) {
-        return;
-      }
-
-      // TODO: Maybe abstract this into its own method, shared with room loader
-      const scriptListeners = require(scriptPath)(srcPath).listeners;
-      for (const [eventName, listener] of Object.entries(scriptListeners)) {
-        this.on(eventName, listener(this.state));
-      }
+      const scriptPath = `${__dirname + '/'}../bundles/${this.bundle}/areas/${this.name}/scripts/area/${this.script}.js`;
+      HydrationUtil.hydrateScript(this, scriptPath);
     }
 
     // if the area has behaviors
     if (this.behaviors.size > 0) {
-      // iterate over behaviors from data
       for (let [behaviorName, config] of this.behaviors) {
         let behavior = state.AreaBehaviorManager.get(behaviorName);
         if (!behavior) {
@@ -326,7 +337,7 @@ class Area extends Metadatable(EventEmitter) {
   }
 
   /**
-   * Used by Broadcastable
+   * Used by Broadcast
    * @return {Array<Character>}
    */
   getBroadcastTargets() {
@@ -344,12 +355,12 @@ class Area extends Metadatable(EventEmitter) {
    * @param {GameState} state
    */
   updateTick(state) {
-    // used in behaviors and scripts
+    // TIP: used in behaviors and scripts
     for(const [id, room] of this.rooms) {
       room.emit('updateTick');
     }
 
-    // used in behaviors and scripts
+    // TIP: used in behaviors and scripts
     for (const npc of this.npcs) {
       npc.emit('updateTick');
     }

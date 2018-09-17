@@ -3,16 +3,18 @@
 const Room = require('./Room');
 
 /**
- * Keeps track of all the individual rooms in the game
- * @property {string} startingRoom EntityReference of the room players should spawn in when created
+ * Keeps track of every room in the game
+ * @property {string} startingRoom Entity reference of the room that players should spawn in when created
  */
 class RoomManager extends Map {
   constructor() {
     super();
+    // the actual starting room is loaded from `pinwheel.json` by BundleManager via Config
     this.startingRoom = null;
   }
 
   /**
+   * Get room by entity reference
    * @param {string} entityRef
    * @return {Room}
    */
@@ -21,6 +23,7 @@ class RoomManager extends Map {
   }
 
   /**
+   * Add room to manager
    * @param {Room} room
    */
   addRoom(room) {
@@ -28,6 +31,7 @@ class RoomManager extends Map {
   }
 
   /**
+   * Remove room from manager
    * @param {Room} room
    */
   removeRoom(room) {
@@ -35,9 +39,9 @@ class RoomManager extends Map {
   }
 
   /**
-   * Get the exit definition of a room's exit by searching the exit name
+   * Get the exit definition of a room's exit by searching for the exit name
    * @param {Room}   room
-   * @param {string} exitName exit name search
+   * @param {string} exitName exit name to search
    * @return {false|Object}
    */
   findExit(room, exitName) {
