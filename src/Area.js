@@ -317,7 +317,7 @@ class Area extends Metadatable(EventEmitter) {
 
     // if the area has a script
     if (this.script !== '') {
-      const scriptPath = `${__dirname + '/'}../bundles/${this.bundle}/areas/${this.name}/scripts/area/${this.script}.js`;
+      const scriptPath = `${__dirname + '/'}../bundles/${this.bundle}/scripts/area/${this.script}.js`;
       HydrationUtil.hydrateScript(this, scriptPath);
     }
 
