@@ -7,14 +7,14 @@ class NpcManager extends Map {
   /**
    * @param {Mob} mob
    */
-  addNpc(mob) {
+  add(mob) {
     this.set(mob.uuid, mob);
   }
 
   /**
    * @param {Mob} mob
    */
-  removeNpc(mob) {
+  remove(mob) {
     this.delete(mob.uuid);
   }
 }

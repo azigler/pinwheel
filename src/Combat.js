@@ -463,7 +463,7 @@ class Combat {
       const room = area.getRoomById(deadEntity.sourceRoom.room);
       room.removeSpawnedNpc(deadEntity);
       
-      state.NpcManager.removeNpc(deadEntity);
+      state.NpcManager.remove(deadEntity);
       deadEntity.room.removeNpc(deadEntity);
     }
   }
