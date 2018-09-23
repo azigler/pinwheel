@@ -153,9 +153,9 @@ module.exports = (srcPath) => {
         // if the NPC isn't lootable
         if (!this.behaviors.get('lootable')) {
           // produce a corpse
-          const corpse = new Item(this.area, {
+          const corpseData = {
             uuid: this.uuid,
-            id: 'corpse',
+            id: 99,
             name: `corpse of ${this.name}`,
             roomDesc: `the corpse of ${this.name}`,
             description: `This is the rotting corpse of ${this.name}.`,
@@ -168,8 +168,9 @@ module.exports = (srcPath) => {
                 duration: 180
               }
             },
-          });
-          corpse.hydrate(state);
+          };
+          const corpse = new Item(this.area, corpseData);
+          corpse.hydrate(state, corpseData);
           Logger.log(`Generated corpse: ${corpse.uuid}`);
 
           // add corpse to room

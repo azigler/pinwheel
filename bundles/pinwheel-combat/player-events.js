@@ -330,8 +330,8 @@ module.exports = (srcPath) => {
         }
 
         // produce a corpse
-        const corpse = new Item(this.area, {
-          id: 'corpse',
+        const corpseData = {
+          id: '99',
           name: `corpse of ${this.name}`,
           roomDesc: `the corpse of ${this.name}`,
           description: `This is the rotting corpse of ${this.name}.`,
@@ -344,8 +344,9 @@ module.exports = (srcPath) => {
               duration: 180
             }
           },
-        });
-        corpse.hydrate(state);
+        };
+        const corpse = new Item(this.area, corpseData);
+        corpse.hydrate(state, corpseData);
         Logger.log(`Generated corpse: ${corpse.uuid}`);
 
         // TODO: handle player items in corpse

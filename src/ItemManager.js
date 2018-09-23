@@ -7,10 +7,6 @@ const ItemType = require('./ItemType');
  */
 class ItemManager extends Set {
   remove(item) {
-    if (item.room) {
-      item.room.removeItem(item);
-    }
-
     if (item.belongsTo) {
       item.belongsTo.removeItem(item);
     }

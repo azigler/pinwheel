@@ -20,7 +20,7 @@ const Metadatable = require('./Metadatable');
  * @property {{x: number, y: number, z: number}} [coordinates] Defined in yml with array [x, y, z].
  * @property {Map}           behaviors    Map of behaviors for area
  * @property {string}        script       Name of custom script attached to this room
- * @property {items: Array<string>, npcs: Array<string>} defaultEntities List of item entity references that spawn in the room
+ * @property {items: Set, npcs: Set} defaultEntities List of item entity references that spawn in the room
  * @property {Set}           items        Items currently in the room
  * @property {Set}           npcs         Npcs currently in the room
  * @property {Set}           players      Players currently in the room
@@ -39,10 +39,11 @@ class Room extends Metadatable(EventEmitter) {
     const required = ['title', 'description', 'id'];
     for (const prop of required) {
       if (!(prop in def)) {
-        throw new Error(`ERROR: AREA[${area.name}] Room does not have required property ${prop}`);
+        throw new Error(`ERROR: AREA[${area.name}] Room does not have required property: ${prop}`);
       }
     }
 
+    // assign required properties
     this.area = area;
     this.title = def.title;
     this.description = def.description;
@@ -71,18 +72,8 @@ class Room extends Metadatable(EventEmitter) {
 
     // default entities spawned by room
     this.defaultEntities = {
-      items: new Set(),
-      npcs: new Set()
-    }
-
-    // load default NPC properties
-    for (let npc in def.npcs) {
-      this.defaultEntities.npcs.add(def.npcs[npc]);
-    }
-
-    // load default item properties
-    for (let item in def.items) {
-      this.defaultEntities.items.add(def.items[item]);
+      items: new Set(def.items || []),
+      npcs: new Set(def.npcs || [])
     }
 
     // current items, NPCs, and players in the room
@@ -90,7 +81,7 @@ class Room extends Metadatable(EventEmitter) {
     this.npcs = new Set();
     this.players = new Set();
 
-    // arbitrary data bundles are free to shove whatever they want in
+    // arbitrary data storage
     // WARNING: values must be JSON.stringify-able
     this.metadata = def.metadata || {};
 
@@ -189,7 +180,7 @@ class Room extends Metadatable(EventEmitter) {
    */
   addItem(item) {
     this.items.add(item);
-    item.room = this;
+    item.belongsTo = this;
     this.area.addItem(item);
   }
 
@@ -368,7 +359,7 @@ class Room extends Metadatable(EventEmitter) {
 
     // check to respawn items
     this.defaultEntities.items.forEach(defaultItem => {
-      // if the item definition is just an entity reference String in an Array
+      // if the item definition is just an entity reference string in an array
       if (typeof defaultItem === 'string') {
         defaultItem = { id: defaultItem };
       }
@@ -407,13 +398,13 @@ class Room extends Metadatable(EventEmitter) {
     state.ItemManager.add(newItem);
     this.addItem(newItem);
 
-    Logger.verbose(`\tSPAWN: Adding item (${newItem.name}) [${entityRef}] ${newItem.room.title} [${newItem.room.entityReference}]`);
+    Logger.verbose(`\tSPAWN: Adding item (${newItem.name}) [${entityRef}] to room (${newItem.belongsTo.title}) [${newItem.belongsTo.entityReference}]`);
 
     // if there is no data, then this entity is treated as new
     if (data === null) {
       const key = newItem.uuid + entityRef;
       this.spawnedEntities.items.push(key);
-      newItem.sourceRoom = {area: this.area.name, room: this.id};
+      newItem.source = {area: this.area.name, room: this.id};
       /**
        * @event Item#spawn
        */
@@ -434,13 +425,13 @@ class Room extends Metadatable(EventEmitter) {
     state.NpcManager.add(newNpc);
     this.addNpc(newNpc);
 
-    Logger.verbose(`\tSPAWN: Adding NPC (${newNpc.name}) [${entityRef}] to ${newNpc.room.title} [${newNpc.room.entityReference}]`);
+    Logger.verbose(`\tSPAWN: Adding NPC (${newNpc.name}) [${entityRef}] to room (${newNpc.room.title}) [${newNpc.room.entityReference}]`);
 
     // if there is no data, then this entity is treated as new
     if (data === null) {
       const key = newNpc.uuid + entityRef;
       this.spawnedEntities.npcs.push(key);
-      newNpc.sourceRoom = {area: this.area.name, room: this.id};
+      newNpc.source = {area: this.area.name, room: this.id};
       /**
        * @event Npc#spawn
        */

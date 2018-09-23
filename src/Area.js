@@ -59,7 +59,7 @@ class Area extends Metadatable(EventEmitter) {
 
     this.lastRespawnTick = -Infinity;
 
-    // arbitrary data bundles are free to shove whatever they want in
+    // arbitrary data storage
     // WARNING: values must be JSON.stringify-able
     this.metadata = manifest.metadata || {};
 

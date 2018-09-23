@@ -18,9 +18,10 @@ module.exports = srcPath => {
 
         // produce a lootable corpse
         const corpse = new Item(this.area, {
-          id: 'corpse',
+          id: 99,
           name: `corpse of ${this.name}`,
           roomDesc: `the corpse of ${this.name}`,
+          uuid: this.uuid,
           type: 'CONTAINER',
           maxItems: items.length,
           description: `This is the rotting corpse of ${this.name}.`,
