@@ -17,7 +17,8 @@ module.exports = srcPath => {
         );
 
         // produce a lootable corpse
-        const corpse = new Item(this.area, {
+        const corpseData = {
+          entityReference: 'spawn:99',
           id: 99,
           name: `corpse of ${this.name}`,
           roomDesc: `the corpse of ${this.name}`,
@@ -31,11 +32,12 @@ module.exports = srcPath => {
           },
           behaviors: {
             decay: {
-              duration: 180
+              duration: 10
             }
           },
-        });
-        corpse.hydrate(state);
+        };
+        const corpse = new Item(this.area, corpseData);
+        corpse.hydrate(state, corpseData);
         Logger.log(`Generated corpse: ${corpse.uuid}`);
 
         // add loot to corpse

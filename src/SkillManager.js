@@ -3,10 +3,11 @@
 const SkillFlag = require('./SkillFlag');
 
 /**
- * Keeps track of registered skills
+ * Keep track of registered skills
  */
 class SkillManager extends Map {
   /**
+   * Add a skill
    * @param {Skill} skill
    */
   add(skill) {
@@ -14,6 +15,7 @@ class SkillManager extends Map {
   }
 
   /**
+   * Remove a skill
    * @param {Skill} skill
    */
   remove(skill) {
@@ -21,7 +23,7 @@ class SkillManager extends Map {
   }
 
   /**
-   * Find executable skills
+   * Find an executable skill
    * @param {string}  search
    * @param {boolean} includePassive
    * @return {Skill}

@@ -25,10 +25,10 @@ class RandomUtil extends Random {
    * @return {boolean} whether or not the function succeeded
    */
   static rollMasteryIncrease(character, ability) {
-    const mastery = character.getBaseAttribute(ability) || 0;
-    const intellect = character.getBaseAttribute('intellect') || 0;
-    const perception = character.getBaseAttribute('perception') || 0;
-    const luck = character.getBaseAttribute('luck') || 0;
+    const mastery = character.getAttributeBase(ability) || 0;
+    const intellect = character.getAttributeBase('intellect') || 0;
+    const perception = character.getAttributeBase('perception') || 0;
+    const luck = character.getAttributeBase('luck') || 0;
 
     function masterySigmoid(mastery, intellect, perception, luck) {
       const dif = ((intellect/2) + (perception + luck/3))/5;
@@ -51,7 +51,7 @@ class RandomUtil extends Random {
    * @return {boolean} if skill increased
    */
   static calculateSkillGain(character, skill) {
-    const mastery = character.getBaseAttribute(skill);
+    const mastery = character.getAttributeBase(skill);
     const chance = this.rollMasteryIncrease(character, skill);
     if (chance) {
       const newBase = mastery + 1;

@@ -10,6 +10,8 @@ const { Inventory } = require('./Inventory');
 const HydrationUtil = require('./Util/HydrationUtil');
 
 /**
+ * Representation of an item
+ * 
  * @property {Area}          area         Area in which the item spawned
  * @property {string}        name         Name shown in inventory and when equipped
  * @property {string}        description  Long description seen when looking at it
@@ -65,6 +67,7 @@ class Item extends Metadatable(EventEmitter) {
     this.script = def.script || '';
 
     // initialize the item's default items and inventory capacity
+    this.inventory = null;
     this.defaultItems = def.items || [];
     this.maxItems = def.maxItems || null;
 
@@ -136,6 +139,22 @@ class Item extends Metadatable(EventEmitter) {
   removeItem(item) {
     this.inventory.removeItem(item);
     item.belongsTo = null;
+  }
+
+  /**
+   * Check if this item has a particular item by entity reference
+   * and return that item, if found
+   * @param {string} itemReference
+   * @return {Item|boolean}
+   */
+  hasItem(itemReference) {
+    for (const [ uuid, item ] of this.inventory) {
+      if (item.entityReference === itemReference) {
+        return item;
+      }
+    }
+
+    return false;
   }
 
   hasKeyword(keyword) {
@@ -329,6 +348,8 @@ class Item extends Metadatable(EventEmitter) {
           this.addItem(item);
         });
         this.inventory.hydrate(state, this);
+      } else {
+        this.inventory = null;
       }
     } else {
       // if there's no data to hydrate, initialize default inventory

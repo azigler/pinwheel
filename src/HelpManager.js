@@ -1,10 +1,11 @@
 'use strict';
 
 /**
- * Contain/look up helpfiles
+ * Keep track of helpfiles
  */
 class HelpManager extends Map {
   /**
+   * Add a helpfile
    * @param {Helpfile} help
    */
   add(help) {
@@ -12,6 +13,7 @@ class HelpManager extends Map {
   }
 
   /**
+   * Find a helpfile by query string
    * @param {string} search
    * @return {Help}
    */

@@ -1,11 +1,11 @@
 'use strict';
 
 /**
- * Contains all active in game commands
+ * Keep track of all active in game commands
  */
 class CommandManager extends Map {
   /**
-   * Add the command and set up aliases
+   * Add a command and set up aliases
    * @param {Command}
    */
   add(command) {
@@ -16,6 +16,7 @@ class CommandManager extends Map {
   }
 
   /**
+   * Remove a command
    * @param {Command}
    */
   remove(command) {

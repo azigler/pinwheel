@@ -1,10 +1,11 @@
 'use strict';
 
 /**
- * Contains registered channels
+ * Keep track of active channels
  */
 class ChannelManager extends Map {
   /**
+   * Add a channel
    * @param {Channel} channel
    */
   add(channel) {
@@ -15,6 +16,7 @@ class ChannelManager extends Map {
   }
 
   /**
+   * Remove a channel
    * @param {Channel} channel
    */
   remove(channel) {
@@ -22,6 +24,7 @@ class ChannelManager extends Map {
   }
 
   /**
+   * Find a channel by query string
    * @param {string} search
    * @return {Channel}
    */

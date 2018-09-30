@@ -154,6 +154,7 @@ module.exports = (srcPath) => {
         if (!this.behaviors.get('lootable')) {
           // produce a corpse
           const corpseData = {
+            entityReference: 'spawn:99',
             uuid: this.uuid,
             id: 99,
             name: `corpse of ${this.name}`,

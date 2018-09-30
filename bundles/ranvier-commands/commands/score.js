@@ -43,7 +43,7 @@ module.exports = (srcPath) => {
       for (const stat in stats) {
         stats[stat] = {
           current: p.getAttribute(stat) || 0,
-          base: p.getBaseAttribute(stat) || 0,
+          base: p.getAttributeBase(stat) || 0,
           max: p.getMaxAttribute(stat) || 0,
         };
       }

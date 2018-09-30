@@ -4,11 +4,12 @@ const Data = require('./Data');
 const Account = require('./Account');
 
 /**
- * Creates/loads {@linkplain Account|Accounts}
+ * Keep track of player accounts {@linkplain Account|Accounts}
  * @property {Map<string,Account>} accounts
  */
 class AccountManager extends Map {
   /**
+   * Make a new account
    * @param {Account} acc
    */
   addAccount(acc) {
@@ -16,6 +17,7 @@ class AccountManager extends Map {
   }
 
   /**
+   * Get a loaded account
    * @param {string} username
    * @return {Account|undefined}
    */
@@ -24,6 +26,7 @@ class AccountManager extends Map {
   }
 
   /**
+   * Load an account and save it for future usage
    * @param {string} username
    * @param {boolean} force Force reload data from disk
    */

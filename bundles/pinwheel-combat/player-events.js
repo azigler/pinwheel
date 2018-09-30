@@ -331,11 +331,12 @@ module.exports = (srcPath) => {
 
         // produce a corpse
         const corpseData = {
+          entityReference: 'spawn:99',
           id: '99',
           name: `corpse of ${this.name}`,
           roomDesc: `the corpse of ${this.name}`,
           description: `This is the rotting corpse of ${this.name}.`,
-          keywords: this.keywords.concat(['corpse']),
+          keywords: this.name.concat(['corpse']),
           metadata: {
             noPickup: true,
           },
@@ -344,6 +345,7 @@ module.exports = (srcPath) => {
               duration: 180
             }
           },
+          script: ''
         };
         const corpse = new Item(this.area, corpseData);
         corpse.hydrate(state, corpseData);

@@ -594,6 +594,8 @@ class Room extends Metadatable(EventEmitter) {
 
   /**
    * Used by Broadcast
+   * @see {@link Broadcastable}
+   * @see {@link Broadcast}
    * @return {Array<Character>}
    */
   getBroadcastTargets() {
