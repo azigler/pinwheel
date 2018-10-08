@@ -113,7 +113,7 @@ class Combat {
     }
 
     // apply attack
-    Combat.makeAttack(attacker, target);
+    Combat.makeAttack(state, attacker, target);
     return true;
   }
 
@@ -225,10 +225,11 @@ class Combat {
 
   /**
    * Actually apply some damage from an attacker to a target
+   * @param {state}     state
    * @param {Character} attacker
    * @param {Character} target
    */
-  static makeAttack(attacker, target) {
+  static makeAttack(state, attacker, target) {
     const amount = this.calculateWeaponDamage(attacker);
     const damage = new Damage({ attribute: 'health', amount, attacker });
 
@@ -242,6 +243,7 @@ class Combat {
     // if the target is killed, record the killer
     if (target.getAttribute('health') <= 0) {
       target.combatData.killedBy = attacker;
+      Combat.handleDeath(state, target, attacker);
     }
 
     // combat lag = the character's weapon speed in seconds
@@ -426,15 +428,15 @@ class Combat {
     const speed = this.getWeaponSpeed(attacker);
     let total = amount;
 
-    const formula = 'DMG + (((brw/2) + (ref/3) + (end/5)) + (offense / 3) * (charLvl / 2)) / (wepSpd / 2))';
+    const formula = 'DMG + (((brw/2) + (ref/3) + (end/5)) + (offense / 3)) / (wepSpd / 2))';
 
-    const bonus = ((brawn/2) + (reflexes/3) + (endurance/5)) + (offense / 3) * (attacker.level / 2);
+    const bonus = ((brawn/2) + (reflexes/3) + (endurance/5)) + (offense / 3);
     total += bonus;
 
     total = Math.round(total / (speed / 2));
 
     // add debug calculations to buffer
-    attacker.combatData.buffer += `<b><cyan>   NORM</cyan></b>: <b><white>${total}</white></b> (<green>Brawn</green>: <b><magenta>${brawn}</b></magenta>) (<green>Reflexes</green>: <b><magenta>${reflexes}</b></magenta>) (<green>Endurance</green>: <b><magenta>${endurance}</b></magenta>) (<green>Offense</green>: <b><magenta>${offense}</b>%</magenta>) (<green>Level</green>: <b><magenta>${attacker.level}</b></magenta>)\n`;
+    attacker.combatData.buffer += `<b><cyan>   NORM</cyan></b>: <b><white>${total}</white></b> (<green>Brawn</green>: <b><magenta>${brawn}</b></magenta>) (<green>Reflexes</green>: <b><magenta>${reflexes}</b></magenta>) (<green>Endurance</green>: <b><magenta>${endurance}</b></magenta>) (<green>Offense</green>: <b><magenta>${offense}</b>%</magenta>)\n`;
     attacker.combatData.buffer += ` [<yellow>${formula}</yellow>]`;
 
     return total;
@@ -442,7 +444,8 @@ class Combat {
 
   /**
    * Any cleanup that has to be done if the character is killed
-   * @param {Character} deadEntity
+   * @param {state}      state
+   * @param {Character}  deadEntity
    * @param {?Character} killer Optionally the character that killed the dead entity
    */
   static handleDeath(state, deadEntity, killer) {
