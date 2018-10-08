@@ -44,6 +44,9 @@ const GameServer = require('./src/GameServer');
 const HelpManager = require('./src/HelpManager');
 const ItemFactory = require('./src/ItemFactory');
 const ItemManager = require('./src/ItemManager');
+const SpeciesManager = require('./src/SpeciesManager');
+const ArchetypeManager = require('./src/ArchetypeManager');
+const FeatManager = require('./src/FeatManager');
 const NpcFactory = require('./src/NpcFactory');
 const NpcManager = require('./src/NpcManager');
 const PartyManager = require('./src/PartyManager');
@@ -116,6 +119,9 @@ function init(restartServer) {
     ItemFactory: new ItemFactory(),
     ItemManager: new ItemManager(),
     MobBehaviorManager: new BehaviorManager(),
+    SpeciesManager: new SpeciesManager(),
+    ArchetypeManager: new ArchetypeManager(),
+    FeatManager: new FeatManager(),
     NpcFactory: new NpcFactory(),
     NpcManager: new NpcManager(),
     PartyManager: new PartyManager(),
