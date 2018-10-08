@@ -331,7 +331,6 @@ class Item extends Metadatable(EventEmitter) {
       this.isEquipped = data.isEquipped;
       this.script = data.script;
       this.type = ItemType[data.type];
-      this.metadata = data.metadata;
       this.source = data.source;
       this.maxItems = data.maxItems;
 
@@ -348,8 +347,6 @@ class Item extends Metadatable(EventEmitter) {
           this.addItem(item);
         });
         this.inventory.hydrate(state, this);
-      } else {
-        this.inventory = null;
       }
     } else {
       // if there's no data to hydrate, initialize default inventory

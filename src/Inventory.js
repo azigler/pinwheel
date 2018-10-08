@@ -87,7 +87,7 @@ class Inventory extends Map {
   }
 
   /**
-   * Hydrate the inventory, optionally with data
+   * Hydrate the inventory for its owner
    * @param {GameState} state
    * @param {Object}    owner
    */
