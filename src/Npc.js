@@ -225,7 +225,6 @@ class Npc extends Character {
     // if the NPC has behaviors
     if (this.behaviors.size > 0) {
       for (let [behaviorName, config] of this.behaviors) {
-        console.log(behaviorName);
         let behavior = state.NpcBehaviorManager.get(behaviorName);
         if (!behavior) {
           return;
