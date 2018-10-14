@@ -61,6 +61,25 @@ class ArchetypeManager extends Map {
     const arch = this.getArchetype(archetype);
     arch.setup(character);
 
+    for (const attr in arch.attributeTable) {
+      if (character.hasAttribute(attr)) {
+        const current = character.getAttribute(attr);
+        const val = arch.attributeTable[attr];
+        character.setAttributeBase(attr, current + val);
+      } else {
+        character.addAttribute(attr, arch.attributeTable[attr]);
+      }
+    }
+    for (const skill in arch.skillTable) {
+      if (character.hasAttribute(skill)) {
+        const current = character.getAttribute(skill);
+        const val = arch.skillTable[skill];
+        character.setAttributeBase(skill, current + val);
+      } else {
+        character.addAbility(skill, arch.skillTable[skill]);
+      }
+    }
+
     return arch.name;
   }
 }
