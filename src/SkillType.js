@@ -5,7 +5,7 @@
  * @enum {Symbol}
  */
 const SkillType = {
-  SKILL: Symbol("SKILL"),
+  ABILITY: Symbol("ABILITY"),
   SPELL: Symbol("SPELL"),
   DISC: Symbol("DISC")
 };

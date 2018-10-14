@@ -36,7 +36,7 @@ class Npc extends Character {
     }
 
     // all NPCs have an entityReference set on their definition via EntityFactory's setDefinition method
-    this.entityReference = def.entityReference || 'spawn:99';; 
+    this.entityReference = def.entityReference || 'spawn:99';
 
     // set identifying properties
     this.keywords = def.keywords || this.name.split(' ');
