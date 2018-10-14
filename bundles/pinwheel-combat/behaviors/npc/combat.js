@@ -121,7 +121,7 @@ module.exports = (srcPath) => {
       block: state => function (config, attacker) {
         // alert NPC's shield that it blocked
         if (this.equipment.has('held')) {
-          this.equipment.get('held').emit('block', damage, target);
+          this.equipment.get('held').emit('block', attacker);
         }
 
         // tell room

@@ -187,7 +187,7 @@ class Combat {
     const shield = target.equipment.get('held') || false;
     const fail = '<b><red>FAIL</red></b>';
     const pass = '<b><green>PASS</green></b>';
-    let chance
+    let chance = 0;
 
     // if target is holding a shield
     if (shield) {
@@ -414,7 +414,7 @@ class Combat {
   }
 
   /**
-   * Normalize baseline weapon damage by character's attributes and abilities
+   * Normalize baseline weapon damage by character's attributes and skills
    * @param {Character} attacker
    * @param {number} amount
    * @return {number}
@@ -523,7 +523,7 @@ class Combat {
       throw new CombatErrors.CombatNonPvpError(`${target.name} has not opted into PvP.`, target);
     }
 
-    if (target.pacifist) {
+    if (target.getMeta('pacifist')) {
       throw new CombatErrors.CombatPacifistError(`${target.name} is a pacifist and will not fight you.`, target);
     }
 

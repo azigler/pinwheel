@@ -42,7 +42,7 @@ class Item extends Metadatable(EventEmitter) {
     super();
 
     // validate loaded item
-    const required = ['name', 'description', 'id'];
+    const required = ['id', 'name', 'description'];
     for (const prop of required) {
       if (!(prop in def)) {
         throw new ReferenceError(`Item in area [${area.name}] missing required property: ${prop}`);
@@ -157,12 +157,17 @@ class Item extends Metadatable(EventEmitter) {
     return false;
   }
 
+  /**
+   * Whether the item has the given keyword
+   * @param {string} keyword
+   * @return {boolean}
+   */
   hasKeyword(keyword) {
     return this.keywords.indexOf(keyword) !== -1;
   }
 
   /**
-   * Return true if the item has the specified behavior
+   * Whether the item has the specified behavior
    * @param {string} name
    * @return {boolean}
    */
