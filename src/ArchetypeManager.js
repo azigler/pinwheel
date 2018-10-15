@@ -76,7 +76,7 @@ class ArchetypeManager extends Map {
         const val = arch.skillTable[skill];
         character.setAttributeBase(skill, current + val);
       } else {
-        character.addAbility(skill, arch.skillTable[skill]);
+        character.addSkill(skill, arch.skillTable[skill]);
       }
     }
 

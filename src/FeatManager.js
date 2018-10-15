@@ -61,6 +61,25 @@ class FeatManager extends Map {
     const ft = this.getFeat(feat);
     ft.setup(character);
 
+    for (const attr in ft.attributeTable) {
+      if (character.hasAttribute(attr)) {
+        const current = character.getAttribute(attr);
+        const val = ft.attributeTable[attr];
+        character.setAttributeBase(attr, current + val);
+      } else {
+        character.addAttribute(attr, ft.attributeTable[attr]);
+      }
+    }
+    for (const skill in ft.skillTable) {
+      if (character.hasAttribute(skill)) {
+        const current = character.getAttribute(skill);
+        const val = ft.skillTable[skill];
+        character.setAttributeBase(skill, current + val);
+      } else {
+        character.addSkill(skill, ft.skillTable[skill]);
+      }
+    }
+
     return ft.name;
   }
 }

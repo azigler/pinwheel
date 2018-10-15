@@ -58,6 +58,25 @@ class SpeciesManager extends Map {
     const species = this.getSpecies(character.species);
     species.setup(character);
 
+    for (const attr in species.attributeTable) {
+      if (character.hasAttribute(attr)) {
+        const current = character.getAttribute(attr);
+        const val = species.attributeTable[attr];
+        character.setAttributeBase(attr, current + val);
+      } else {
+        character.addAttribute(attr, species.attributeTable[attr]);
+      }
+    }
+    for (const skill in species.skillTable) {
+      if (character.hasAttribute(skill)) {
+        const current = character.getAttribute(skill);
+        const val = species.skillTable[skill];
+        character.setAttributeBase(skill, current + val);
+      } else {
+        character.addSkill(skill, species.skillTable[skill]);
+      }
+    }
+
     return species.name;
   }
 }
