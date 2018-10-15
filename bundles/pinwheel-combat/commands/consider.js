@@ -33,19 +33,8 @@ module.exports = srcPath => {
         return B.sayAt(player, `They aren't here.`);
       }
 
-      let description = '';
-      switch (true) {
-        // TODO: expand possible responses, make them more varied
-        case (player.level > target.level):
-          description = `You're a higher level than <bold><yellow>${target.name}</yellow></bold>.`;
-          break;
-        case (player.level < target.level):
-          description = `<bold><yellow>${target.name}</yellow></bold> is a higher level than you.`;
-          break;
-        default:
-          description = `You're the same level as <bold><yellow>${target.name}</yellow></bold>.`;
-          break;
-      }
+      // TODO: properly assess the target's threat level
+      const description = `You conclude nothing about how threatening <bold><yellow>${target.name}</yellow></bold> is to you.`;
 
       B.sayAt(player, description);
     }

@@ -99,12 +99,6 @@ exports.renderItem = function (state, item, player) {
     });
   }
 
-  if (props.level) {
-    const cantUse = props.level > player.level ? '<red>%-36s</red>' : '%-36s';
-    buf += sprintf(`| ${cantUse} |\r\n`, 'Requires Level ' + props.level);
-  }
-  buf += qualityColorize(item, "'" + B.line(38) + "'") + '\r\n';
-
   // On use
   const usable = item.getBehavior('usable');
   if (usable) {

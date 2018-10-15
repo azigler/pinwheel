@@ -1,7 +1,6 @@
 'use strict';
 
 const { Random } = require('rando-js');
-const LevelUtil = require('./LevelUtil');
 const Broadcast = require('../Broadcast');
 
 /**
