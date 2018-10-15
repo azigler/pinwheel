@@ -195,8 +195,8 @@ class Character extends Metadatable(EventEmitter) {
   }
 
   /**
-   * Whether this character has the specified attribute or ability
-   * @param {string} attr Attribute or ability name
+   * Whether this character has the specified attribute or skill
+   * @param {string} attr Attribute or skill name
    * @return {boolean}
    */
   hasAttribute(attr) {
@@ -205,7 +205,7 @@ class Character extends Metadatable(EventEmitter) {
   }
 
   /**
-   * Get the current value of an attribute or ability (base modified by delta)
+   * Get the current value of an attribute or skill (base modified by delta)
    * @param {string} attr
    * @return {number}
   */
@@ -218,8 +218,8 @@ class Character extends Metadatable(EventEmitter) {
   }
 
   /**
-   * Get the current maximum value of an attribute or ability (modified by effects)
-   * @param {string} attr Attribute or ability name
+   * Get the current maximum value of an attribute or skill (modified by effects)
+   * @param {string} attr Attribute or skill name
    * @return {number}
    */
   getMaxAttribute(attr) {
@@ -232,8 +232,8 @@ class Character extends Metadatable(EventEmitter) {
   }
 
   /**
-   * Get the base value for a given attribute or ability
-   * @param {string} attr Attribute or ability name
+   * Get the base value for a given attribute or skill
+   * @param {string} attr Attribute or skill name
    * @return {number}
    */
   getAttributeBase(attr) {
@@ -249,9 +249,9 @@ class Character extends Metadatable(EventEmitter) {
    * for any temporary modifications to an attribute, instead you should use an Effect modifier.
    *
    * WARNING: This will _permanently_ update the base value for an attribute to be used for things
-   * like a player purchasing a permanent upgrade or increasing a stat on level up.
+   * like a player purchasing a permanent upgrade.
    *
-   * @param {string} attr Attribute or ability name
+   * @param {string} attr Attribute or skill name
    * @param {number} newBase New base value
    */
   setAttributeBase(attr, newBase) {
@@ -276,19 +276,19 @@ class Character extends Metadatable(EventEmitter) {
   }
 
   /**
-   * Add an ability to this character
+   * Add a skill to this character
    * @param {string} name
    * @param {number} base
    * @param {?number} delta
    * @see {@link Attributes#add}
    */
-  addAbility(name, base, delta = 0) {
+  addSkill(name, base, delta = 0) {
     this.skills.add(name, base, delta);
   }
 
   /**
-   * Clears any changes to the attribute or ability, setting it to its base value.
-   * @param {string} attr Attribute or ability name
+   * Clears any changes to the attribute or skill, setting it to its base value.
+   * @param {string} attr Attribute or skill name
   */
   setAttributeToMax(attr) {
     if (this.attributes.has(attr)) {
@@ -301,8 +301,8 @@ class Character extends Metadatable(EventEmitter) {
   }
 
   /**
-   * Raise an attribute or ability by a specified amount
-   * @param {string} attr Attribute or ability name
+   * Raise an attribute or skill by a specified amount
+   * @param {string} attr Attribute or skill name
    * @param {number} amount
    * @see {@link Attributes#raise}
   */
@@ -317,8 +317,8 @@ class Character extends Metadatable(EventEmitter) {
   }
 
   /**
-   * Lower an attribute or ability by an amount
-   * @param {string} attr Attribute or ability
+   * Lower an attribute or skill by an amount
+   * @param {string} attr Attribute or skill
    * @param {number} amount
    * @see {@link Attributes#lower}
   */
@@ -687,7 +687,7 @@ class Character extends Metadatable(EventEmitter) {
     } else {
       // stash attributes and skills from definition, to use later
       const tempAttrs = this.attributes;
-      const tempAbils = this.skills;
+      const tempSkills = this.skills;
 
       // initialize attributes and skills
       this.attributes = new Attributes();
@@ -718,10 +718,10 @@ class Character extends Metadatable(EventEmitter) {
         const val = tempAttrs[attr];
         this.setAttributeBase(attr, current + val);
       }
-      for (const abil in tempAbils) {
-        const current = this.getAttribute(abil);
-        const val = tempAbils[abil];
-        this.setAttributeBase(abil, current + val);
+      for (const skill in tempSkills) {
+        const current = this.getAttribute(skill);
+        const val = tempSkills[skill];
+        this.setAttributeBase(skill, current + val);
       }
     }
 

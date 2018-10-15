@@ -59,8 +59,8 @@ class Damage {
   evaluate(target) {
     const armor = target.getAttribute('armor') || 0;
     const defense = target.getAttribute('defense') || 0;
-    let amount = this.amount - (armor / 4) - (defense / 3);
-    const formula = 'damage - (armor / 4) - (defense / 3)'
+    let amount = this.amount - (armor / 6) - (defense / 5);
+    const formula = 'damage - (armor / 6) - (defense / 5)'
 
     let meta;
     if (this.attacker) { meta = this.attacker.combatData.meta; }

@@ -32,7 +32,7 @@ module.exports = srcPath => {
           },
           behaviors: {
             decay: {
-              duration: 10
+              duration: 20
             }
           },
         };
@@ -50,13 +50,18 @@ module.exports = srcPath => {
         this.room.addItem(corpse);
         state.ItemManager.add(corpse);
         
-        // determine who won the fight (either solo or with party members in the same room)
-        const winners = (killer.party ? [...killer.party] : [killer]).filter(winner => {
-          return winner.room === killer.room;
-        });
-
         // reward currencies to winner(s)
-        if (killer && killer instanceof Player) {
+        if (killer) {
+          // determine who won the fight (either solo or with party members in the same room)
+          const winners = (killer.party ? [...killer.party] : [killer]).filter(winner => {
+            return winner.room === killer.room;
+          });
+          
+          for (const winner of winners) {
+            // force the winner(s) to look at the new corpse (to see the items contained)
+            state.CommandManager.get('look').execute(corpse.uuid, winner);
+          }
+
           if (currencies) {
             currencies.forEach(currency => {
               let remaining = currency.amount;
@@ -65,16 +70,11 @@ module.exports = srcPath => {
                 // will get any remainder if the currency isn't evenly divisible
                 const amount = Math.floor(remaining / winners.length) + (remaining % winners.length);
                 remaining -= amount;
-
+                
                 winner.emit('currency', currency.name, amount);
               }
             });
           }
-        }
-
-        // force the winner(s) to look at the new corpse (to see the items contained)
-        for (const winner of winners) {
-          state.CommandManager.get('look').execute(corpse.uuid, winner);
         }
       }
     }

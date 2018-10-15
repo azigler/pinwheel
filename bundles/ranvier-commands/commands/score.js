@@ -7,7 +7,6 @@ const sprintf = require('sprintf-js').sprintf;
 module.exports = (srcPath) => {
   const B = require(srcPath + 'Broadcast');
   const Combat = require(srcPath + 'Combat');
-  const LevelUtil = require(srcPath + './Util/LevelUtil');
 
   return {
     aliases: [ 'stats' ],
@@ -49,7 +48,13 @@ module.exports = (srcPath) => {
       }
 
       // HEADER
-      say('<b>' + B.center(60, `NAME : ${p.name}  -  LEVEL : ${p.level}  -  CLASS : ${p.playerClass.config.name}`, 'white'));
+      say('');
+      let multiArch = '';
+      for (let arch of p.archetype) {
+        multiArch += `${arch}-`;
+      }
+      multiArch = multiArch.slice(0, -1);
+      say('<b>' + B.center(60, `${p.name} the ${p.species} ${multiArch}`));
       say('<b>' + B.line(60, '-', 'white'));
 
       // HEALTH
@@ -157,17 +162,12 @@ module.exports = (srcPath) => {
       // LUCK
       printStat('luck', false);
 
-      // EXPERIENCE PERCENTAGE
-      const totalTnl = LevelUtil.expToLevel(p.level + 1);
-      const currentPerc = p.experience ? Math.floor((p.experience / totalTnl) * 100) : 0;
-      B.at(p, `  Exp: <b><white>${p.experience}</white></b>/<b><white>${totalTnl}</white></b> (<b><white>${totalTnl - p.experience} tnl</white></b>)`);
+      // EXPERIENCE
+      B.at(p, `  Experience: <b><white>${p.getMeta('currencies.experience') || 0}</white></b>`);
       say('');
 
       // BOTTOM OF ATTRIBUTES TABLE
       B.at(p, " '" + B.line(19, '<b>-</b>', 'white') + "'");
-
-      // EXPERIENCE TNL
-      say(' ' + B.progress(20, currentPerc, "cyan"));
       say('');
     }
   };

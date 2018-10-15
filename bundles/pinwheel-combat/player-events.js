@@ -7,7 +7,6 @@ const WebsocketStream = require('../ranvier-websocket/lib/WebsocketStream');
  */
 module.exports = (srcPath) => {
   const B = require(srcPath + 'Broadcast');
-  const LevelUtil = require(srcPath + './Util/LevelUtil');
   const Combat = require(srcPath + 'Combat');
   const CombatErrors = require(srcPath + 'Error/CombatErrors');
   const Item = require(srcPath + 'Item');
@@ -38,27 +37,6 @@ module.exports = (srcPath) => {
       },
 
       /**
-       * When the player receives currency after combat
-       * @param {String} currency
-       * @param {Integer} amount
-       */
-      currency: state => function (currency, amount) {
-          let friendlyName = currency.replace('_', ' ');
-          const key = `currencies.${currency}`;
-
-          if (!this.getMeta('currencies')) {
-            this.setMeta('currencies', {});
-          }
-          this.setMeta(key, (this.getMeta(key) || 0) + amount);
-          this.save();
-
-          // account for single cowry
-          if (amount === 1 && friendlyName === 'cowries') { friendlyName = 'cowry' };
-
-          B.sayAt(this, `<green>You receive <b>${amount}</green> <white>${friendlyName}</white></b>.`);
-      },
-
-      /**
        * When the player (or one of their effects) hits a target
        * @param {Damage} damage
        * @param {Character} target
@@ -69,7 +47,7 @@ module.exports = (srcPath) => {
         }
 
         let buf = '';
-        // if from an ability or effect belonging to the player
+        // if from a skill or effect belonging to the player
         if (damage.source) {
           buf = `<b>Your <yellow>${damage.source.name}</yellow></b> hit`;
         } else {
@@ -126,7 +104,7 @@ module.exports = (srcPath) => {
           buf += "<b>Something</b>";
         }
 
-        // if from an ability or effect belonging to the attacker
+        // if from a skill or effect belonging to the attacker
         if (damage.source) {
           buf += (damage.attacker ? "<b>'s</b> " : " ") + `<b><yellow>${damage.source.name}</yellow></b>`;
         } 
@@ -156,7 +134,7 @@ module.exports = (srcPath) => {
 
         // if the player heals themselves, broadcast just once with the 'healed' event (not here)
         if (target !== this) {
-          // if from an ability or effect belonging to the player
+          // if from a skill or effect belonging to the player
           if (heal.source) {
             buf = `Your <b><yellow>${heal.source.name}</yellow></b> `;
           } else {
@@ -210,7 +188,7 @@ module.exports = (srcPath) => {
           healer = `<b>${heal.healer.name.charAt(0).toUpperCase() + heal.healer.name.substr(1)}</b> `;
         }
 
-        // if from an ability or effect belonging to the healer
+        // if from a skill or effect belonging to the healer
         if (heal.source) {
           healer = healer ? healer + "'s " : '';
           source = `<b><yellow>${heal.source.name}</yellow></b>`;
@@ -281,7 +259,7 @@ module.exports = (srcPath) => {
 
         // alert player's shield that it blocked
         if (this.equipment.has('held')) {
-          this.equipment.get('held').emit('block', damage, target);
+          this.equipment.get('held').emit('block', attacker);
         }
 
         // tell player
@@ -349,7 +327,7 @@ module.exports = (srcPath) => {
         };
         const corpse = new Item(this.area, corpseData);
         corpse.hydrate(state, corpseData);
-        Logger.log(`Generated corpse: ${corpse.uuid}`);
+        Logger.log(`Generated corpse: ${this.name}`);
 
         // TODO: handle player items in corpse
 
@@ -371,12 +349,6 @@ module.exports = (srcPath) => {
           // force player to look at room
           state.CommandManager.get('look').execute(null, this);
 
-          // player loses 20% of experience gained this level upon death
-          const lostExp = Math.floor(this.experience * 0.2);
-          this.experience -= lostExp;
-          this.save();
-          B.sayAt(this, `<red>You lost <b>${lostExp}</b> experience!</red>`);
-
           // show prompt to player
           B.prompt(this);
         });
@@ -387,8 +359,8 @@ module.exports = (srcPath) => {
        * @param {Character} target
        */
       deathblow: state => function (target, skipParty, killerName = this.name) {
-        // determine how much experience the target gave
-        const xp = LevelUtil.mobExp(target.level);
+        // TODO: determine how much experience the target gave
+        const xp = 100;
 
         if (!skipParty) {
           // tell player

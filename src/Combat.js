@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: fix deathblow emit when skill/effect kills on behalf of killer
+
 const Damage = require('./Damage');
 const Logger = require('./Logger');
 const RandomUtil = require('./Util/RandomUtil');
@@ -156,7 +158,7 @@ class Combat {
     const fail = '<b><red>FAIL</red></b>';
     const pass = '<b><green>PASS</green></b>';
 
-    const chance = 50 + (targetReflexes - attackerReflexes) + (dodge / 5);
+    const chance = 20 + (targetReflexes - attackerReflexes) + (dodge / 5);
 
     const result = RandomUtil.probability(chance);
 
@@ -191,17 +193,20 @@ class Combat {
 
     // if target is holding a shield
     if (shield) {
-      chance = 30 + (targetEndurance - attackerBrawn) + (block / 5);
+      chance = 20 + (targetEndurance - attackerBrawn) + (block / 5);
+      chance = chance > 0 ? chance : 0;
     }
 
     // if target has a weapon and atacker is unarmed
     else if (!attackerHasWeapon && targetHasWeapon) {
-      chance = 25 + (targetEndurance - attackerBrawn) + (block / 5);
+      chance = 15 + (targetEndurance - attackerBrawn) + (block / 5);
+      chance = chance > 0 ? chance : 0;
     }
 
     // if both unarmed
     else if (!attackerHasWeapon && !targetHasWeapon) {
-      chance = 20 + (targetEndurance - attackerBrawn) + (block / 5);
+      chance = 10 + (targetEndurance - attackerBrawn) + (block / 5);
+      chance = chance > 0 ? chance : 0;
     }
 
     // if target is unarmed and attacker has a weapon

@@ -186,7 +186,42 @@ module.exports = (srcPath) => {
        * @param {Character} target
        */
       deathblow: state => function (config, target) {
-        // nothing to do
+        // TODO: determine how much experience the target gave
+        const xp = 100;
+
+        // give experience to the NPC
+        this.emit('experience', xp);
+      },
+
+      /**
+       * When the NPC gains experience
+       * @param {*} config Behavior config
+       * @param {number} amount Experience gained
+       */
+      experience: state => function (config, amount) {
+        const key = `currencies.experience`;
+
+        if (!this.getMeta('currencies')) {
+          this.setMeta('currencies', {});
+        }
+
+        this.setMeta(key, (this.getMeta(key) || 0) + amount);
+      },
+
+      /**
+       * When the NPC receives currency
+       * @param {*} config Behavior config
+       * @param {String} currency
+       * @param {Integer} amount
+       */
+      currency: state => function (config, currency, amount) {
+        const key = `currencies.${currency}`;
+
+        if (!this.getMeta('currencies')) {
+          this.setMeta('currencies', {});
+        }
+
+        this.setMeta(key, (this.getMeta(key) || 0) + amount);
       }
     }
   };
