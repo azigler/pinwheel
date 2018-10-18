@@ -3,7 +3,6 @@
 /**
  * Classes representing various channel audiences
  *
- * See the {@link http://ranviermud.com/extending/channels/|Channel guide} for usage
  * @namespace ChannelAudience
  */
 
