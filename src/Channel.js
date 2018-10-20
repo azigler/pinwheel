@@ -20,9 +20,9 @@ const RoleAudience = require('./ChannelAudience/RoleAudience');
 class Channel {
   constructor(config) {
     // validate config
-    const required = ['name', 'audience', 'description', 'aliases'];
+    const required = ['name', 'audience', 'description'];
     for (const prop of required) {
-      if (!(prop in def)) {
+      if (!(prop in config)) {
         throw new ReferenceError(`Channel [${config.name || 'NO-NAME'}] missing required property: ${prop}`);
       }
     }
@@ -31,8 +31,8 @@ class Channel {
     this.name = config.name;
     this.audience = config.audience;
     this.description = config.description;
-    this.aliases = config.aliases;
 
+    this.aliases = config.aliases || null;
     this.color = config.color || null;
     this.bundle = config.bundle || null;
 
