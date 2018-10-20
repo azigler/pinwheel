@@ -9,13 +9,13 @@ const RoleAudience = require('./ChannelAudience/RoleAudience');
 /**
  * Representation of a communication channel
  * 
- * @property {string}           name            Actual name of the channel the user will type
- * @property {ChannelAudience}  audience        People who receive messages from this channel
- * @property {string}           description     Desc
- * @property {string}           color           Default color. This is purely a helper if you're using default format methods
- * @property {Array|string}     bundle          Bundle of origin
- * @property {Array|string}     aliases         Aliases for channel
- * @property {{sender: function, target: function}} [formatter] Something...
+ * @property {string}           name        Actual name of the channel the user will type
+ * @property {ChannelAudience}  audience    People who receive messages from this channel
+ * @property {string}           description Description for the channel
+ * @property {string}           color       Default color for channel text
+ * @property {string}           bundle      Bundle of origin
+ * @property {Array|string}     aliases     Aliases for channel
+ * @property {{sender: function, target: function}} [formatter] Formatting functions
  */
 class Channel {
   constructor(config) {
@@ -32,9 +32,9 @@ class Channel {
     this.audience = config.audience;
     this.description = config.description;
 
-    this.aliases = config.aliases || null;
     this.color = config.color || null;
     this.bundle = config.bundle || null;
+    this.aliases = config.aliases || null;
 
     // bind formatting functions  
     this.formatter = config.formatter || {
