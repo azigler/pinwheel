@@ -10,7 +10,7 @@ module.exports = (srcPath) => {
   const RoleAudience = require(srcPath + 'ChannelAudience/RoleAudience');
   const PrivateAudience = require(srcPath + 'ChannelAudience/PrivateAudience');
   const PartyAudience = require(srcPath + 'ChannelAudience/PartyAudience');
-  const PlayerRoles = require(srcPath + 'PlayerRoles');
+  const PlayerRole = require(srcPath + 'PlayerRole');
   const Channel = require(srcPath + 'Channel');
 
   return [
@@ -93,14 +93,14 @@ module.exports = (srcPath) => {
       name: 'admin',
       color: ['bold', 'red'],
       description: 'Send a message to all admins connected',
-      audience: new RoleAudience({ minRole: PlayerRoles.ADMIN })
+      audience: new RoleAudience({ minRole: PlayerRole.ADMIN })
     }),
 
     new Channel({
       name: 'debug',
       color: ['bold', 'magenta'],
       description: 'Send a message to all testers connected',
-      audience: new RoleAudience({ minRole: PlayerRoles.TESTER })
+      audience: new RoleAudience({ minRole: PlayerRole.TESTER })
     })
   ];
 };

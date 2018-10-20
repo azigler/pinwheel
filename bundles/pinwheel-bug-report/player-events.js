@@ -3,7 +3,7 @@
 module.exports = (srcPath) => {
   const Logger = require(srcPath + 'Logger');
   const Config = require(srcPath + 'Config');
-  const PlayerRoles = require(srcPath + 'PlayerRoles');
+  const PlayerRole = require(srcPath + 'PlayerRole');
   const Data = require(srcPath + 'Data');
 
   function getReportMethod(type) {
@@ -59,7 +59,7 @@ module.exports = (srcPath) => {
         reportMethod(formattedReport);
         if (Config.get('reportToAdmins')) {
           const message = `New ${type} report from ${this.name}\n=> ${description}`;
-          const role = PlayerRoles.ADMIN;
+          const role = PlayerRole.ADMIN;
           
           const bugReporter = {
             name: 'ATTN',

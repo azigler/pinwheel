@@ -6,7 +6,7 @@ const Data = require('./Data');
 const QuestTracker = require('./QuestTracker');
 const Room = require('./Room');
 const Logger = require('./Logger');
-const PlayerRoles = require('./PlayerRoles');
+const PlayerRole = require('./PlayerRole');
 
 /**
  * Representation of a player character
@@ -45,7 +45,7 @@ class Player extends Character {
     this.questTracker = new QuestTracker(this, questData.active, questData.completed);
 
     // TODO: change roles?
-    this.role = data.role || PlayerRoles.PLAYER;
+    this.role = data.role || PlayerRole.PLAYER;
   }
 
   /**
