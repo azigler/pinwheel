@@ -7,84 +7,99 @@ const PartyAudience = require('./ChannelAudience/PartyAudience');
 const RoleAudience = require('./ChannelAudience/RoleAudience');
 
 /**
- * @property {ChannelAudience} audience People who receive messages from this channel
- * @property {string} name  Actual name of the channel the user will type
- * @property {string} color Default color. This is purely a helper if you're using default format methods
- * @property {PlayerRoles} minRequiredRole If set only players with the given role or greater can use the channel
- * @property {string} description
- * @property {{sender: function, target: function}} [formatter]
+ * Representation of a communication channel
+ * 
+ * @property {string}           name            Actual name of the channel the user will type
+ * @property {ChannelAudience}  audience        People who receive messages from this channel
+ * @property {string}           description     Desc
+ * @property {string}           color           Default color. This is purely a helper if you're using default format methods
+ * @property {Array|string}     bundle          Bundle of origin
+ * @property {Array|string}     aliases         Aliases for channel
+ * @property {{sender: function, target: function}} [formatter] Something...
  */
 class Channel {
-  /**
-   * @param {object}  config
-   * @param {string} config.name Name of the channel
-   * @param {ChannelAudience} config.audience
-   * @param {string} [config.description]
-   * @param {PlayerRoles} [config.minRequiredRole]
-   * @param {string} [config.color]
-   * @param {{sender: function, target: function}} [config.formatter]
-   */
   constructor(config) {
-    if (!config.name) {
-      throw new Error("Channels must have a name to be usable.");
+    // validate config
+    const required = ['name', 'audience', 'description', 'aliases'];
+    for (const prop of required) {
+      if (!(prop in def)) {
+        throw new ReferenceError(`Channel [${config.name || 'NO-NAME'}] missing required property: ${prop}`);
+      }
     }
-    if (!config.audience) {
-      throw new Error(`Channel ${config.name} is missing a valid audience.`);
-    }
+
+    // assign required properties
     this.name = config.name;
+    this.audience = config.audience;
     this.description = config.description;
-    this.bundle = config.bundle || null; // for debugging purposes, which bundle it came from
-    this.audience = config.audience || (new WorldAudience());
-    this.color = config.color || null;
     this.aliases = config.aliases;
+
+    this.color = config.color || null;
+    this.bundle = config.bundle || null;
+
+    // bind formatting functions  
     this.formatter = config.formatter || {
       sender: this.formatToSender.bind(this),
-      target: this.formatToReceipient.bind(this),
+      target: this.formatToRecipient.bind(this),
     };
   }
 
   /**
+   * Message coloring helper function
+   * @param {string}    message
+   */
+  colorify(message) {
+    if (!this.color) {
+      return message;
+    }
+
+    const colors = Array.isArray(this.color) ? this.color : [this.color];
+
+    const open = colors.map(color => `<${color}>`).join('');
+    const close = colors.reverse().map(color => `</${color}>`).join('');
+
+    return open + message + close;
+  }
+
+  /**
+   * Send a message from a player
    * @param {GameState} state
    * @param {Player}    sender
    * @param {string}    message
    */
   send(state, sender, message) {
-
-    // If they don't include a message, explain how to use the channel.
+    // if they don't include a message, explain how to use the channel.
     if (!message.length) {
       return this.describeSelf(sender);
     }
 
-    if (!this.audience) {
-      throw new Error(`Channel [${this.name} has invalid audience [${this.audience}]`);
-    }
-
-    // Check if character has a sufficient role for the channel.
+    // check if character has a sufficient role for the channel
     if (this.audience instanceof RoleAudience && (sender.role < this.audience.minRole)) {
-      // effectively hide the channel's command if they lack the minimum role for the channel
+      // hide the channel's command if they lack the minimum role for the channel
       return Broadcast.sayAt(sender, "Huh?");
     }
 
     this.audience.configure({ state, sender, message });
     const targets = this.audience.getBroadcastTargets();
 
+    // check if there are any players in the party
     if (this.audience instanceof PartyAudience && !targets.length) {
       if (!sender.party) {
-        return Broadcast.sayAt(sender, "You aren't in a group.");
+        return Broadcast.sayAt(sender, "You aren't in a party.");
       } else {
-        return Broadcast.sayAt(sender, "Your group is empty.");
+        return Broadcast.sayAt(sender, "Your party is empty.");
       }
     }
 
-    // Allow audience to change message e.g., strip target name.
+    // allow audience to change message (e.g. strip target name)
+    // currently does nothing
     message = this.audience.alterMessage(message);
 
-    // Private channels also send the target player to the formatter
+    // private channels also send the target player to the formatter
     if (this.audience instanceof PrivateAudience) {
       if (!targets.length) {
         return Broadcast.sayAt(sender, "That person is not connected or does not exist.");
       }
-      // stop the user if they try to tell themselves
+      // stop the player if they try to talk on a private audience on themselves
       if (targets[0] === '_self') {
         return Broadcast.sayAt(sender, "You can't use this command on yourself.");
       }
@@ -99,6 +114,10 @@ class Channel {
     });
   }
 
+  /**
+   * Describe the channel and its usage to the sender
+   * @param {Player}    sender
+   */
   describeSelf(sender) {
     Broadcast.sayAt(sender, `\r\nChannel: ${this.name}`);
     Broadcast.sayAt(sender, 'Syntax: ' + this.getUsage());
@@ -107,6 +126,10 @@ class Channel {
     }
   }
 
+  /**
+   * Provide the syntax for the channel
+   * @return {string}
+   */
   getUsage() {
     if (this.audience instanceof PrivateAudience) {
       return `${this.name} <target> [message]`;
@@ -116,9 +139,9 @@ class Channel {
   }
 
   /**
-   * How to render the message the player just sent to the channel
-   * E.g., you may want "chat" to say "You chat, 'message here'"
+   * Render the sender's message on the channel for the sender
    * @param {Player} sender
+   * @param {Player} target ignored
    * @param {string} message
    * @param {Function} colorify
    * @return {string}
@@ -128,32 +151,16 @@ class Channel {
   }
 
   /**
-   * How to render the message to everyone else
-   * E.g., you may want "chat" to say "Playername chats, 'message here'"
+   * Render the sender's message on the channel for the recipient
    * @param {Player} sender
    * @param {Player} target
    * @param {string} message
    * @param {Function} colorify
    * @return {string}
    */
-  formatToReceipient(sender, target, message, colorify) {
+  formatToRecipient(sender, target, message, colorify) {
     return this.formatToSender(sender, target, message, colorify);
-  }
-
-  colorify(message) {
-    if (!this.color) {
-      return message;
-    }
-
-    const colors = Array.isArray(this.color) ? this.color : [this.color];
-
-    const open = colors.map(color => `<${color}>`).join('');
-    const close = colors.reverse().map(color => `</${color}>`).join('');
-
-    return open + message + close;
   }
 }
 
 module.exports = Channel;
-
-

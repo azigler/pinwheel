@@ -1,13 +1,10 @@
 'use strict';
 
 /**
- * Classes representing various channel audiences
- *
- * @namespace ChannelAudience
- */
-
-/**
  * Base channel audience class
+ * 
+ * @namespace ChannelAudience
+ * @implements {Broadcastable}
  */
 class ChannelAudience {
   /**
@@ -24,20 +21,22 @@ class ChannelAudience {
   }
 
   /**
-   * Find targets for this audience
-   * @return {Array<Player>}
-   */
-  getBroadcastTargets() {
-    return this.state.PlayerManager.getPlayersAsArray();
-  }
-
-  /**
    * Modify the message to be sent
    * @param {string} message
    * @return {string}
    */
   alterMessage(message) {
     return message;
+  }
+
+  /**
+   * Used by Broadcast
+   * @see {@link Broadcastable}
+   * @see {@link Broadcast}
+   * @return {Array<Character>}
+   */
+  getBroadcastTargets() {
+    return this.state.PlayerManager.getPlayersAsArray();
   }
 }
 
