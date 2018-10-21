@@ -45,6 +45,7 @@ class AreaManager extends Map {
   /**
    * Apply `updateTick` to all areas in the game
    * @param {GameState} state
+   * @fires Area#updateTick
    */
   tickAll(state) {
     for (const [ name, area ] of this) {

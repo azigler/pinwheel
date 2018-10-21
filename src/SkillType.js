@@ -1,7 +1,6 @@
 'use strict';
 
 /**
- * Used by the core to differentiate between skills, spells, and disciplines.
  * @enum {Symbol}
  */
 const SkillType = {

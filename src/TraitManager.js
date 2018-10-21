@@ -3,7 +3,7 @@
 const Trait = require('./Trait');
 
 /**
- * Keep track of every trait in the game
+ * Keep track of active traits
  */
 class TraitManager extends Map {
   constructor() {

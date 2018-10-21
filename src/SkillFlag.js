@@ -1,7 +1,6 @@
 'use strict';
 
 /**
- * Used by the core to differentiate between passive and active skills.
  * @enum {Symbol}
  */
 const SkillFlag = {

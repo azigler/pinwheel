@@ -3,7 +3,7 @@
 const Room = require('./Room');
 
 /**
- * Keep track of every room in the game
+ * Keep track of all in-game rooms
  * @property {string} startingRoom Entity reference of the room that players should spawn in when created
  */
 class RoomManager extends Map {

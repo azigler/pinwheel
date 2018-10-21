@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Keep track of all the individual NPCs in the game
+ * Keep track of all individual in-game NPCs
  */
 class NpcManager extends Map {
   /**

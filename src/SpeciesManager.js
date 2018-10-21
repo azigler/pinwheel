@@ -3,7 +3,7 @@
 const Species = require('./Species');
 
 /**
- * Keep track of every species in the game
+ * Keep track of active species
  */
 class SpeciesManager extends Map {
   constructor() {
