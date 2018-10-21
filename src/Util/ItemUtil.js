@@ -56,13 +56,13 @@ exports.renderItem = function (state, item, player) {
 
   const props = item.metadata;
 
-  buf += sprintf('| %-36s |\r\n', item.type === ItemType.ARMOR ? 'Armor' : 'Weapon');
+  buf += sprintf('| %-36s |\r\n', item.type === ItemType.WEARABLE ? 'WEARABLE' : 'Weapon');
 
   switch (item.type) {
     case ItemType.WEAPON:
       buf += sprintf('| %-40s%34s |\r\n', `<b><red>${props.minDamage} - ${props.maxDamage} Damage</red></b>`, `<b><cyan>Lag ${props.lag}</cyan></b>`);
       break;
-    case ItemType.ARMOR:
+    case ItemType.WEARABLE:
       buf += sprintf('| %-36s |\r\n', item.metadata.slot[0].toUpperCase() + item.metadata.slot.slice(1));
       break;
     case ItemType.CONTAINER:
