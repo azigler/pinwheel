@@ -99,7 +99,7 @@ module.exports = (srcPath) => {
 
         let buf = '';
         if (damage.attacker) {
-          buf = `<b>${damage.attacker.name.charAt(0).toUpperCase() + damage.attacker.name.substr(1)}</b>`;
+          buf = `<b>${B.capitalize(damage.attacker.name)}</b>`;
         } else if (!damage.attacker) {
           buf += "<b>Something</b>";
         }
@@ -185,7 +185,7 @@ module.exports = (srcPath) => {
 
 
         if (heal.healer && heal.healer !== this) {
-          healer = `<b>${heal.healer.name.charAt(0).toUpperCase() + heal.healer.name.substr(1)}</b> `;
+          healer = `<b>${B.capitalize(heal.healer.name)}</b> `;
         }
 
         // if from a skill or effect belonging to the healer
@@ -244,7 +244,7 @@ module.exports = (srcPath) => {
        * @param {Character} target
        */
       dodged: state => function (target) {
-        let buf = `<b>${target.name.charAt(0).toUpperCase() + target.name.substr(1)}</b> dodges <b>Your</b> attack.`;
+        let buf = `<b>${B.capitalize(target.name)}</b> dodges <b>Your</b> attack.`;
 
         // tell player
         B.sayAt(this, buf);
@@ -275,7 +275,7 @@ module.exports = (srcPath) => {
        * @param {Character} target
        */
       blocked: state => function (target) {
-        let buf = `<b>${target.name.charAt(0).toUpperCase() + target.name.substr(1)}</b> blocks <b>Your</b> attack.`;
+        let buf = `<b>${B.capitalize(target.name)}</b> blocks <b>Your</b> attack.`;
 
         // tell player
         B.sayAt(this, buf);

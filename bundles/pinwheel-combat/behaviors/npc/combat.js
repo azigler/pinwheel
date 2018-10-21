@@ -39,9 +39,9 @@ module.exports = (srcPath) => {
         // tell room
         let buf = '';
         if (damage.source) {
-          buf = `${this.name.charAt(0).toUpperCase() + this.name.substr(1)}'s <b>${damage.source.name}</b> hit`;
+          buf = `${B.capitalize(this.name)}'s <b>${damage.source.name}</b> hit`;
         } else {
-          buf = `${this.name.charAt(0).toUpperCase() + this.name.substr(1)} hit`;
+          buf = `${B.capitalize(this.name)} hit`;
         }
 
         buf += ` <b>${target.name}</b> for <b>${damage.finalAmount}</b> damage.`;
@@ -74,9 +74,9 @@ module.exports = (srcPath) => {
         // tell room
         let buf = '';
         if (heal.source) {
-          buf = `${this.name.charAt(0).toUpperCase() + this.name.substr(1)}'s <b>${heal.source.name}</b> heals`;
+          buf = `${B.capitalize(this.name)}'s <b>${heal.source.name}</b> heals`;
         } else {
-          buf = `${this.name.charAt(0).toUpperCase() + this.name.substr(1)} heals`;
+          buf = `${B.capitalize(this.name)} heals`;
         }
 
         buf += ` <b>${target.name}</b>`;
@@ -100,7 +100,7 @@ module.exports = (srcPath) => {
        */
       dodge: state => function (config, attacker) {
         // tell room
-        let buf = `<b>${this.name.charAt(0).toUpperCase() + this.name.substr(1)}</b> dodges <b>${attacker.name}'s</b> attack.`;
+        let buf = `<b>${B.capitalize(this.name)}</b> dodges <b>${attacker.name}'s</b> attack.`;
         B.sayAtExcept(this.room, buf, [this, attacker]);
       },
 
@@ -125,7 +125,7 @@ module.exports = (srcPath) => {
         }
 
         // tell room
-        let buf = `<b>${this.name.charAt(0).toUpperCase() + this.name.substr(1)}</b> blocks <b>${attacker.name}'s</b> attack.`;
+        let buf = `<b>${B.capitalize(this.name)}</b> blocks <b>${attacker.name}'s</b> attack.`;
         B.sayAtExcept(this.room, buf, [this, attacker]);
       },
 
@@ -146,8 +146,8 @@ module.exports = (srcPath) => {
       killed: state => function (config, killer) {
         // tell room
         const othersDeathMessage = killer ?
-          `<b><red>${killer.name.charAt(0).toUpperCase() + killer.name.substr(1)} kills ${this.name}!</b></red>` :
-          `<b><red>${this.name.charAt(0).toUpperCase() + this.name.substr(1)} collapses to the ground, dead!</b></red>`;
+          `<b><red>${B.capitalize(killer.name)} kills ${this.name}!</b></red>` :
+          `<b><red>${B.capitalize(this.name)} collapses to the ground, dead!</b></red>`;
         B.sayAtExcept(this.room, othersDeathMessage, (killer ? [killer, this] : this));
 
         // if the NPC isn't lootable

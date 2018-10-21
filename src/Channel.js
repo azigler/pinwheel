@@ -89,7 +89,7 @@ class Channel {
       }
     }
 
-    // allow audience to change message (e.g. strip target name)
+    // allow audience to change message (e.g., strip target name)
     // currently does nothing
     message = this.audience.alterMessage(message);
 
@@ -108,7 +108,7 @@ class Channel {
     }
 
     // send to audience targets
-    Broadcast.sayAtFormatted(this.audience, message, (target, message) => {
+    Broadcast.sayAt(this.audience, message, (target, message) => {
       return this.formatter.target(sender, target, message, this.colorify.bind(this));
     });
   }

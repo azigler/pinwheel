@@ -55,7 +55,7 @@ class RandomUtil extends Random {
     if (chance) {
       const newBase = mastery + 1;
       character.setAttributeBase(skill, newBase);
-      Broadcast.sayAt(character, `<b><cyan>    !ABILITY UP! </cyan></b><green>${skill.charAt(0).toUpperCase() + skill.substr(1)}</green> is now <b><magenta>${newBase}</b>%</magenta>`);
+      Broadcast.sayAt(character, `<b><cyan>    !ABILITY UP! </cyan></b><green>${Broadcast.capitalize(skill)}</green> is now <b><magenta>${newBase}</b>%</magenta>`);
       return true;
     } else {
       return false;
