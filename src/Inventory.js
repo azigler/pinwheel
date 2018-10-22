@@ -1,5 +1,7 @@
 'use strict';
 
+const InventoryErrors = require('./Error/InventoryErrors');
+
 /**
  * Representation of an inventory inside a `Character` or `Item`
  * @extends Map
@@ -48,7 +50,7 @@ class Inventory extends Map {
   addItem(item) {
     // only throw this error if adding beyond the maximum capacity
     if (this.isFull && this.size !== this.maxItems) {
-      throw new InventoryFullError();
+      throw new InventoryErrors.InventoryFullError();
     }
     this.set(item.uuid, item);
   }
@@ -122,9 +124,4 @@ class Inventory extends Map {
   }
 }
 
-/**
- * @extends Error
- */
-class InventoryFullError extends Error {}
-
-module.exports = { Inventory, InventoryFullError };
+module.exports = Inventory;

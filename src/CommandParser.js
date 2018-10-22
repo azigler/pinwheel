@@ -1,6 +1,7 @@
 'use strict';
 
 const CommandType = require('./CommandType');
+const CommandParserErrors = require('./Util/CommandParserErrors');
 
 /**
  * Utility functions for parsing all input from a player
@@ -32,7 +33,7 @@ class CommandParser {
 
     // if no first word, throw error
     if (!command.length) {
-      throw new InvalidCommandError();
+      throw new CommandParserErrors.InvalidCommandError();
     }
 
     // join the remaining words together as an argument string for the command
@@ -148,7 +149,7 @@ class CommandParser {
       };
     }
 
-    throw new InvalidCommandError();
+    throw new CommandParserErrors.InvalidCommandError();
   }
 
   /**
@@ -222,16 +223,3 @@ class CommandParser {
   }
 }
 exports.CommandParser = CommandParser;
-
-/**
- * Used when the player enters a bad command
- * @extends Error
- */
-class InvalidCommandError extends Error {}
-/**
- * Used when the player tries a command they don't have access to
- * @extends Error
- */
-class RestrictedCommandError extends Error {}
-exports.InvalidCommandError = InvalidCommandError;
-exports.RestrictedCommandError = RestrictedCommandError;

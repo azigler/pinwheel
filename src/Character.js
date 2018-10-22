@@ -6,7 +6,8 @@ const EquipSlotTakenError = require('./Error/EquipErrors').EquipSlotTakenError;
 const EventEmitter = require('events');
 const Metadatable = require('./Metadatable');
 const Equipment = require('./Equipment');
-const { Inventory, InventoryFullError } = require('./Inventory');
+const Inventory = require('./Inventory');
+const InventoryErrors = require('./Error/InventoryErrors');
 const Config = require('./Config');
 
 /**
@@ -172,7 +173,7 @@ class Character extends Metadatable(EventEmitter) {
    */
   unequip(slot) {
     if (this.isInventoryFull()) {
-      throw new InventoryFullError();
+      throw new InventoryErrors.InventoryFullError();
     }
 
     const item = this.equipment.get(slot);
