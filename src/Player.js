@@ -16,11 +16,9 @@ const PlayerRole = require('./PlayerRole');
  * @property {Map<string,function ()>} extraPrompts Extra prompts to display after primary prompt
  * @property {net.Socket}   socket      Connection socket for player
  * @property {CommandQueue} commandQueue Queue of commands for player
- * 
+ * @property {{completed: Array, active: Array}} questData Data object for player's quests
+ * @property {QuestTracker} questTracker QuestTracker for player
  * @property {number}       role        Number representing the player's role rank
- * 
- * @property {QuestTracker} questTracker
- * @property {{completed: Array, active: Array}} questData
  * 
  * @extends Character
  */
@@ -37,21 +35,19 @@ class Player extends Character {
     this.socket = null;
     this.commandQueue = new CommandQueue();
 
-    // TODO: remove/change quests?
     const questData = Object.assign({
       completed: [],
       active: []
     }, data.quests);
     this.questTracker = new QuestTracker(this, questData.active, questData.completed);
 
-    // TODO: change roles?
     this.role = data.role || PlayerRole.PLAYER;
   }
 
   /**
-   * Queue a command on the player
+   * Wrapper for `CommandQueue.enqueue()`, queue a command on the player
    * @param {{execute: function(), label: string}} executable Command to run with an execute function and label string
-   * @param {number} lag Amount of lag to apply to the queue after the command is executed
+   * @param {number} lag Number of miliseconds of lag to apply to the queue after the command is executed
    * 
    * @see CommandQueue::enqueue
    */

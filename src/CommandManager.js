@@ -25,8 +25,8 @@ class CommandManager extends Map {
 
   /**
    * Find a command from a partial name
-   * @param {string} search
-   * @param {boolean} returnAlias true to also return which alias of the command was used
+   * @param {string}  search
+   * @param {boolean} returnAlias     If true, also return which alias of the command was used
    * @return {Command}
    */
   find(search, returnAlias) {
