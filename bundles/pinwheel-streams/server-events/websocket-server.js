@@ -1,10 +1,10 @@
 'use strict';
 
-// import 3rd party websocket library
+// import 3rd party WebSocket library
 const WebSocket = require('ws');
 
 // import our adapter
-const WebsocketStream = require('../lib/WebsocketStream');
+const WebSocketStream = require('../lib/WebSocketStream');
 
 module.exports = srcPath => {
   const Logger = require(srcPath + 'Logger');
@@ -13,27 +13,27 @@ module.exports = srcPath => {
   return {
     listeners: {
       startup: state => function (commander) {
-        // create a new websocket server using the port command line argument
+        // create a new WebSocket server using the port command line argument
         const wss = new WebSocket.Server({ port: Config.get('websocket-port', 4001) });
 
-        // This creates a super basic "echo" websocket server
+        // This creates a super basic "echo" WebSocket server
         wss.on('connection', function connection(ws) {
 
           // create our adapter
-          const stream = new WebsocketStream();
-          // and attach the raw websocket
+          const stream = new WebSocketStream();
+          // and attach the raw WebSocket
           stream.attach(ws);
 
           // Register all of the input events (login, etc.)
           state.InputEventManager.attach(stream);
 
-          stream.write("Establishing websocket connection...\n");
-          Logger.log("New websocket client connected...");
+          stream.write("Establishing WebSocket connection...\n");
+          Logger.log("New WebSocket client connected...");
 
           // @see: bundles/ranvier-events/events/login.js
           stream.emit('intro', stream);
         });
-        Logger.log(`Websocket server started on port: ${wss.options.port}...`);
+        Logger.log(`WebSocket server started on port: ${wss.options.port}...`);
       },
 
       shutdown: state => function () {

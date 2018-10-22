@@ -5,12 +5,12 @@ const TransportStream = require('../../../src/TransportStream');
 /**
  * Essentially we want to look at the methods of WebSocket and match them to the appropriate methods on TransportStream
  */
-class WebsocketStream extends TransportStream
+class WebSocketStream extends TransportStream
 {
   attach(socket) {
     super.attach(socket);
 
-    // websocket uses 'message' instead of the 'data' event net.Socket uses
+    // WebSocket uses 'message' instead of the 'data' event net.Socket uses
     socket.on('message', message => {
       this.emit('data', message);
     });
@@ -25,7 +25,7 @@ class WebsocketStream extends TransportStream
       return;
     }
 
-    // this.socket will be set when we do `ourWebsocketStream.attach(websocket)`
+    // this.socket will be set when we do `ourWebSocketStream.attach(socket)`
     this.socket.send(JSON.stringify({
       type: 'message',
       message,
@@ -58,4 +58,4 @@ class WebsocketStream extends TransportStream
   }
 }
 
-module.exports = WebsocketStream;
+module.exports = WebSocketStream;

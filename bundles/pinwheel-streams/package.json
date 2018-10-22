@@ -1,11 +1,12 @@
 {
-  "name": "ranvier-bundle-websocket",
+  "name": "pinwheel-streams",
   "version": "1.0.0",
-  "description": "",
+  "description": "Telnet and WebSocket streams for the server.",
   "main": "index.js",
   "author": "Shawn Biddle <shawncplus@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "ranvier-telnet": "^1.0.1",
     "ws": "^5.2.0"
   }
 }

@@ -32,7 +32,7 @@ module.exports = srcPath => {
 
           stream.on('error', err => {
             if (err.errno === 'EPIPE') {
-              return Logger.error('EPIPE on write. A websocket client probably connected to the telnet port.');
+              return Logger.error('EPIPE on write. A WebSocket client probably connected to the telnet port.');
             }
 
             Logger.error(err);

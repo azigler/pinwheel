@@ -1,7 +1,7 @@
 'use strict';
 
 const CommandType = require('./CommandType');
-const CommandParserErrors = require('./Util/CommandParserErrors');
+const CommandParserErrors = require('./Error/CommandParserErrors');
 
 /**
  * Utility functions for parsing all input from a player

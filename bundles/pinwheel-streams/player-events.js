@@ -59,7 +59,7 @@ module.exports = (srcPath) => {
 };
 
 function updateAttributes() {
-  // example of sending player data to a websocket client. This data is not sent to the default telnet socket
+  // example of sending player data to a WebSocket client. This data is not sent to the default telnet socket
   let attributes = {};
   for (const [name, attribute] of this.attributes) {
     attributes[name] = {

@@ -6,7 +6,7 @@ const ItemType = require('./ItemType');
 const Logger = require('./Logger');
 const Metadatable = require('./Metadatable');
 const Player = require('./Player');
-const { Inventory } = require('./Inventory');
+const Inventory = require('./Inventory');
 const HydrationUtil = require('./Util/HydrationUtil');
 
 /**

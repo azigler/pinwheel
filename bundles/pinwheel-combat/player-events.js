@@ -1,6 +1,6 @@
 'use strict';
 
-const WebsocketStream = require('../ranvier-websocket/lib/WebsocketStream');
+const WebSocketStream = require('../pinwheel-streams/lib/WebSocketStream');
 
 /**
  * Player events for combat
@@ -395,13 +395,13 @@ module.exports = (srcPath) => {
    */
   function showPrompt(promptee) {
     // don't show the combat prompt to a WebSocket client
-    const usingWebsockets = promptee.socket instanceof WebsocketStream;
+    const usingWebSockets = promptee.socket instanceof WebSocketStream;
 
-    if (!promptee.hasPrompt('combat') && !usingWebsockets) {
+    if (!promptee.hasPrompt('combat') && !usingWebSockets) {
       promptee.addPrompt('combat', _ => promptBuilder(promptee));
     }
 
-    if (!usingWebsockets) {
+    if (!usingWebSockets) {
       B.prompt(promptee);
     }
   }
