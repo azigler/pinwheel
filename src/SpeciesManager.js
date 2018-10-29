@@ -4,6 +4,8 @@ const Species = require('./Species');
 
 /**
  * Keep track of active species
+ * 
+ * @extends Map
  */
 class SpeciesManager extends Map {
   constructor() {

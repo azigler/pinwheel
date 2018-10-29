@@ -6,6 +6,8 @@ const TypeUtil = require('./Util/TypeUtil');
  * Generic array hash table to store listener definitions in a `Map`
  * Keys are event names and values are the `Sets` of listeners to be
  * attached for that event
+ * 
+ * @extends Map
  */
 class EventManager extends Map {
   /**

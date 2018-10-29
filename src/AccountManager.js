@@ -6,6 +6,8 @@ const Account = require('./Account');
 /**
  * Keep track of player accounts {@linkplain Account|Accounts}
  * @property {Map<string,Account>} accounts
+ * 
+ * @extends Map
  */
 class AccountManager extends Map {
   /**

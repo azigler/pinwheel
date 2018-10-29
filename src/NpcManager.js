@@ -2,6 +2,8 @@
 
 /**
  * Keep track of all individual in-game NPCs
+ * 
+ * @extends Map
  */
 class NpcManager extends Map {
   /**

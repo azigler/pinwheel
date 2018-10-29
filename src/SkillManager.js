@@ -4,6 +4,8 @@ const SkillFlag = require('./SkillFlag');
 
 /**
  * Keep track of registered skills
+ * 
+ * @extends Map
  */
 class SkillManager extends Map {
   /**

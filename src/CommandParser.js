@@ -222,4 +222,4 @@ class CommandParser {
     return false;
   }
 }
-exports.CommandParser = CommandParser;
+module.exports = CommandParser;

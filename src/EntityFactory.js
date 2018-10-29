@@ -6,10 +6,6 @@ const BehaviorManager = require('./BehaviorManager');
  * Stores definitions of entities to allow for easy creation and cloning
  */
 class EntityFactory extends Map {
-  constructor() {
-    super();
-  }
-
   /**
    * Create the key used by the factory and scripts Maps
    * @param {string} areaName

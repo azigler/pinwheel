@@ -2,6 +2,8 @@
 
 /**
  * Keep track of all active in game commands
+ * 
+ * @extends Map
  */
 class CommandManager extends Map {
   /**

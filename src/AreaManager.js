@@ -5,6 +5,8 @@ const Data = require('./Data');
 /**
  * Store references of active areas and handle state
  * @property {Map<string,Area>} areas
+ * 
+ * @extends Map
  */
 class AreaManager extends Map {
   /**

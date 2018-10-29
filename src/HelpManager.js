@@ -2,6 +2,8 @@
 
 /**
  * Keep track of helpfiles
+ * 
+ * @extends Map
  */
 class HelpManager extends Map {
   /**

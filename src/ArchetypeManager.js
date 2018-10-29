@@ -4,6 +4,8 @@ const Archetype = require('./Archetype');
 
 /**
  * Keep track of every archetype in the game
+ * 
+ * @extends Map
  */
 class ArchetypeManager extends Map {
   constructor() {

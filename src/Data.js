@@ -151,7 +151,7 @@ class Data {
   }
 
   /**
-   * load the MOTD for the intro screen
+   * load the MoTD for the intro screen
    * @return string
    */
   static loadMotd() {

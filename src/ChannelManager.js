@@ -2,6 +2,8 @@
 
 /**
  * Keep track of active channels
+ * 
+ * @extends Map
  */
 class ChannelManager extends Map {
   /**

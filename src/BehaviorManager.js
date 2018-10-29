@@ -5,6 +5,8 @@ const EventManager = require('./EventManager');
 /**
  * BehaviorManager keeps a Map of [BehaviorName:EventManager] which is used
  * during Item and NPC hydrate methods to attach events
+ * 
+ * @extends Map
  */
 class BehaviorManager extends Map {
 

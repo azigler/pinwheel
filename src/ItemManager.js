@@ -4,6 +4,8 @@ const ItemType = require('./ItemType');
 
 /**
  * Keep track of all in-game items
+ * 
+ * @extends Set
  */
 class ItemManager extends Set {
   remove(item) {

@@ -646,7 +646,6 @@ class Character extends Metadatable(EventEmitter) {
    */
   hydrate(state, data = null) {
     // hydrate effects
-    // TODO: hydrate with data
     this.effects.hydrate(state);
 
     // if data is loaded for hydration

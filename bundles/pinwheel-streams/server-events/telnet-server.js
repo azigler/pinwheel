@@ -44,7 +44,7 @@ module.exports = srcPath => {
           stream.write("Establishing telnet connection...\n");
           Logger.log("New telnet client connected...");
 
-          // @see: bundles/ranvier-events/events/login.js
+          // @see: bundles/pinwheel-input/input-events/intro.js
           stream.emit('intro', stream);
         }).netServer;
 

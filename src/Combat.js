@@ -6,7 +6,7 @@ const Damage = require('./Damage');
 const Logger = require('./Logger');
 const RandomUtil = require('./Util/RandomUtil');
 const CombatErrors = require('./Error/CombatErrors');
-const Parser = require('./CommandParser').CommandParser;
+const Parser = require('./CommandParser');
 const Broadcast = require('./Broadcast');
 
 /**
