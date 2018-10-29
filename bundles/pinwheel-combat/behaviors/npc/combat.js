@@ -57,6 +57,7 @@ module.exports = (srcPath) => {
         // if this damage kills the NPC, record the killer
         if (this.getAttribute('health') <= 0 && damage.attacker) {
           this.combatData.killedBy = damage.attacker;
+          Combat.handleDeath(state, this, damage.attacker);
         }
       },
 
