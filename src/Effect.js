@@ -1,6 +1,7 @@
 'use strict';
 
 const EventEmitter = require('events');
+const EffectFlag = require('./EffectFlag');
 
 /**
  * Representation of an effect on a character
@@ -20,7 +21,7 @@ const EventEmitter = require('events');
  * @property {number|boolean} config.tickInterval Number of seconds between calls to the `updateTick` listener, or false
  * @property {number}     startedAt             Date.now() timestamp in miliseconds that this effect became active
  * @property {boolean}    paused                Timestamp this effect was paused, or null if unpaused
- * @property {Array}      flags                 Array of flags for this effect
+ * @property {Array<EffectFlag>} flags          Array of flags for this effect
  * @property {object}     modifiers             Modifier functions for attributes/abilities and incoming/outgoing damage
  * @property {number}     elapsed               Number of miliseconds since effect was activated
  * @property {number}     remaining             Number of miliseconds remaining for effect
@@ -293,9 +294,19 @@ class Effect extends EventEmitter {
       id: this.id,
       config,
       state,
+      paused: this.paused,
+      startedAt: this.startedAt,
       elapsed: this.elapsed,
-      remaining: this.remaining
+      remaining: this.remaining,
+      flags: [] // serialized below
     });
+
+    // serialize this effect's flags
+    if (this.flags.length) {
+      for (const flag of this.flags) {
+        data.flags.push(flag.toString());
+      }
+    }
 
     return data;
   }
@@ -322,6 +333,14 @@ class Effect extends EventEmitter {
 
     // hydrate this effect's state from data
     this.state = data.state;
+
+    this.paused = data.paused;
+    this.startedAt = data.startedAt;
+
+    // hydrate this effect's flags
+    for (const flag in data.flags) {
+      this.flags.push(EffectFlag[flag]);
+    }
 
     // if config has a skill, hydrate it from the game state
     if (data.config.skill) {

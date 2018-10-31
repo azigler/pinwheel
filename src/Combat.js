@@ -24,7 +24,6 @@ class Combat {
   static updateRound(state, attacker) {
     // if dead, skip combat
     if (attacker.getAttribute('health') <= 0) {
-      Combat.handleDeath(state, attacker);
       return false;
     }
 
@@ -248,7 +247,6 @@ class Combat {
     // if the target is killed, record the killer
     if (target.getAttribute('health') <= 0) {
       target.combatData.killedBy = attacker;
-      Combat.handleDeath(state, target, attacker);
     }
 
     // combat lag = the character's weapon speed in seconds

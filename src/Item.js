@@ -296,10 +296,14 @@ class Item extends Metadatable(EventEmitter) {
       locked: this.locked,
       lockedBy: this.lockedBy,
       isEquipped: this.isEquipped,
-      type: this.type,
       source: this.source,
       script: this.script
     });
+
+    // serialize type
+    if (this.type) {
+      data.type = this.type.toString();
+    }
 
     // serialize behaviors
     let behaviors = {};
