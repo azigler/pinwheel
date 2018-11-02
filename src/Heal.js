@@ -4,12 +4,15 @@ const Damage = require('./Damage');
 
 /**
  * Heal is `Damage` that raises an attribute instead of lowering it
+ * 
+ * @property {Character} healer Character causing the heal, same as attacker in Damage
+ * 
  * @extends Damage
  */
 class Heal extends Damage {
-    /**
+  /**
    * @param {Object} config
-   * @param {Character} [config.healer=config.attacker] Character causing the heal
+   * 
    */
   constructor(config) {
     super(config);

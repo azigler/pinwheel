@@ -423,7 +423,7 @@ class Combat {
    * @return {number}
    */
   static normalizeWeaponDamage(attacker, amount) {
-    // account for discs and attributes
+    // account for disciplines and attributes
     const offense = attacker.getAttribute('offense') || 0;
     const brawn = attacker.getAttribute('brawn') || 0;
     const reflexes = attacker.getAttribute('reflexes') || 0;

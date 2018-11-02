@@ -6,7 +6,7 @@
 const SkillType = {
   ABILITY: Symbol("ABILITY"),
   SPELL: Symbol("SPELL"),
-  DISC: Symbol("DISC")
+  DISCIPLINE: Symbol("DISCIPLINE")
 };
 
 module.exports = SkillType;

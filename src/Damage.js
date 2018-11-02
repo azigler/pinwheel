@@ -4,51 +4,39 @@ const RandomUtil = require('./Util/RandomUtil');
 const Broadcast = require('./Broadcast');
 
 /**
- * @property {string} attribute Attribute the damage is going to apply to
- * @property {number} amount Initial amount of damage to be done
- * @property {?Character} attacker Character causing the damage
- * @property {?string} type Damage type e.g., physical, fire, etc.
- * @property {?string} source A damage source identifier. e.g., "skill:kick", "weapon", etc.
- * @property {number} finalAmount Amount of damage to be done after attacker/defender effects
+ * Representation of damage
+ * 
+ * @property {number}       amount        Initial amount of damage to be done
+ * @property {number}       finalAmount   Amount of damage to be done after attacker/defender effects
+ * @property {string}       attribute     Attribute the damage is going to apply to
+ * @property {?string}      type          Damage type e.g., physical, fire, etc.
+ * @property {?string}      source        A damage source identifier. e.g., "skill:kick", "weapon", etc.
+ * @property {?Character}   attacker      Character causing the damage
+ * @property {boolean}      hidden        Whether this damage is hidden
+ * @property {boolean}      critical      Whether this damage is critical
+ * @property {number}       criticalMultiplier Amount to multiply by damage, if critical
  */
 class Damage {
-  /**
-   * @param {Object} config
-   * @param {string} config.attribute Attribute the damage is going to apply to
-   * @param {number} [config.amount=null]
-   * @param {Character} [config.attacker=null] Character causing the damage
-   * @param {string} [config.type="physical"] Damage type e.g., physical, fire, etc.
-   * @param {string} [config.source=null] A damage source identifier. e.g., "skill:kick", "weapon", etc.
-   * @param {boolean} [config.hidden=false]
-   */
   constructor(config) {
-    const {
-      attribute,
-      amount = null,
-      attacker = null,
-      type = "physical",
-      source = null,
-      hidden = false,
-      critical = false,
-      criticalMultiplier = 1.5
-    } = config;
-
-    if (amount === null) {
+    // validate config
+    if (config.amount === null) {
       throw new TypeError("Damage amount null");
     }
-
-    if (attribute === null) {
+    if (config.attribute === null) {
       throw new TypeError("Damage attribute null");
     }
 
-    this.attribute = attribute;
-    this.type = type;
-    this.amount = this.finalAmount = amount;
-    this.source = source;
-    this.attacker = attacker;
-    this.hidden = hidden;
-    this.critical = critical;
-    this.criticalMultiplier = criticalMultiplier;
+    // assign required properties
+    this.amount = this.finalAmount = config.amount;
+    this.attribute = config.attribute;
+
+    // TODO: convert type to enum
+    this.type = config.type || 'physical';
+    this.source = config.source || null;
+    this.attacker = config.attacker || null;
+    this.hidden = config.hidden || false;
+    this.critical = config.critical || false;
+    this.criticalMultiplier = config.criticalMultiplier || 1.5;
   }
 
   /**

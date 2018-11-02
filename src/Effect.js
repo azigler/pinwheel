@@ -48,7 +48,7 @@ class Effect extends EventEmitter {
       maxStacks: 0,
       persists: true,
       type: 'undef',
-      tickInterval: false,
+      tickInterval: false
     }, def.config);
 
     this.startedAt = 0;
@@ -296,10 +296,10 @@ class Effect extends EventEmitter {
       state,
       paused: this.paused,
       startedAt: this.startedAt,
-      elapsed: this.elapsed,
-      remaining: this.remaining,
       flags: [] // serialized below
     });
+
+    // TODO: serialize modifiers
 
     // serialize this effect's flags
     if (this.flags.length) {
@@ -336,6 +336,8 @@ class Effect extends EventEmitter {
 
     this.paused = data.paused;
     this.startedAt = data.startedAt;
+
+    // TODO: hydrate modifiers
 
     // hydrate this effect's flags
     for (const flag in data.flags) {
