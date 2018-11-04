@@ -32,10 +32,10 @@ class SkillUtil {
    * @return {boolean}
    */
   static rollMasteryIncrease(character, skill) {
-    const mastery = character.getAttributeBase(skill) || 0;
-    const intellect = character.getAttributeBase('intellect') || 0;
-    const perception = character.getAttributeBase('perception') || 0;
-    const luck = character.getAttributeBase('luck') || 0;
+    const mastery = character.getAttributeBase(skill);
+    const intellect = character.getAttributeBase('intellect');
+    const perception = character.getAttributeBase('perception');
+    const luck = character.getAttributeBase('luck');
 
     // helper function for determining increase chance based on current mastery level
     function masterySigmoid(mastery, intellect, perception, luck) {

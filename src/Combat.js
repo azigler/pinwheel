@@ -152,9 +152,9 @@ class Combat {
    * @returns {boolean} if the strike was dodged
    */
   static checkDodge(attacker, target) {
-    const attackerReflexes = attacker.getAttribute('reflexes') || 0;
-    const targetReflexes = target.getAttribute('reflexes') || 0;
-    const dodge = target.getAttribute('dodge') || 0;
+    const attackerReflexes = attacker.getAttribute('reflexes');
+    const targetReflexes = target.getAttribute('reflexes');
+    const dodge = target.getAttribute('dodge');
     const fail = '<b><red>FAIL</red></b>';
     const pass = '<b><green>PASS</green></b>';
 
@@ -181,11 +181,11 @@ class Combat {
    * @returns {boolean} if the strike was blocked
    */
   static checkBlock(attacker, target) {
-    const attackerBrawn = attacker.getAttribute('brawn') || 0;
-    const targetEndurance = target.getAttribute('endurance') || 0;
+    const attackerBrawn = attacker.getAttribute('brawn');
+    const targetEndurance = target.getAttribute('endurance');
     const attackerHasWeapon = attacker.equipment.get('wield') || false;
     const targetHasWeapon = target.equipment.get('wield') || false;
-    const block = target.getAttribute('block') || 0;
+    const block = target.getAttribute('block');
     const shield = target.equipment.get('held') || false;
     const fail = '<b><red>FAIL</red></b>';
     const pass = '<b><green>PASS</green></b>';
@@ -283,7 +283,7 @@ class Combat {
    */
   static getWeaponDamage(attacker) {
     const weapon = attacker.equipment.get('wield');
-    const brawn = attacker.getAttribute('brawn') || 0;
+    const brawn = attacker.getAttribute('brawn');
     let min = 0,
     max = 0,
     discName,
@@ -293,7 +293,7 @@ class Combat {
     // if attacker is unarmed
     if (!weapon) {
       discName = 'Unarmed';
-      weaponMastery = attacker.getAttribute('unarmed') || 0;
+      weaponMastery = attacker.getAttribute('unarmed');
       formula = '(unarmed + (brawn / 7))/10 to (unarmed + (brawn / 4))/5';
       min = (weaponMastery + (brawn / 7)) / 10;
       max = (weaponMastery + (brawn / 4)) / 5;
@@ -302,7 +302,7 @@ class Combat {
         // if attacker is using a blade weapon
         case 'blade': {
           discName = 'Blades';
-          weaponMastery = attacker.getAttribute('blades') || 0;
+          weaponMastery = attacker.getAttribute('blades');
           formula = '(blades + (brawn / 5))/7 to (blades + (brawn / 3))/4';
           min = weapon.metadata.minDamage + ((weaponMastery + (brawn / 5)) / 7);
           max = weapon.metadata.maxDamage + ((weaponMastery + (brawn / 3)) / 4);
@@ -311,7 +311,7 @@ class Combat {
         // if attacker is using a club weapon
         case 'club': {
           discName = 'Clubs';
-          weaponMastery = attacker.getAttribute('clubs') || 0;
+          weaponMastery = attacker.getAttribute('clubs');
           formula = '(clubs + (brawn / 5))/6 to (clubs + (brawn / 3))/4';
           min = weapon.metadata.minDamage + ((weaponMastery + (brawn / 5)) / 6);
           max = weapon.metadata.maxDamage + ((weaponMastery + (brawn / 3)) / 4);
@@ -320,7 +320,7 @@ class Combat {
         // if attacker is using a polearm weapon
         case 'polearm': {
           discName = 'Polearms';
-          weaponMastery = attacker.getAttribute('polearms') || 0;
+          weaponMastery = attacker.getAttribute('polearms');
           formula = '(polearms + (brawn / 5))/5 to (polearms + (brawn / 3))/3';
           min = weapon.metadata.minDamage + ((weaponMastery + (brawn / 5)) / 5);
           max = weapon.metadata.maxDamage + ((weaponMastery + (brawn / 3)) / 3);
@@ -369,7 +369,7 @@ class Combat {
    */
   static getWeaponSpeed(attacker) {
     const weapon = attacker.equipment.get('wield');
-    const reflexes = attacker.getAttribute('reflexes') || 0;
+    const reflexes = attacker.getAttribute('reflexes');
     let speed = 5,
     discName,
     weaponMastery,
@@ -378,7 +378,7 @@ class Combat {
     // if attacker is unarmed
     if (!weapon) {
       discName = 'Unarmed';
-      weaponMastery = attacker.getAttribute('unarmed') || 0;
+      weaponMastery = attacker.getAttribute('unarmed');
       formula = `${speed.toFixed(2)} - (unarmed / 100) - (reflexes / 250)`;
     } else {
       switch (weapon.metadata.type) {
@@ -386,7 +386,7 @@ class Combat {
         case 'blade': {
           discName = 'Blades';
           speed = speed + (weapon.metadata.lag / 10)
-          weaponMastery = attacker.getAttribute('blades') || 0;
+          weaponMastery = attacker.getAttribute('blades');
           formula = `${speed.toFixed(2)} - (blades / 150) - (reflexes / 250)`;
           break;
         }
@@ -394,7 +394,7 @@ class Combat {
         case 'club': {
           discName = 'Clubs';
           speed = speed + (weapon.metadata.lag / 8)
-          weaponMastery = attacker.getAttribute('clubs') || 0;
+          weaponMastery = attacker.getAttribute('clubs');
           formula = `${speed.toFixed(2)} - (clubs / 150) - (reflexes / 250)`;
           break;
         }
@@ -402,7 +402,7 @@ class Combat {
         case 'polearm': {
           discName = 'Polearms';
           speed = speed + (weapon.metadata.lag / 6)
-          weaponMastery = attacker.getAttribute('polearms') || 0;
+          weaponMastery = attacker.getAttribute('polearms');
           formula = `${speed.toFixed(2)} - (polearms / 150) - (reflexes / 250)`;
           break;
         }
@@ -425,10 +425,10 @@ class Combat {
    */
   static normalizeWeaponDamage(attacker, amount) {
     // account for disciplines and attributes
-    const offense = attacker.getAttribute('offense') || 0;
-    const brawn = attacker.getAttribute('brawn') || 0;
-    const reflexes = attacker.getAttribute('reflexes') || 0;
-    const endurance = attacker.getAttribute('endurance') || 0;
+    const offense = attacker.getAttribute('offense');
+    const brawn = attacker.getAttribute('brawn');
+    const reflexes = attacker.getAttribute('reflexes');
+    const endurance = attacker.getAttribute('endurance');
     const speed = this.getWeaponSpeed(attacker);
     let total = amount;
 

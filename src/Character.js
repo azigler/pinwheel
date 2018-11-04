@@ -215,7 +215,7 @@ class Character extends Metadatable(EventEmitter) {
       const attrs = new Map([...this.attributes, ...this.skills]);
       return this.getMaxAttribute(attr) + attrs.get(attr).delta;
     }
-    return null;
+    return 0;
   }
 
   /**
@@ -229,7 +229,7 @@ class Character extends Metadatable(EventEmitter) {
       const attribute = attrs.get(attr);
       return this.effects.evaluateAttribute(attribute);
     }
-    return null;
+    return 0;
   }
 
   /**
@@ -391,7 +391,7 @@ class Character extends Metadatable(EventEmitter) {
       // TIP: this doesn't use `addCombatant` because `addCombatant` automatically
       // adds this character to the target's combatants list, and that will already
       // happen when the target fires initiateCombat (see just above this code block)
-      target.initiateCombat(this, 2500 - ((target.getAttribute('reflexes') || 0) * 20));
+      target.initiateCombat(this, 2500 - ((target.getAttribute('reflexes')) * 20));
     } else {
       // otherwise, add this character to the target's combatant list
       target.addCombatant(this);

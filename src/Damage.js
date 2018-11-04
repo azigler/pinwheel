@@ -46,8 +46,8 @@ class Damage {
    * @return {number} Final damage amount
    */
   evaluate(target) {
-    const armor = target.getAttribute('armor') || 0;
-    const defense = target.getAttribute('defense') || 0;
+    const armor = target.getAttribute('armor');
+    const defense = target.getAttribute('defense');
     let amount = this.amount - (armor / 6) - (defense / 8);
     const formula = 'damage - (armor / 6) - (defense / 8)'
 
@@ -55,7 +55,7 @@ class Damage {
     if (this.attacker) { meta = this.attacker.combatData.meta; }
 
     if (this.attacker) {
-      const critChance = Math.max(this.attacker.getMaxAttribute('critical') || 0, 0);
+      const critChance = Math.max(this.attacker.getMaxAttribute('critical'), 0);
       this.critical = RandomUtil.probability(critChance);
       if (this.critical) {
         amount = Math.ceil(amount * this.criticalMultiplier);
