@@ -1,8 +1,0 @@
----
-command: bug
-body: |
-  Submit a bug, typo, or suggestion to staff. Bug reports are echoed only to admins, but typos and suggestions are reported to all admins and builders.
-keywords: 
-  - bug
-  - typo
-  - suggestion
