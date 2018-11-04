@@ -34,6 +34,7 @@ if (!semver.satisfies(process.version, pkg.engines.node)) {
 // State managers and factories
 const AccountManager = require('./src/AccountManager');
 const AreaManager = require('./src/AreaManager');
+const AspectManager = require('./src/AspectManager');
 const BehaviorManager = require('./src/BehaviorManager');
 const ChannelManager = require('./src/ChannelManager');
 const CommandManager = require('./src/CommandManager');
@@ -43,9 +44,6 @@ const GameServer = require('./src/GameServer');
 const HelpManager = require('./src/HelpManager');
 const ItemFactory = require('./src/ItemFactory');
 const ItemManager = require('./src/ItemManager');
-const SpeciesManager = require('./src/SpeciesManager');
-const ArchetypeManager = require('./src/ArchetypeManager');
-const TraitManager = require('./src/TraitManager');
 const NpcFactory = require('./src/NpcFactory');
 const NpcManager = require('./src/NpcManager');
 const PartyManager = require('./src/PartyManager');
@@ -103,13 +101,15 @@ function init(restartServer) {
   restartServer = typeof restartServer === 'undefined' ? true : restartServer;
 
   GameState = {
+    AbilityManager: new SkillManager(),
     AccountManager: new AccountManager(),
+    ArchetypeManager: new AspectManager(),
     AreaManager: new AreaManager(),
     AreaBehaviorManager: new BehaviorManager(),
     ChannelManager: new ChannelManager(),
     CommandManager: new CommandManager(),
     Config, // All global server settings like default respawn time, save interval, port, what bundles to load, etc.
-    DiscManager: new SkillManager(),
+    DisciplineManager: new SkillManager(),
     EffectFactory: new EffectFactory(),
     HelpManager: new HelpManager(),
     InputEventManager: new EventManager(),
@@ -117,9 +117,6 @@ function init(restartServer) {
     ItemFactory: new ItemFactory(),
     ItemManager: new ItemManager(),
     NpcBehaviorManager: new BehaviorManager(),
-    SpeciesManager: new SpeciesManager(),
-    ArchetypeManager: new ArchetypeManager(),
-    TraitManager: new TraitManager(),
     NpcFactory: new NpcFactory(),
     NpcManager: new NpcManager(),
     PartyManager: new PartyManager(),
@@ -129,9 +126,10 @@ function init(restartServer) {
     QuestRewardManager: new QuestRewardManager(),
     RoomBehaviorManager: new BehaviorManager(),
     RoomManager: new RoomManager(),
-    AbilityManager: new SkillManager(),
+    SpeciesManager: new AspectManager(),
     SpellManager: new SkillManager(),
     ServerEventManager: new EventManager(),
+    TraitManager: new AspectManager(),
     GameServer: new GameServer(),
   };
 

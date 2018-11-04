@@ -698,12 +698,12 @@ class Character extends Metadatable(EventEmitter) {
       this.skills = new Attributes();
 
       // apply attributes and skills from character's species
-      this.species = state.SpeciesManager.setupSpecies(this, state);
+      this.species = state.SpeciesManager.setupAspect(this, state, this.species);
 
       // apply attributes and skills from character's archetype(s)
       const arch = [];
       for (const archetype of [this.archetype]) {
-        arch.push(state.ArchetypeManager.setupArchetype(this, state, archetype));
+        arch.push(state.ArchetypeManager.setupAspect(this, state, archetype));
       }
       this.archetype = arch;
 
@@ -711,7 +711,7 @@ class Character extends Metadatable(EventEmitter) {
       if (this.traits !== null) {
         const ts = [];
         for (const trait of [this.traits]) {
-          ts.push(state.TraitManager.setupTrait(this, state, trait));
+          ts.push(state.TraitManager.setupAspect(this, state, trait));
         }
         this.traits = ts;
       }
@@ -730,7 +730,7 @@ class Character extends Metadatable(EventEmitter) {
     }
 
     // apply listeners from character's species
-    state.SpeciesManager.attachListeners(state, this);
+    state.SpeciesManager.attachListeners(state, this, this.species);
 
     // apply listeners from character's archetype(s)
     for (const archetype of this.archetype) {
