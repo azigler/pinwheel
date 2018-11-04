@@ -79,7 +79,7 @@ class Data {
   }
 
   /**
-   * Save data file data to disk
+   * Save file data to disk
    * @param {string} type
    * @param {string} id
    * @param {*} data

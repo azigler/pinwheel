@@ -5,6 +5,7 @@
 const Damage = require('./Damage');
 const Logger = require('./Logger');
 const RandomUtil = require('./Util/RandomUtil');
+const SkillUtil = require('./Util/SkillUtil');
 const CombatErrors = require('./Error/CombatErrors');
 const Parser = require('./CommandParser');
 const Broadcast = require('./Broadcast');
@@ -88,8 +89,8 @@ class Combat {
       attacker.combatData.lag = this.getWeaponSpeed(attacker) * 1000;
 
       // calculate chances for skill gains upon dodging
-      RandomUtil.calculateSkillGain(target, 'dodge');
-      RandomUtil.calculateSkillGain(attacker, 'offense');
+      SkillUtil.calculateSkillGain(target, 'dodge');
+      SkillUtil.calculateSkillGain(attacker, 'offense');
       return false;
     }
 
@@ -108,8 +109,8 @@ class Combat {
       attacker.combatData.lag = this.getWeaponSpeed(attacker) * 1000;
 
       // calculate chances for skill gains upon blocking
-      RandomUtil.calculateSkillGain(target, 'block');
-      RandomUtil.calculateSkillGain(attacker, 'offense');
+      SkillUtil.calculateSkillGain(target, 'block');
+      SkillUtil.calculateSkillGain(attacker, 'offense');
       return false;
     }
 
@@ -253,22 +254,22 @@ class Combat {
     attacker.combatData.lag = this.getWeaponSpeed(attacker) * 1000;
 
     // calculate chances for gaining any masteries
-    RandomUtil.calculateSkillGain(attacker, 'offense');
+    SkillUtil.calculateSkillGain(attacker, 'offense');
     const weapon = attacker.equipment.get('wield');
     if (!weapon) {
-      RandomUtil.calculateSkillGain(attacker, 'unarmed');
+      SkillUtil.calculateSkillGain(attacker, 'unarmed');
     } else {
       switch (weapon.metadata.type) {
         case 'blade': {
-          RandomUtil.calculateSkillGain(attacker, 'blades');
+          SkillUtil.calculateSkillGain(attacker, 'blades');
           break;
         }
         case 'club': {
-          RandomUtil.calculateSkillGain(attacker, 'clubs');
+          SkillUtil.calculateSkillGain(attacker, 'clubs');
           break;
         }
         case 'polearm': {
-          RandomUtil.calculateSkillGain(attacker, 'polearms');
+          SkillUtil.calculateSkillGain(attacker, 'polearms');
           break;
         }
       }

@@ -3,6 +3,9 @@
 const fs = require('fs');
 const srcPath = __dirname + '/../';
 
+/**
+ * Helper methods for hydrating entities
+ */
 class HydrationUtil {
   /**
    * Hydrate a script on an entity

@@ -1,12 +1,14 @@
 'use strict';
 
+/**
+ * Helper methods for checking types
+ */
 class TypeUtil {
   /**
-   * Check to see if a given object adheres to a given interface by checking
-   * to see if the `obj` has all of the methods in `type`
-   *
-   * @param {object} obj
-   * @param {array} type
+   * Whether a given object adheres to a given interface by checking
+   * if `obj` has all methods in `type`
+   * @param {object} obj Object to check
+   * @param {array} type Array of methods to check for
    * @return {boolean}
    */
   static is(obj, type) {
@@ -19,7 +21,7 @@ class TypeUtil {
   }
 
   /**
-   * Check to see if a given object is iterable
+   * Whether a given object is iterable
    * @param {object} obj
    * @return {boolean}
    */

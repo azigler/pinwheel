@@ -2,8 +2,12 @@
 
 const Config  = require('../Config');
 
+/**
+ * Helper methods for validating input
+ */
 class ValidationUtil {
   /**
+   * Whether the provided name string is valid
    * @param {string} name
    * @return {boolean}
    */

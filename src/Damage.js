@@ -1,6 +1,7 @@
 'use strict';
 
 const RandomUtil = require('./Util/RandomUtil');
+const SkillUtil = require('./Util/SkillUtil');
 const Broadcast = require('./Broadcast');
 
 /**
@@ -95,7 +96,10 @@ class Damage {
     target.emit('damaged', this);
     
     // calculate chance to gain defense skill upon hit
-    RandomUtil.calculateSkillGain(target, 'defense');
+    const Heal = require('./Heal');
+    if (!this instanceof Heal) {
+      SkillUtil.calculateSkillGain(target, 'defense');
+    }
   }
 }
 

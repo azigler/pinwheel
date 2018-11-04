@@ -300,11 +300,6 @@ class Item extends Metadatable(EventEmitter) {
       script: this.script
     });
 
-    // serialize type
-    if (this.type) {
-      data.type = this.type.toString();
-    }
-
     // serialize behaviors
     let behaviors = {};
     for (const [key, val] of this.behaviors) {
@@ -339,7 +334,6 @@ class Item extends Metadatable(EventEmitter) {
       this.lockedBy = data.lockedBy;
       this.isEquipped = data.isEquipped;
       this.script = data.script;
-      this.type = ItemType[data.type];
       this.source = data.source;
       this.maxItems = data.maxItems;
 

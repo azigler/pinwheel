@@ -224,10 +224,10 @@ class Effect extends EventEmitter {
   }
 
   /**
-   * Modify an attribute or ability on the target character
-   * @param {string} attrName or ability
+   * Modify an attribute or skill on the target character
+   * @param {string} attrName or skill
    * @param {number} currentValue
-   * @return {number} total of attribute/ability after modified by this effect
+   * @return {number} total of attribute/skill after modified by this effect
    */
   modifyAttribute(attrName, currentValue) {
     let modifier = _ => _;
@@ -276,8 +276,11 @@ class Effect extends EventEmitter {
     // serialize base config (before being modified below)
     let config = Object.assign({}, this.config);
 
-    // serialize duration for storage, even if infinity
+    // parse config for storage
     config.duration = config.duration === Infinity ? 'inf' : config.duration;
+    if (config.attacker) {
+      config.attacker = config.attacker.name;
+    }
 
     // serialize config's skill
     if (config.skill) {
@@ -322,6 +325,13 @@ class Effect extends EventEmitter {
 
     // hydrate config
     this.config = data.config;
+    const attacker = null;
+    if (data.attacker) {
+      attacker = state.PlayerManager.getPlayer(data.config.attacker);
+    }
+    if (attacker !== null) {
+      this.config.attacker = state.PlayerManager.getPlayer(data.config.attacker);
+    }
 
     // fix elapsed and lastTick, if not numbers
     if (!isNaN(data.elapsed)) {

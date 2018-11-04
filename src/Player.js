@@ -11,14 +11,14 @@ const PlayerRole = require('./PlayerRole');
 /**
  * Representation of a player character
  *
- * @property {Account}      account     Account for this player
- * @property {string}       prompt      Prompt string
+ * @property {Account}      account       Account for this player
+ * @property {string}       prompt        Prompt string
  * @property {Map<string,function ()>} extraPrompts Extra prompts to display after primary prompt
- * @property {net.Socket}   socket      Connection socket for player
- * @property {CommandQueue} commandQueue Queue of commands for player
+ * @property {net.Socket}   socket        Connection socket for player
+ * @property {CommandQueue} commandQueue  Queue of commands for player
  * @property {{completed: Array, active: Array}} questData Data object for player's quests
- * @property {QuestTracker} questTracker QuestTracker for player
- * @property {number}       role        Number representing the player's role rank
+ * @property {QuestTracker} questTracker  QuestTracker for player
+ * @property {number}       role          Number representing the player's role rank
  * 
  * @extends Character
  */
@@ -59,8 +59,6 @@ class Player extends Character {
   }
 
   /**
-   * TODO: remove/change quests?
-   * 
    * Proxy all events on the player to the quest tracker
    * @param {string} event
    * @param {...*}   args
@@ -190,10 +188,7 @@ class Player extends Character {
       account: this.account.name,
       prompt: this.prompt,
       room: this.room.entityReference,
-
-      // TODO: remove/change quests?
       quests: this.questTracker.serialize(),
-      // TODO: change roles?
       role: this.role,
     });
 
@@ -206,13 +201,12 @@ class Player extends Character {
    * @param {Object}    data
    */
   hydrate(state, data = null) {
-    // TODO: change/remove quests?
     // QuestTracker must be hydrated first, otherwise events fired by the subsequent
     // hydration will be emitted onto unhydrated quest objects
     this.questTracker.hydrate(state);
 
     super.hydrate(state, data);
-
+    
     // if data is loaded for hydration
     if (data !== null) {
       this.prompt = data.prompt;

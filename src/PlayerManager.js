@@ -4,6 +4,8 @@ const EventEmitter = require('events');
 const Data = require('./Data');
 const Player = require('./Player');
 const EventManager = require('./EventManager');
+const SkillUtil = require('./Util/SkillUtil');
+const RandomUtil = require('./Util/RandomUtil');
 
 /**
  * Keep track of all in-game players and player events
@@ -153,6 +155,15 @@ class PlayerManager extends EventEmitter {
   tickAll() {
     for (const [ name, player ] of this.players.entries()) {
       player.emit('updateTick');
+
+      // randomly check if there are any valid branches for every player
+      if (RandomUtil.probability(1)) {
+        for (const [name, skill] of player.skills.getAttributes()) {
+          if (RandomUtil.probability(10)) {
+            SkillUtil.checkBranches(this, skill);
+          }
+        }
+      }
     }
   }
 

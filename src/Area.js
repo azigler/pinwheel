@@ -5,6 +5,8 @@ const AreaFloor = require('./AreaFloor');
 const Data = require('./Data');
 const Metadatable = require('./Metadatable');
 const HydrationUtil = require('./Util/HydrationUtil');
+const SkillUtil = require('./Util/SkillUtil');
+const RandomUtil = require('./Util/RandomUtil');
 
 /**
  * Representation of an area
@@ -365,6 +367,15 @@ class Area extends Metadatable(EventEmitter) {
     // TIP: used in behaviors and scripts
     for (const npc of this.npcs) {
       npc.emit('updateTick');
+
+      // randomly check if there are any valid branches for this NPC
+      if (RandomUtil.probability(1)) {
+        for (const [name, skill] of npc.skills.getAttributes()) {
+          if (RandomUtil.probability(10)) {
+            SkillUtil.checkBranches(this, skill);
+          }
+        }
+      }
     }
 
     // handle respawn

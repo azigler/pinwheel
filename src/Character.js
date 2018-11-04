@@ -272,8 +272,10 @@ class Character extends Metadatable(EventEmitter) {
    * @param {?number} delta
    * @see {@link Attributes#add}
    */
-  addAttribute(name, base, delta = 0) {
-    this.attributes.add(name, base, delta);
+  addAttribute(name, base = 0, delta = 0) {
+    if (!this.hasAttribute(name)) {
+      this.attributes.add(name, base, delta);
+    }
   }
 
   /**
@@ -283,8 +285,10 @@ class Character extends Metadatable(EventEmitter) {
    * @param {?number} delta
    * @see {@link Attributes#add}
    */
-  addSkill(name, base, delta = 0) {
-    this.skills.add(name, base, delta);
+  addSkill(name, base = 0, delta = 0) {
+    if (!this.hasAttribute(name)) {
+      this.skills.add(name, base, delta);
+    }
   }
 
   /**
