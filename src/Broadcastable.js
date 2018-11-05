@@ -2,6 +2,7 @@
 
 /**
  * Interface for classes that can be used with {@link Broadcast}
+ * 
  * @see {@link TypeUtil#is}
  * @interface Broadcastable
  */

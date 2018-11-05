@@ -4,7 +4,7 @@ const Item = require('./Item');
 const EntityFactory = require('./EntityFactory');
 
 /**
- * Stores definitions of items to allow for easy creation and cloning
+ * Store definitions of items to allow for easy creation and cloning
  * 
  * @extends EntityFactory
  */

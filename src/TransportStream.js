@@ -3,27 +3,42 @@
 const EventEmitter = require('events');
 
 /**
- * Base class for anything that should be sending or receiving data from the player
+ * Base class for a stream that exchanges data with the player
  */
-class TransportStream extends EventEmitter
-{
+class TransportStream extends EventEmitter {
+  /**
+   * Getter for readable property
+   * @type {boolean}
+   */
   get readable() {
     return true;
   }
 
+  /**
+   * Getter for writable property
+   * @type {boolean}
+   */
   get writable() {
     return true;
   }
 
-  write() {
-    /* noop */
+  /**
+   * Attach a socket to this stream
+   * @param {*} socket
+   */
+  attach(socket) {
+    this.socket = socket;
+
+    this.socket.on('close', _ => {
+      this.emit('close');
+    });
   }
 
   /**
    * A subtype-safe way to execute commands on a specific type of stream that invalid types will ignore. For given input
-   * for command (example, `"someCommand"` ill look for a method called `executeSomeCommand` on the `TransportStream`
+   * TIP: <command:`someCommand`> will look for a method called `executeSomeCommand` on the `TransportStream`
    * @param {string} command
-   * @param {...*} args
+   * @param {...*}  args
    * @return {*}
    */
   command(command, ...args) {
@@ -60,16 +75,8 @@ class TransportStream extends EventEmitter
     /* noop */
   }
 
-  /**
-   * Attach a socket to this stream
-   * @param {*} socket
-   */
-  attach(socket) {
-    this.socket = socket;
-
-    this.socket.on('close', _ => {
-      this.emit('close');
-    });
+  write() {
+    /* noop */
   }
 }
 

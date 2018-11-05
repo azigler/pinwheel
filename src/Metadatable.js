@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Mixin for objects which have a `metadata` property
  * @mixin

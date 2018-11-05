@@ -4,7 +4,7 @@ const EventManager = require('./EventManager');
 const Effect = require('./Effect');
 
 /**
- * Stores definitions of effects
+ * Store definitions of effects
  * 
  * @extends Map
  */

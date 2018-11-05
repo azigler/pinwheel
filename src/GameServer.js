@@ -2,9 +2,9 @@
 
 const EventEmitter = require('events');
 
-class GameServer extends EventEmitter
-{
+class GameServer extends EventEmitter {
   /**
+   * Start the server
    * @param {commander} commander
    * @fires GameServer#startup
    */
@@ -17,6 +17,7 @@ class GameServer extends EventEmitter
   }
 
   /**
+   * Shut down the server
    * @fires GameServer#shutdown
    */
   shutdown() {

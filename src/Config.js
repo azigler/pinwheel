@@ -9,6 +9,7 @@ let __cache = null;
  */
 class Config {
   /**
+   * Get a configuration property
    * @param {string} key
    * @param {*} fallback fallback value
    */
@@ -21,6 +22,7 @@ class Config {
   }
 
   /**
+   * Set a configuration property
    * @param {string} key
    * @param {*} val
    */
@@ -33,6 +35,7 @@ class Config {
   }
 
   /**
+   * Get all configuration properties
    * @return {Object}
    */
   static getAll() {

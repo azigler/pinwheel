@@ -7,6 +7,7 @@
  */
 class NpcManager extends Map {
   /**
+   * Add an NPC
    * @param {Npc} npc
    */
   add(npc) {
@@ -14,6 +15,7 @@ class NpcManager extends Map {
   }
 
   /**
+   * Remove an NPC
    * @param {Npc} npc
    */
   remove(npc) {

@@ -3,7 +3,9 @@
 const BehaviorManager = require('./BehaviorManager');
 
 /**
- * Stores definitions of entities to allow for easy creation and cloning
+ * Store definitions of entities to allow for easy creation and cloning
+ * 
+ * @extends Map
  */
 class EntityFactory extends Map {
   /**
