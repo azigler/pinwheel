@@ -75,12 +75,12 @@ commander
   .version(pkg.version)
   .description('A heavily-opinionated fork of the Ranvier MUD engine.')
   .option('-s, --save [time]', 'Number of seconds between auto-save ticks', 10)
-  .option('-tp, --telnetport [portNumber]', 'Port to host the telnet server', Config.get('telnetPort', 4000))
-  .option('-wsp, --websocketport [portNumber]', 'Port to host the WebSocket server', Config.get('websocketPort', 4000))
-  .option('-wp, --webport [portNumber]', 'Port to host the HTTP web server', Config.get('webPort', 4000))
-  .option('-et, --entitytick [seconds]', 'Number of miliseconds between entity ticks', Config.get('entityTick', 500))
-  .option('-pt, --playertick [seconds]', 'Number of miliseconds between player ticks', Config.get('playerTick', 500))
-  .option('-ll --loglevel [level]', 'Log level', Config.get('logLevel', 'verbose'))
+  .option('-p, --telnetport [portNumber]', 'Port to host the telnet server', Config.get('telnetPort', 4000))
+  .option('-w, --websocketport [portNumber]', 'Port to host the WebSocket server', Config.get('websocketPort', 4000))
+  .option('-h, --webport [portNumber]', 'Port to host the HTTP web server', Config.get('webPort', 4000))
+  .option('-e, --entitytick [seconds]', 'Number of miliseconds between entity ticks', Config.get('entityTick', 500))
+  .option('-p, --playertick [seconds]', 'Number of miliseconds between player ticks', Config.get('playerTick', 500))
+  .option('-l, --loglevel [level]', 'Log level', Config.get('logLevel', 'verbose'))
   .option('--no-prettyerrors', 'Use unformatted error stack traces')
   .parse(process.argv);
 
@@ -91,7 +91,12 @@ process.stdin.setEncoding('utf8');
 
 // prepare for logging
 const Logger = require('./src/Logger');
-Logger.setFileLogging(now + '.log');
+let logLevel = commander.loglevel;
+if (commander.loglevel !== 'none') {
+  Logger.setFileLogging(now + '.log');
+} else {
+  logLevel = 'verbose';
+}
 
 // prettify console errors
 if (commander.prettyerrors) {
@@ -99,7 +104,7 @@ if (commander.prettyerrors) {
 }
 
 // set logging level
-Logger.setLevel(commander.loglevel);
+Logger.setLevel(logLevel);
 
 // initialize global state object and intervals
 let GameState = {};
