@@ -93,7 +93,7 @@ class Character extends Metadatable(EventEmitter) {
       this.inventory = new Inventory([], this.maxItems);
     }
     if (!this.isNpc) {
-      this.inventory.setMax(Config.get('defaultMaxPlayerInventory') || 20);
+      this.inventory.setMax(Config.get('maxPlayerInventory') || 20);
     }
   }
 

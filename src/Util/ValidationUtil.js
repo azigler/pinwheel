@@ -12,8 +12,8 @@ class ValidationUtil {
    * @return {boolean}
    */
   static validateName(name) {
-    const maxLength = Config.get('maxAccountNameLength');
-    const minLength = Config.get('minAccountNameLength');
+    const maxLength = Config.get('maxNameLength');
+    const minLength = Config.get('minNameLength');
 
     if (!name) {
       return 'Please enter a name.';

@@ -7,6 +7,7 @@ const chalk = require('chalk');
 module.exports = srcPath => {
   const Data = require(srcPath + 'Data');
   const Logger = require(srcPath + 'Logger');
+  const Config = require(srcPath + 'Config');
 
   return {
     listeners: {
@@ -45,8 +46,8 @@ module.exports = srcPath => {
           stream.write("Establishing telnet connection...\n");
           Logger.log("New telnet client connected...");
 
-          // @see: bundles/pinwheel-input/input-events/intro.js
-          stream.emit('intro', stream);
+          // TIP: bundles/pinwheel-input/input-events/intro.js
+          stream.emit(Config.get('introEvent', 'intro'), stream);
         }).netServer;
 
         // Start the server and setup error handlers.

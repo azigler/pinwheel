@@ -32,8 +32,8 @@ module.exports = srcPath => {
           stream.write("Establishing WebSocket connection...\n");
           Logger.log("New WebSocket client connected...");
 
-          // @see: bundles/pinwheel-input/input-events/intro.js
-          stream.emit('intro', stream);
+          // TIP: bundles/pinwheel-input/input-events/intro.js
+          stream.emit(Config.get('introEvent', 'intro'), stream);
         });
         Logger.log(`WebSocket server started on port: ${chalk.green.bold(wss.options.port)}...`);
       },
