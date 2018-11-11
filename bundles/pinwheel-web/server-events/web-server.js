@@ -1,5 +1,7 @@
 'use strict';
 
+const chalk = require('chalk');
+
 module.exports = (srcPath) => {
   const Logger = require(srcPath + 'Logger');
   const Config = require(srcPath + 'Config');
@@ -32,8 +34,8 @@ module.exports = (srcPath) => {
         web.use('/api', api);
 
         // start web server
-        const port = Config.get('web-port', 4002)
-        web.listen(port, () => Logger.log(`Web server started on port: ${port}...`))
+        const port = Config.get('web-port', 80)
+        web.listen(port, () => Logger.log(`Web server started on port: ${chalk.green.bold(port)}...`))
       },
 
       shutdown: state => function () {

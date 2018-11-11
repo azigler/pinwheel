@@ -3,8 +3,10 @@
 // import 3rd party WebSocket library
 const WebSocket = require('ws');
 
-// import our adapter
+// import adapter
 const WebSocketStream = require('../lib/WebSocketStream');
+
+const chalk = require('chalk');
 
 module.exports = srcPath => {
   const Logger = require(srcPath + 'Logger');
@@ -14,7 +16,7 @@ module.exports = srcPath => {
     listeners: {
       startup: state => function (commander) {
         // create a new WebSocket server using the port command line argument
-        const wss = new WebSocket.Server({ port: Config.get('websocket-port', 4001) });
+        const wss = new WebSocket.Server({ port: commander.websocketport });
 
         // This creates a super basic "echo" WebSocket server
         wss.on('connection', function connection(ws) {
@@ -33,7 +35,7 @@ module.exports = srcPath => {
           // @see: bundles/pinwheel-input/input-events/intro.js
           stream.emit('intro', stream);
         });
-        Logger.log(`WebSocket server started on port: ${wss.options.port}...`);
+        Logger.log(`WebSocket server started on port: ${chalk.green.bold(wss.options.port)}...`);
       },
 
       shutdown: state => function () {

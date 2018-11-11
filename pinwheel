@@ -2,36 +2,41 @@
 'use strict';
 
 /**
- * Main file, use this to run the server:
- * node pinwheel [options]
+ *  Usage: pinwheel [options]
  *
- * Options:
- *   -v Verbose loggin
- *   --port Port to listen on
- *   --locale Locale to act as the default
- *   --save Minutes between autosave
- *   --respawn Minutes between respawn
+ *  A heavily-opinionated fork of the Ranvier MUD engine.
+ *
+ *  Options:
+ *
+ *  -V, --version                       output the version number
+ *  -s, --save [time]                   Number of seconds between auto-save ticks (default: 10)
+ *  -tp, --telnetport [portNumber]      Port to host the telnet server (default: 4000)
+ *  -wsp, --websocketport [portNumber]  Port to host the WebSocket server (default: 4001)
+ *  -wp, --webport [portNumber]         Port to host the HTTP web server (default: 80)
+ *  -et, --entitytick [seconds]         Number of miliseconds between entity ticks (default: 500)
+ *  -pt, --playertick [seconds]         Number of miliseconds between player ticks (default: 500)
+ *  -ll --loglevel [level]              Log level (default: verbose)
+ *  --no-prettyerrors                   Use unformatted error stack traces
+ *  -h, --help                          output usage information
+ * 
  */
 
-
-/* NPM Modules */
 const semver = require('semver');
-const net = require('net');
 const commander = require('commander');
-const wrap = require('wrap-ansi');
-const argv = require('optimist').argv;
+const chalk = require('chalk');
 
-// Package.json for versioning
+// load `package.json` for versioning
 const pkg = require('./package.json');
 
+// check if environment supports required node version
 if (!semver.satisfies(process.version, pkg.engines.node)) {
   throw new Error(
-    `Pinwheel's core engine requires Node version ${pkg.engines.node},
-    you are currently running Node ${process.version}.`
+    `Pinwheel requires Node.js version ${pkg.engines.node},
+    you are currently running Node.js version ${process.version}.`
   );
 }
 
-// State managers and factories
+// load managers and factories
 const AccountManager = require('./src/AccountManager');
 const AreaManager = require('./src/AreaManager');
 const AspectManager = require('./src/AspectManager');
@@ -49,56 +54,63 @@ const NpcManager = require('./src/NpcManager');
 const PartyManager = require('./src/PartyManager');
 const PlayerManager = require('./src/PlayerManager');
 const QuestFactory = require('./src/QuestFactory');
-const QuestGoalManager = require('./src/QuestGoalManager');
-const QuestRewardManager = require('./src/QuestRewardManager');
+const QuestPartManager = require('./src/QuestPartManager');
 const RoomManager = require('./src/RoomManager');
 const SkillManager = require('./src/SkillManager');
 
-// Wrapper for pinwheel.json
+// wrapper for `pinwheel.json`
 const Config = require('./src/Config');
 
-// cmdline options
+// declare timestamp for log
+const now = new Date().toLocaleDateString('en-US', {  
+	day : 'numeric',
+	month : 'short',
+  year : 'numeric',
+  hour : 'numeric',
+  minute : 'numeric'
+});
+
+// parse command arguments
 commander
   .version(pkg.version)
-  .option('-s, --save [time]', 'Number of seconds between auto-save ticks [10]', 10)
-  .option('-r, --respawn [time]', 'Number of minutes between respawn ticks [120]', 120)
-  .option('-p, --port [portNumber]', 'Port to host the server [23]', Config.get('port', 23))
-  .option('-v, --verbose', 'Verbose console logging.', true)
-  .option('-e, --prettyErrors', 'Pretty-print formatting for error stack traces.', false)
+  .description('A heavily-opinionated fork of the Ranvier MUD engine.')
+  .option('-s, --save [time]', 'Number of seconds between auto-save ticks', 10)
+  .option('-tp, --telnetport [portNumber]', 'Port to host the telnet server', Config.get('telnet-port', 4000))
+  .option('-wsp, --websocketport [portNumber]', 'Port to host the WebSocket server', Config.get('websocket-port', 4000))
+  .option('-wp, --webport [portNumber]', 'Port to host the HTTP web server', Config.get('web-port', 4000))
+  .option('-et, --entitytick [seconds]', 'Number of miliseconds between entity ticks', Config.get('entityTick', 500))
+  .option('-pt, --playertick [seconds]', 'Number of miliseconds between player ticks', Config.get('playerTick', 500))
+  .option('-ll --loglevel [level]', 'Log level', Config.get('logLevel', 'verbose'))
+  .option('--no-prettyerrors', 'Use unformatted error stack traces')
   .parse(process.argv);
 
-// Set debug variable and encoding.
-// 'net' by default to help find possible server errors.
+// set debug variable and encoding.
+// TIP: 'net' by default to help find possible server errors
 process.env.NODE_DEBUG = 'net';
 process.stdin.setEncoding('utf8');
 
+// prepare for logging
 const Logger = require('./src/Logger');
-const logfile = Config.get('logfile');
-if (logfile) {
-  Logger.setFileLogging(logfile);
-}
+Logger.setFileLogging(now + '.log');
 
-if (commander.prettyErrors) {
+// prettify console errors
+if (commander.prettyerrors) {
   Logger.enablePrettyErrors();
 }
 
-// Set logging level based on CLI option or environment variable.
-const logLevel = commander.verbose ?
-  'verbose' :
-  process.env.LOG_LEVEL || Config.get('logLevel') || 'debug';
-Logger.setLevel(logLevel);
+// set logging level
+Logger.setLevel(commander.loglevel);
 
-
-// Global state object, server instance and configurable intervals.
+// initialize global state object and intervals
 let GameState = {};
 let saveInterval, tickInterval, playerTickInterval;
 
 /**
- * Do the dirty work
+ * Initialize a Pinwheel server
+ * @param {boolean} restartServer
  */
-function init(restartServer) {
-  Logger.log("START - Loading entities");
-  restartServer = typeof restartServer === 'undefined' ? true : restartServer;
+function init(restartServer = true) {
+  Logger.log(`${chalk.green.bold('===')} ${chalk.blue.bold('INITIALIZING PINWHEEL')} ${chalk.green.bold('===')}`);
 
   GameState = {
     AbilityManager: new SkillManager(),
@@ -108,7 +120,7 @@ function init(restartServer) {
     AreaBehaviorManager: new BehaviorManager(),
     ChannelManager: new ChannelManager(),
     CommandManager: new CommandManager(),
-    Config, // All global server settings like default respawn time, save interval, port, what bundles to load, etc.
+    Config,
     DisciplineManager: new SkillManager(),
     EffectFactory: new EffectFactory(),
     HelpManager: new HelpManager(),
@@ -122,8 +134,8 @@ function init(restartServer) {
     PartyManager: new PartyManager(),
     PlayerManager: new PlayerManager(),
     QuestFactory: new QuestFactory(),
-    QuestGoalManager: new QuestGoalManager(),
-    QuestRewardManager: new QuestRewardManager(),
+    QuestGoalManager: new QuestPartManager(),
+    QuestRewardManager: new QuestPartManager(),
     RoomBehaviorManager: new BehaviorManager(),
     RoomManager: new RoomManager(),
     SpeciesManager: new AspectManager(),
@@ -133,37 +145,42 @@ function init(restartServer) {
     GameServer: new GameServer(),
   };
 
-  // Setup bundlemanager
+  // initialize bundles
   const BundleManager = new (require('./src/BundleManager'))(GameState);
   GameState.BundleManager = BundleManager;
   BundleManager.loadBundles();
   GameState.ServerEventManager.attach(GameState.GameServer);
 
+  // if restarting the server
+  // TODO: implement warmbooting
   if (restartServer) {
-    Logger.log("START - Starting server");
+    Logger.log(`${chalk.green.bold('===')} ${chalk.blue.bold('STARTING SERVERS')} ${chalk.green.bold('===')}`);
     GameState.GameServer.startup(commander);
 
-    // Save every 10 minutes by default.
-    Logger.log(`Setting autosave to ${commander.save} seconds.`);
+    // configure saving interval for persistence
+    Logger.log(`Setting saving interval to ${chalk.green.bold(commander.save)} seconds.`);
     clearInterval(saveInterval);
     saveInterval = setInterval(() => {
       GameState.PlayerManager.saveAll();
+      GameState.AreaManager.saveAll();
     }, commander.save * 1000);
 
-    // Ticks for effect processing and combat happen every half second
+    // configure intervals for all non-player entities
+    Logger.log(`Setting entity tick interval to ${chalk.green.bold(commander.entitytick)} milliseconds.`);
     clearInterval(tickInterval);
     tickInterval = setInterval(() => {
       GameState.AreaManager.tickAll(GameState);
       GameState.ItemManager.tickAll();
-    }, Config.get('entityTickFrequency', 100));
+    }, commander.entityTick);
 
+    // configure player intervals
+    Logger.log(`Setting player tick interval to ${chalk.green.bold(commander.playertick)} milliseconds.`);
     clearInterval(playerTickInterval);
     playerTickInterval = setInterval(() => {
       GameState.PlayerManager.emit('updateTick');
-    }, Config.get('playerTickFrequency', 100));
+    }, commander.playerTick);
   }
 }
 
-// START IT UP!
+// start Pinwheel
 init();
-// vim: set syn=javascript :

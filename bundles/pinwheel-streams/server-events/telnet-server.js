@@ -2,6 +2,7 @@
 
 const Telnet = require('ranvier-telnet');
 const TelnetStream = require('../lib/TelnetStream');
+const chalk = require('chalk');
 
 module.exports = srcPath => {
   const Data = require(srcPath + 'Data');
@@ -49,12 +50,12 @@ module.exports = srcPath => {
         }).netServer;
 
         // Start the server and setup error handlers.
-        server.listen(commander.port).on('error', err => {
+        server.listen(commander.telnetport).on('error', err => {
           if (err.code === 'EADDRINUSE') {
-            Logger.error(`Cannot start server on port ${commander.port}, address is already in use.`);
+            Logger.error(`Cannot start server on port ${commander.telnetport}, address is already in use.`);
             Logger.error("Do you have a MUD server already running?");
           } else if (err.code === 'EACCES') {
-            Logger.error(`Cannot start server on port ${commander.port}: permission denied.`);
+            Logger.error(`Cannot start server on port ${commander.telnetport}: permission denied.`);
             Logger.error("Are you trying to start it on a priviledged port without being root?");
           } else {
             Logger.error("Failed to start MUD server:");
@@ -63,7 +64,7 @@ module.exports = srcPath => {
           process.exit(1);
         });
 
-        Logger.log(`Telnet server started on port: ${commander.port}...`);
+        Logger.log(`Telnet server started on port: ${chalk.green.bold(commander.telnetport)}...`);
       },
 
       shutdown: state => function () {
