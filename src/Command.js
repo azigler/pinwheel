@@ -35,7 +35,7 @@ class Command {
     this.requiredRole = def.requiredRole || PlayerRole.PLAYER;
 
     // set file path (for hotfix)
-    // TODO: warmbooting
+    // TODO: implement warmbooting
     this.file = file;
   }
 

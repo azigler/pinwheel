@@ -229,7 +229,6 @@ class Area extends Metadatable(EventEmitter) {
   emit(eventName, ...args) {
     super.emit(eventName, ...args);
 
-    // TODO: expand the list of proxied events
     const proxiedEvents = [
     ];
 

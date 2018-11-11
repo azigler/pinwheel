@@ -1,7 +1,5 @@
 'use strict';
 
-// TODO: fix deathblow emit when skill/effect kills on behalf of killer
-
 const Damage = require('./Damage');
 const Logger = require('./Logger');
 const RandomUtil = require('./Util/RandomUtil');

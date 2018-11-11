@@ -56,6 +56,16 @@ class AreaManager extends Map {
   }
 
   /**
+   * Save all areas
+   * @fires Area#save
+   */
+  saveAll() {
+    for (const [ name, area ] of this.entries()) {
+      area.emit('save');
+    }
+  }
+
+  /**
    * Hydrate all rooms in all areas
    * @param {GameState} state
    */

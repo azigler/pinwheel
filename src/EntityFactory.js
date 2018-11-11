@@ -15,7 +15,6 @@ class EntityFactory extends Map {
    * @return {string}
    */
   createEntityRef(areaName, id) {
-    // TODO: extend for player creations
     return areaName + ':' + id;
   }
 

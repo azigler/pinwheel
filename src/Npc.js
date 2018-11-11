@@ -51,7 +51,6 @@ class Npc extends Character {
     // set maximum inventory capacity
     this.maxItems = def.maxItems || 16;
 
-    // TODO: change/remove quests?
     this.quests = def.quests || [];
   }
 

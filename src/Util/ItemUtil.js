@@ -46,7 +46,7 @@ class ItemUtil {
    */
   static display(item) {
     return this.qualityColorize(item, `[${item.name}]`);
-  };
+  }
 
   /**
    * Return a display box for an item
