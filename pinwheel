@@ -8,16 +8,16 @@
  *
  *  Options:
  *
- *  -V, --version                       output the version number
- *  -s, --save [time]                   Number of seconds between auto-save ticks (default: 10)
- *  -tp, --telnetport [portNumber]      Port to host the telnet server (default: 4000)
- *  -wsp, --websocketport [portNumber]  Port to host the WebSocket server (default: 4001)
- *  -wp, --webport [portNumber]         Port to host the HTTP web server (default: 80)
- *  -et, --entitytick [seconds]         Number of miliseconds between entity ticks (default: 500)
- *  -pt, --playertick [seconds]         Number of miliseconds between player ticks (default: 500)
- *  -ll --loglevel [level]              Log level (default: verbose)
- *  --no-prettyerrors                   Use unformatted error stack traces
- *  -h, --help                          output usage information
+ *  -V, --version                     output the version number
+ *  -s, --save [time]                 seconds between auto-save ticks (default: 10)
+ *  -p, --telnetport [portNumber]     port to host the telnet server (default: 4000)
+ *  -w, --websocketport [portNumber]  port to host the WebSocket server (default: 4001)
+ *  -h, --webport [portNumber]        port to host the HTTP web server (default: 80)
+ *  -e, --entitytick [seconds]        miliseconds between entity ticks (default: 500)
+ *  -p, --playertick [seconds]        miliseconds between player ticks (default: 500)
+ *  -l, --loglevel [level]            log level (or none) (default: verbose)
+ *  --no-prettyerrors                 use unformatted error stack traces
+ *  -h, --help                        output usage information
  * 
  */
 
@@ -74,14 +74,14 @@ const now = new Date().toLocaleDateString('en-US', {
 commander
   .version(pkg.version)
   .description('A heavily-opinionated fork of the Ranvier MUD engine.')
-  .option('-s, --save [time]', 'Number of seconds between auto-save ticks', 10)
-  .option('-p, --telnetport [portNumber]', 'Port to host the telnet server', Config.get('telnetPort', 4000))
-  .option('-w, --websocketport [portNumber]', 'Port to host the WebSocket server', Config.get('websocketPort', 4000))
-  .option('-h, --webport [portNumber]', 'Port to host the HTTP web server', Config.get('webPort', 4000))
-  .option('-e, --entitytick [seconds]', 'Number of miliseconds between entity ticks', Config.get('entityTick', 500))
-  .option('-p, --playertick [seconds]', 'Number of miliseconds between player ticks', Config.get('playerTick', 500))
-  .option('-l, --loglevel [level]', 'Log level', Config.get('logLevel', 'verbose'))
-  .option('--no-prettyerrors', 'Use unformatted error stack traces')
+  .option('-s, --save [time]', 'seconds between auto-save ticks', 10)
+  .option('-p, --telnetport [portNumber]', 'port to host the telnet server', Config.get('telnetPort', 4000))
+  .option('-w, --websocketport [portNumber]', 'port to host the WebSocket server', Config.get('websocketPort', 4000))
+  .option('-h, --webport [portNumber]', 'port to host the HTTP web server', Config.get('webPort', 4000))
+  .option('-e, --entitytick [seconds]', 'miliseconds between entity ticks', Config.get('entityTick', 500))
+  .option('-p, --playertick [seconds]', 'miliseconds between player ticks', Config.get('playerTick', 500))
+  .option('-l, --loglevel [level]', 'log level (or none)', Config.get('logLevel', 'verbose'))
+  .option('--no-prettyerrors', 'use unformatted error stack traces')
   .parse(process.argv);
 
 // set debug variable and encoding.
