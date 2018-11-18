@@ -173,7 +173,7 @@ module.exports = (srcPath) => {
           };
           const corpse = new Item(this.area, corpseData);
           corpse.hydrate(state, corpseData);
-          Logger.log(`Generated corpse: ${corpse.uuid}`);
+          Logger.verbose(`Generated corpse: ${corpse.uuid}`);
 
           // add corpse to room
           this.room.addItem(corpse);

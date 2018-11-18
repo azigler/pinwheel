@@ -4,7 +4,7 @@
 /**
  *  Usage: pinwheel [options]
  *
- *  A heavily-opinionated fork of the Ranvier MUD engine.
+ *  A highly opinionated fork of the Ranvier MUD engine.
  *
  *  Options:
  *
@@ -73,7 +73,7 @@ const now = new Date().toLocaleDateString('en-US', {
 // parse command arguments
 commander
   .version(pkg.version)
-  .description('A heavily-opinionated fork of the Ranvier MUD engine.')
+  .description('A highly opinionated fork of the Ranvier MUD engine.')
   .option('-s, --save [time]', 'seconds between auto-save ticks', 10)
   .option('-p, --telnetport [portNumber]', 'port to host the telnet server', Config.get('telnetPort', 4000))
   .option('-w, --websocketport [portNumber]', 'port to host the WebSocket server', Config.get('websocketPort', 4000))
