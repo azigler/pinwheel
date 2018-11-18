@@ -140,7 +140,7 @@ class Data {
   }
 
   /**
-   * Determine whether or not a path leads to a legitimate JS file or not.
+   * Determine whether or not a path leads to a legitimate JS file or not
    * @param {string} path
    * @param {string} [file]
    * @return {boolean}
@@ -151,7 +151,7 @@ class Data {
   }
 
   /**
-   * load the MoTD for the intro screen
+   * Load the Message of the Day (MotD) file
    * @return string
    */
   static loadMotd() {

@@ -4,6 +4,7 @@ const uuid = require('uuid/v4');
 const Character = require('./Character');
 const Logger = require('./Logger');
 const HydrationUtil = require('./Util/HydrationUtil');
+const chalk = require('chalk');
 
 /**
  * Representation of a non-player character (NPC)
@@ -194,7 +195,7 @@ class Npc extends Character {
         }
 
         const newItem = state.ItemFactory.create(this.area, defaultItem.id);
-        Logger.verbose(`\tDIST: Adding item (${newItem.name}) [${defaultItem.id}] to NPC (${this.name}) [${this.entityReference}]`);
+        Logger.verbose(`${chalk.bold.yellow('NPC INV')}: (${chalk.bold.white(newItem.name)}) [${chalk.bold.white(defaultItem.id)}] spawned in (${chalk.bold.white(this.name)}) [${chalk.bold.white(this.entityReference)}]`);
         newItem.hydrate(state);
         state.ItemManager.add(newItem);
         this.addItem(newItem);
@@ -208,7 +209,7 @@ class Npc extends Character {
         }
 
         const newEquipment = state.ItemFactory.create(this.area, defaultEquipment.id);
-        Logger.verbose(`\tDIST: Adding equipment (${newEquipment.name}) [${newEquipment.area.name}:${newEquipment.id}] to NPC (${this.name}) [${this.entityReference}]`);
+        Logger.verbose(`${chalk.bold.yellow('NPC EQ')}: (${chalk.bold.white(newEquipment.name)}) [${chalk.bold.white(newEquipment.area.name)}${chalk.bold.white(':')}${chalk.bold.white(newEquipment.id)}] spawned and equipped by (${chalk.bold.white(this.name)}) [${chalk.bold.white(this.entityReference)}]`);
         newEquipment.hydrate(state);
         state.ItemManager.add(newEquipment);
         this.equip(newEquipment, newEquipment.getMeta('slot'));

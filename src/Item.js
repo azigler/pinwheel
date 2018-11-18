@@ -8,6 +8,7 @@ const Metadatable = require('./Metadatable');
 const Player = require('./Player');
 const Inventory = require('./Inventory');
 const HydrationUtil = require('./Util/HydrationUtil');
+const chalk = require('chalk');
 
 /**
  * Representation of an item
@@ -360,7 +361,7 @@ class Item extends Metadatable(EventEmitter) {
         }
 
         const newItem = state.ItemFactory.create(this.area, defaultItem.id);
-        Logger.verbose(`\tDIST: Adding item (${newItem.name}) [${defaultItem.id}] to item (${this.name}) [${this.entityReference}]`);
+        Logger.verbose(`${chalk.bold.yellow('ITEM INV')}: (${chalk.bold.white(newItem.name)}) [${chalk.bold.white(defaultItem.id)}] spawned in (${chalk.bold.white(this.name)}) [${chalk.bold.white(this.entityReference)}]`);
         newItem.hydrate(state);
         state.ItemManager.add(newItem);
         this.addItem(newItem);

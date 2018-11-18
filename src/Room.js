@@ -5,6 +5,7 @@ const RandomUtil = require('./Util/RandomUtil');
 const Logger = require('./Logger');
 const HydrationUtil = require('./Util/HydrationUtil');
 const Metadatable = require('./Metadatable');
+const chalk = require('chalk');
 
 /**
  * Representation of a room
@@ -393,11 +394,12 @@ class Room extends Metadatable(EventEmitter) {
   spawnItem(state, entityRef, data = null) {
     const newItem = state.ItemFactory.create(this.area, entityRef);
     newItem.hydrate(state, data);
+    const word = (data === null ? 'SPAWNING' : 'LOADING');
 
     state.ItemManager.add(newItem);
     this.addItem(newItem);
 
-    Logger.verbose(`\tSPAWN: Adding item (${newItem.name}) [${entityRef}] to room (${newItem.belongsTo.title}) [${newItem.belongsTo.entityReference}]`);
+    Logger.verbose(`${chalk.bold.green(word)}: (${chalk.bold.white(newItem.name)}) [${chalk.bold.white(entityRef)}] in room (${chalk.bold.white(newItem.belongsTo.title)}) [${chalk.bold.white(newItem.belongsTo.entityReference)}]`);
 
     // if there is no data, then this entity is treated as new
     if (data === null) {
@@ -420,11 +422,12 @@ class Room extends Metadatable(EventEmitter) {
   spawnNpc(state, entityRef, data = null) {
     const newNpc = state.NpcFactory.create(this.area, entityRef);
     newNpc.hydrate(state, data);
+    const word = (data === null ? 'SPAWNING' : 'LOADING');
 
     state.NpcManager.add(newNpc);
     this.addNpc(newNpc);
 
-    Logger.verbose(`\tSPAWN: Adding NPC (${newNpc.name}) [${entityRef}] to room (${newNpc.room.title}) [${newNpc.room.entityReference}]`);
+    Logger.verbose(`${chalk.bold.green(word)}: (${chalk.bold.white(newNpc.name)}) [${chalk.bold.white(entityRef)}] in room (${chalk.bold.white(newNpc.room.title)}) [${chalk.bold.white(newNpc.room.entityReference)}]`);
 
     // if there is no data, then this entity is treated as new
     if (data === null) {
