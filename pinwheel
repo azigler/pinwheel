@@ -76,7 +76,7 @@ commander
   .description('A highly opinionated fork of the Ranvier MUD engine.')
   .option('-s, --save [time]', 'seconds between auto-save ticks', 10)
   .option('-p, --telnetport [portNumber]', 'port to host the telnet server', Config.get('telnetPort', 4000))
-  .option('-w, --websocketport [portNumber]', 'port to host the WebSocket server', Config.get('websocketPort', 4000))
+  .option('-w, --websocketport [portNumber]', 'port to host the WebSocket server', Config.get('webSocketPort', 4000))
   .option('-h, --webport [portNumber]', 'port to host the HTTP web server', Config.get('webPort', 4000))
   .option('-e, --entitytick [seconds]', 'miliseconds between entity ticks', Config.get('entityTick', 500))
   .option('-p, --playertick [seconds]', 'miliseconds between player ticks', Config.get('playerTick', 500))

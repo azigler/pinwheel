@@ -26,6 +26,7 @@ module.exports = srcPath => {
           }
 
           const stream = new TelnetStream();
+          stream.ipAddress = telnetSocket.address().address;
           stream.attach(telnetSocket);
 
           stream.on('interrupt', () => {

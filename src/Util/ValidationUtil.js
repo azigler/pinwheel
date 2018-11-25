@@ -16,16 +16,16 @@ class ValidationUtil {
     const minLength = Config.get('minNameLength');
 
     if (!name) {
-      return 'Please enter a name.';
+      return '<red>Please enter a name.</red>';
     }
     if (name.length > maxLength) {
-      return 'Too long, try a shorter name.';
+      return '<red>Too long, try a shorter name.</red>';
     }
     if (name.length < minLength) {
-      return 'Too short, try a longer name.';
+      return '<red>Too short, try a longer name.</red>';
     }
     if (!/^[a-z]+$/i.test(name)) {
-      return 'Your name may only contain A-Z without spaces or special characters.';
+      return '<red>Your name may only contain A-Z without spaces or special characters.</red>';
     }
     return false;
   }

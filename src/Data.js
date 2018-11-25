@@ -155,7 +155,9 @@ class Data {
    * @return string
    */
   static loadMotd() {
-    const motd = fs.readFileSync(dataPath + 'motd').toString('utf8');
+    const Config = require('./Config');
+    const filename = Config.get('motd');
+    const motd = fs.readFileSync(dataPath + 'motd/' + filename).toString('utf8');
     return motd;
   }
 }

@@ -23,6 +23,8 @@ module.exports = srcPath => {
 
           // create our adapter
           const stream = new WebSocketStream();
+          console.log(ws._socket.remoteAddress);
+          stream.ipAddress = ws._socket.remoteAddress;
           // and attach the raw WebSocket
           stream.attach(ws);
 

@@ -19,7 +19,7 @@ winston.add(winston.transports.Console, {
   }
 });
 
-const logDir = __dirname + '/../log/';
+const logDir = __dirname + '/../data/log/';
 const logExt = '.log';
 
 /**

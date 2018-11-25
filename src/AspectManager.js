@@ -47,7 +47,7 @@ class AspectManager extends Map {
   attachListeners(state, character, aspect) {
     const asp = this.getAspect(aspect);
 
-    if (asp.listeners) {
+    if (asp && asp.listeners) {
       const aspectListeners = asp.listeners;
       for (const [eventName, listener] of Object.entries(aspectListeners)) {
         character.on(eventName, listener(state));

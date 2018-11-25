@@ -92,7 +92,7 @@ class Player extends Character {
       const token = matches[1];
       let promptValue = token.split('.').reduce((obj, index) => obj && obj[index], promptData);
       if (promptValue === null || promptValue === undefined) {
-        promptValue = 'invalid-token';
+        promptValue = '?';
       }
       promptStr = promptStr.replace(matches[0], promptValue);
     }
