@@ -1,20 +1,22 @@
 {
   "name": "pinwheel",
-  "version": "1.0.0",
+  "version": "0.5.0",
   "description": "A highly opinionated fork of the Ranvier MUD engine.",
   "author": "Andrew Zigler <andrewzigler@gmail.com> (https://www.andrewzigler.com)",
+  "license": "MIT",
   "private": true,
   "repository": "azigler/pinwheel",
   "engines": {
     "node": ">= 8.9.4"
   },
-  "license": "MIT",
   "scripts": {
     "start": "gulp && ./pinwheel",
-    "test": "gulp && npm run-script test:coverage",
-    "test:coverage": "istanbul --include-all-sources cover _mocha -- -R dot --recursive ./test/**/*.spec.js",
+    "dev": "./pinwheel --loglevel none",
+    "test": "gulp && npm run-script istanbul",
+    "istanbul": "istanbul --include-all-sources cover _mocha -- -R dot --recursive ./test/**/*.spec.js",
     "build-docs": "jsdoc -c jsdoc.conf",
-    "bundle-install": "node setup-bundles"
+    "bundle-install": "node setup-bundles",
+    "postinstall": "npm run-script bundle-install"
   },
   "dependencies": {
     "bcryptjs": "^2.4.0",

@@ -1,8 +1,6 @@
 {
   "name": "pinwheel-web",
-  "version": "1.0.0",
-  "description": "An Express web server for the Pinwheel engine, using ES6 template strings.",
-  "main": "index.js",
+  "description": "Express web server for the Pinwheel engine, using ES6 template strings.",
   "author": "Andrew Zigler <andrewzigler@gmail.com> (https://www.andrewzigler.com)",
   "license": "MIT",
   "private": true,
