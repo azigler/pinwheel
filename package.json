@@ -16,7 +16,11 @@
     "istanbul": "istanbul --include-all-sources cover _mocha -- -R dot --recursive ./test/**/*.spec.js",
     "build-docs": "jsdoc -c jsdoc.conf",
     "bundle-install": "node setup-bundles",
-    "postinstall": "npm run-script bundle-install"
+    "postinstall": "npm run-script bundle-install",
+    "clean-logs": "gulp clean-logs",
+    "clean-bugs": "gulp clean-bugs",
+    "clean-areas": "gulp clean-areas",
+    "clean-all": "gulp clean-all"
   },
   "dependencies": {
     "bcryptjs": "^2.4.0",

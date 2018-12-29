@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var todo = require('gulp-todo');
 var lint = require('gulp-eslint');
+var del = require('del');
 
 var paths = {
   src: './',
@@ -70,3 +71,26 @@ function toDoTask() {
     .pipe(todo(options.todo))
     .pipe(gulp.dest(paths.src));
 }
+
+gulp.task('clean-logs', function () {
+	return del([
+    'data/log/*',
+    '!.gitignore'
+	]);
+});
+
+gulp.task('clean-bugs', function () {
+	return del([
+    'data/bug/*',
+    '!.gitignore'
+	]);
+});
+
+gulp.task('clean-areas', function () {
+	return del([
+    'data/area/*',
+    '!.gitignore'
+	]);
+});
+
+gulp.task('clean-all', gulp.series('clean-logs', 'clean-bugs', 'clean-areas'));
