@@ -370,10 +370,10 @@ module.exports = (srcPath) => {
           }
           
           // give experience to the player
-          this.emit('experience', xp);
+          this.emit('currency', 'experience', xp);
         } else {
           const partyMembers = [...this.party].length;
-          this.emit('experience', xp / partyMembers);
+          this.emit('currency', 'experience', xp / partyMembers);
         }
 
         // If they're in a party, proxy the deathblow to all members of the party in the same room.

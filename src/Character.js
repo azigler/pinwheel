@@ -20,10 +20,10 @@ const Config = require('./Config');
  * @property {Set}        combatants  Set of entities this character is currently fighting
  * @property {object}     combatData  Combat metadata for this character
  * @property {Species}    species     Species for this character
- * @property {Array|String} archetype Archetype (or array of Archetypes) for this character
+ * @property {Array}      archetypes  Array of Archetypes for this character
  * @property {Attributes} attributes  Attributes of character
  * @property {Attributes} skills      Skills of character, represented like attributes
- * @property {Array|String} traits    Trait (or array of this Traits) for this character
+ * @property {Array}      traits      Array of Traits for this character
  * @property {Set}        followers   Set of this character's followers
  * @property {Character}  following   Entity that this character is following 
  * @property {Party}      party       This character's party 
@@ -51,7 +51,7 @@ class Character extends Metadatable(EventEmitter) {
 
     // initialize profile
     this.species = def.species || 'human';
-    this.archetype = def.archetype || 'townie';
+    this.archetypes = def.archetype || ['townie'];
 
     // assign attributes, skills, and traits
     this.attributes = def.attributes || null;
@@ -584,7 +584,7 @@ class Character extends Metadatable(EventEmitter) {
       description: this.description,
       inventory: this.inventory && this.inventory.serialize(),
       species: this.species,
-      archetype: this.archetype,
+      archetypes: this.archetypes,
       traits: this.traits,
       attributes: this.attributes.serialize(),
       skills: this.skills.serialize(),
@@ -660,7 +660,7 @@ class Character extends Metadatable(EventEmitter) {
       this.attributes = new Attributes(data.attributes);
       this.skills = new Attributes(data.skills);
       this.species = data.species;
-      this.archetype = data.archetype;
+      this.archetypes = data.archetypes;
       this.traits = data.traits;
 
       // if data has an inventory
@@ -702,15 +702,15 @@ class Character extends Metadatable(EventEmitter) {
 
       // apply attributes and skills from character's archetype(s)
       const arch = [];
-      for (const archetype of [this.archetype]) {
+      for (const archetype of this.archetypes) {
         arch.push(state.ArchetypeManager.setupAspect(this, state, archetype));
       }
-      this.archetype = arch;
+      this.archetypes = arch;
 
       // apply attributes and skills from character's traits
       if (this.traits !== null) {
         const ts = [];
-        for (const trait of [this.traits]) {
+        for (const trait of this.traits) {
           ts.push(state.TraitManager.setupAspect(this, state, trait));
         }
         this.traits = ts;
@@ -733,7 +733,7 @@ class Character extends Metadatable(EventEmitter) {
     state.SpeciesManager.attachListeners(state, this, this.species);
 
     // apply listeners from character's archetype(s)
-    for (const archetype of this.archetype) {
+    for (const archetype of this.archetypes) {
       state.ArchetypeManager.attachListeners(state, this, archetype);
     }
 

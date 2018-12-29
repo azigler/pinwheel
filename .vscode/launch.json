@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceRoot}/./pinwheel",
-            "args": ["-v"],
+            "args": ["--loglevel=none"],
             "console": "externalTerminal",
             "cwd": "${workspaceRoot}"
         },

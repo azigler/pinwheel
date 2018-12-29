@@ -191,7 +191,7 @@ module.exports = (srcPath) => {
         const xp = 100;
 
         // give experience to the NPC
-        this.emit('experience', xp);
+        this.emit('currency', 'experience', xp);
       },
 
       /**

@@ -468,7 +468,7 @@ class BundleManager {
         );
         Logger.verbose(`\t\t${chalk.cyan.bold(helpName)}`);
       } catch (e) {
-        Logger.warn(`\t\t${chalk.cyan.yellow(e.message)}`);
+        Logger.warn(`\t\t${chalk.bold.yellow(e.message)}`);
         continue;
       }
 

@@ -14,7 +14,7 @@ class Config {
    * @param {*} fallback fallback value
    */
   static get(key, fallback) {
-    if (!__cache) {
+    if (!__cache || key === 'aspects') {
       Config.load();
     }
 
