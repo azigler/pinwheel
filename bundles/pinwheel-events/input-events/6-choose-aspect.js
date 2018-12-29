@@ -98,7 +98,7 @@ module.exports = (srcPath) => {
           args.traits.push(choice);
           
           // if the character has less traits than config's starting amount
-          if ((args.traits.length < Config.get('startingTraits', 3))) {
+          if ((args.traits.length < Config.get('startingTraits', 1))) {
             const newArgs = Object.assign(args, {
               aspects: [currentAspect, ...args.aspects]
             })

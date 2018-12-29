@@ -14,7 +14,7 @@
     "pinwheel-web"
   ],
   "introEvent": "intro",
-  "startingTraits": 2,
+  "startingTraits": 1,
   "entityTick": 500,
   "playerTick": 500,
   "logLevel": "verbose",
