@@ -18,7 +18,7 @@ const chalk = require('chalk');
  * @property {Map}           doors        Current state of doors, keys are entity references of exits with doors
  * @property {Object}        defaultDoors Default state of doors, object keys are entity references of exits with doors
  * @property {Array}         exits        Exits out of this room, object keys are entity references of destination rooms { direction: string, leaveMessage: string }
- * @property {*} [coordinates] Defined in yml with array [x, y, z].
+ * @property {*}             [coordinates] Defined in yml with array [x, y, z].
  * @property {Map}           behaviors    Map of behaviors for area
  * @property {string}        script       Name of custom script attached to this room
  * @property {*} defaultEntities List of item entity references that spawn in the room
