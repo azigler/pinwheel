@@ -17,15 +17,15 @@ const chalk = require('chalk');
  * @property {string}        entityReference Entity reference for the room
  * @property {Map}           doors        Current state of doors, keys are entity references of exits with doors
  * @property {Object}        defaultDoors Default state of doors, object keys are entity references of exits with doors
- * @property {Array<object>} exits        Exits out of this room, object keys are entity references of destination rooms { direction: string, leaveMessage: string }
- * @property {{x: number, y: number, z: number}} [coordinates] Defined in yml with array [x, y, z].
+ * @property {Array}         exits        Exits out of this room, object keys are entity references of destination rooms { direction: string, leaveMessage: string }
+ * @property {*} [coordinates] Defined in yml with array [x, y, z].
  * @property {Map}           behaviors    Map of behaviors for area
  * @property {string}        script       Name of custom script attached to this room
- * @property {items: Set, npcs: Set} defaultEntities List of item entity references that spawn in the room
+ * @property {*} defaultEntities List of item entity references that spawn in the room
  * @property {Set}           items        Items currently in the room
  * @property {Set}           npcs         Npcs currently in the room
  * @property {Set}           players      Players currently in the room
- * @property {items: Array<string:uuid + entityRef>, npcs: Array<uuid + entityRef>} spawnedEntities Entities spawned by the room
+ * @property {*} spawnedEntities Entities spawned by the room
  *
  * @implements {Broadcastable}
  * @extends EventEmitter

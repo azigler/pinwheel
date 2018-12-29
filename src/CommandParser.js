@@ -12,14 +12,7 @@ class CommandParser {
    * @param {GameState} state     Game state
    * @param {string}    data      String of input from the player
    * @param {Player}    player    Player who fired command
-   * @return {{
-   *   type: CommandType,         Type of command
-   *   ?command: Command,         If default command
-   *   ?skill: Skill,             If skill command
-   *   ?channel: Channel,         If channel command
-   *   args: string,              For Command.execute `args` property
-   *   originalCommand: string    For Command.execute `arg0` property
-   * }}
+   * @return {*}
    */
   static parse(state, data, player) {
     // trim any whitespace from input

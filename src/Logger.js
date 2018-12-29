@@ -46,7 +46,7 @@ class Logger {
   /**
    * Highest priority logging
    * TIP: appends red "ERROR" to the start of logs
-   * @param {Array<string} messages
+   * @param {Array<string>} messages
    */
   static error(...messages) {
     winston.log('error', ...messages);
@@ -54,7 +54,7 @@ class Logger {
 
   /**
    * Less high priority than error, still higher visibility than default
-   * @param {Array<string} messages
+   * @param {Array<string>} messages
    */
   static warn(...messages) {
     winston.log('warn', ...messages);
@@ -62,7 +62,7 @@ class Logger {
 
   /**
    * Medium priority logging (default)
-   * @param {Array<string} messages
+   * @param {Array<string>} messages
    */
   static log(...messages) {
     winston.log('info', ...messages);
@@ -71,7 +71,7 @@ class Logger {
   /**
    * Lower priority logging
    * TIP: only logs if the environment variable is set to `VERBOSE`
-   * @param {Array<string} messages
+   * @param {Array<string>} messages
    */
   static verbose(...messages) {
     winston.log('verbose', ...messages);

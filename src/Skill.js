@@ -17,7 +17,7 @@ const Damage = require('./Damage');
  * @property {?Array<SkillFlag>}  flags             Array of skill flags
  * @property {?function (Effect)} configureEffect   Function to modify the skill's effect before adding to player (passive only)
  * @property {?string}            effect            Id (filename) of the passive effect for this skill (passive only)
- * @property {?Object<attribute: string, cost: number>} resource Object representing resource cost for skill
+ * @property {?*} resource Object representing resource cost for skill
  * @property {?boolean}           initiatesCombat   Whether this skill initiates combat when used
  * @property {?boolean}           requiresTarget    Whether this skill requires a target
  * @property {?boolean}           targetSelf        Whether this skill targets the user
