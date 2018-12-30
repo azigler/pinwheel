@@ -37,13 +37,13 @@ module.exports = (srcPath) => {
 
       // announce player character login to server
       const loginReporter = {
-        name: 'ATTN',
+        name: 'MUD',
         // implements Broadcastable interface
         getBroadcastTargets() {
           return [];
         }
       }
-      const loginMessage = `<b><magenta>${player.name}</magenta> <white>has logged in</white><yellow>.</yellow></b>`;
+      const loginMessage = `${player.name} has logged in.`;
       state.ChannelManager.get('chat').send(state, loginReporter, loginMessage);
 
       // place the player in a command loop

@@ -66,7 +66,7 @@ class Channel {
    * @param {string}    message
    */
   send(state, sender, message) {
-    // if they don't include a message, explain how to use the channel.
+    // if they don't include a message, explain how to use the channel
     if (!message.length) {
       return this.describeSelf(sender);
     }
@@ -108,9 +108,7 @@ class Channel {
     }
 
     // send to audience targets
-    Broadcast.sayAt(this.audience, message, (target, message) => {
-      return this.formatter.target(sender, target, message, this.colorify.bind(this));
-    });
+    Broadcast.sayAt(this.audience, this.formatter.target(sender, targets, message, this.colorify.bind(this)));
   }
 
   /**

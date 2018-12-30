@@ -54,13 +54,13 @@ module.exports = (srcPath) => {
 
             // announce player timeout to server
             const timeoutReporter = {
-              name: 'ATTN',
+              name: 'MUD',
               // implements Broadcastable interface
               getBroadcastTargets() {
                 return [];
               }
             }
-            const timeoutMessage = `<b><magenta>${this.name}</magenta> <white>was kicked for being idle too long</white><yellow>.</yellow></b>`;
+            const timeoutMessage = `${this.name} timed out from being idle.`;
             state.ChannelManager.get('chat').send(state, timeoutReporter, timeoutMessage);
 
             // log player timeout

@@ -1,0 +1,13 @@
+{
+  "name": "pinwheel-communication",
+  "description": "Gossip MUD chat network interface for Pinwheel.",
+  "author": "Andrew Zigler <andrewzigler@gmail.com> (https://www.andrewzigler.com)",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">= 8.9.4"
+  },
+  "dependencies": {
+    "ws": "^6.1.2"
+  }
+}

@@ -35,5 +35,10 @@
   "moveCommand": "move",
   "skillLag": 1000,
   "maxPlayerInventory": 16,
-  "maxIdleMinutes": 20
+  "maxIdleMinutes": 20,
+  "gossip": {
+    "url": "wss://gossip.haus/socket",
+    "clientId": "YOUR-CLIENT-ID",
+    "clientSecret": "YOUR-CLIENT-SECRET"
+  }
 }
