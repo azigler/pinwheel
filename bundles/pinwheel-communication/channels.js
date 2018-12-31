@@ -107,7 +107,7 @@ module.exports = (srcPath) => {
       name: 'gossip',
       aliases: [','],
       color: ['bold', 'magenta'],
-      remoteChannel: 'testing',
+      remoteChannel: 'gossip',
       description: 'Send a message on the Gossip network',
       audience: new WorldAudience()
     })

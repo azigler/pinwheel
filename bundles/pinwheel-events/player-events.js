@@ -52,6 +52,9 @@ module.exports = (srcPath) => {
             // close the socket
             this.socket.emit('close');
 
+            // report player quit to Gossip
+            this.emit('quit');
+
             // announce player timeout to server
             const timeoutReporter = {
               name: 'MUD',

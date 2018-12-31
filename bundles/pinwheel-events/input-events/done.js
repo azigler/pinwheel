@@ -50,7 +50,7 @@ module.exports = (srcPath) => {
       // TIP: this is where the player will spend the rest of their session playing
       player.socket.emit('loop', player);
 
-      // TIP: currently only used for pinwheel-streams
+      // emit event for player login
       player.emit('login');
     }
   };

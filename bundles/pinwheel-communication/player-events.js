@@ -6,7 +6,7 @@ module.exports = srcPath => {
       /**
        * Report the player to the Gossip network upon login
        */
-      spawn: state => function() {
+      login: state => function() {
         state.GossipEmitter.emit('players/sign-in', this);
       },
 
