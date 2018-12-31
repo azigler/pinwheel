@@ -3,13 +3,22 @@
 <p align="center"><img height="120" width="120" align="right" src="/resources/logo.png"></p>
 
 [![Gossip](https://img.shields.io/badge/Gossip-%20MUD%20chat%20network-brightgreen.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABaFBMVEUA/wAA/QAA+gAA/AAA/gAAzAAAfQAAewAAugAAnAAADgAAAwAABAAAAQAAAgAAAAAALAAAWgAAWAAAWQAAKQAAkQAAigAApgAAoQAABQAAqgAAowAAmQAAlQAANAAAYAAArgAA0AAAqAAApwAA3AAAdwAAsQAAiAAABgAAjwAACgAAuAAAngAADwAAygAAogAACwAAuwAAywAABwAAuQAAkgAANgAAdQAAxgAA1wAAjAAASgAAoAAAeAAA+AAA+wAAtwAAtQAAjQAAzQAAkwAAlAAAQAAAzgAAzwAAeQAAQgAAGQAAdgAAegAAPgAA8QAAkAAA9wAACAAAPwAA8AAATQAAhAAAfgAAvgAAwQAAiwAAiQAAmAAA4QAARAAA6AAAUQAA3QAARgAAOwAAdAAAgwAAlwAA1gAANwAAIAAASwAAMAAALQAAOgAA7QAAHAAApQAAswAA8wAArwAAXAAAVwAAmwAAqQA4fgs+AAAAAWJLR0QPGLoA2QAAAAd0SU1FB+IMHhMpFkyc6hcAAAIrSURBVEjHrZb9WxJBEMd32SmsY3ZFEkIrCUoTMSskCsuXJM3Ckt6j97JXrezVf7/ZW1DPB3bvnsfvb3fMh9l5uZlljMciSDAGhw7Hw6tPMDhy1AutRDzmAxhS0jOAVAEFjQK/HAiA/cmBPUodcwKDIPiOBE+jtAIoMwx2xflxO4AyO7QDMKoSH3YB8gTrnAc0cNIK4KmRZE6czucLhUJ++AyQs7M2ABOjZMLHzkk/oaOcHsatQHECBEBpMiGl9PC8jnrKCly4SMcmQPr1u6QBa9BYzukUDRZ1fSVO6yNVegOoLlevAFytzXjKB64RANd7AxLTs3PA58vZ9uOC9nDDBpQoYlhsW7hj0ADfBTwDTNmAuraYUGgcqHl9pJuWoHGptgz81spteoF3GquLuqEa1rT6nccrRYnq7j3TfGv2wvWREafCoZppGsBR6WlGDVea9MIC2RzjlPr75OHBQwOM29v70eMnT8WzVjr9vNJaXXYG7U+MF+aLe/nKmVbzxVGidAvNvX6jXIVrvyvAHoALF6CwHmtqvX1XXuC8OdtyAu9X1qvV6vqHj7VP0Iw3Piu0A3pwaC3pSosvEgPn7QqYkfqVCgdsIwwg/QlAAA2EzfAevn3n5OEHugDE1NBWhvTzF/v9568X/K+uQAk6k/Kft39zdAMS237h9CzeDgXIrc70ZplAxD0L11koAuoYCqCVldIaSPbvs3cuRaUOCoi82CNeHaJeTqJef/4Dm8+LBivwHSsAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTgtMTItMzFUMDE6NDE6MjItMDY6MDCLHuXBAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE4LTEyLTMxVDAxOjQxOjIyLTA2OjAw+kNdfQAAAABJRU5ErkJggg==)](https://gossip.haus/)
-[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=popout)](https://github.com/RichardLitt/standard-readme)
-[![MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/azigler/pinwheel/blob/master/LICENSE)
-[![@andrewzigler](https://img.shields.io/twitter/follow/andrewzigler.svg?label=@andrewzigler&style=social)](https://twitter.com/andrewzigler)
+[![MUD Coders Slack](https://slack.mudcoders.com/badge.svg)](https://slack.mudcoders.com/)
+[![Ranvier MUD Engine](https://img.shields.io/badge/Ranvier-MUD%20engine-brightgreen.svg?logo=data:image/png;base64,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)](https://github.com/RanvierMUD/ranviermud)
+
+[![standard-readme](https://img.shields.io/badge/readme%20style-standard-DF1464.svg?style=popout-square)](https://github.com/RichardLitt/standard-readme)
+[![eslint](https://img.shields.io/badge/code%20style-eslint-brightgreen.svg?style=popout-square)](https://github.com/eslint/eslint)
+[![MIT License](https://img.shields.io/badge/license-MIT-DF1464.svg?style=popout-square)](https://github.com/azigler/pinwheel/blob/master/LICENSE)
+
+![azigler/pinwheel Repository Hit Count](http://hits.dwyl.io/azigler/pinwheel.svg)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-DF1464.svg?style=popout-square)](https://github.com/azigler/pinwheel/issues)
+[![](https://img.shields.io/badge/powered%20by-Node.js-brightgreen.svg?style=popout-square)](https://nodejs.org/en/about/)
 
 > A highly opinionated fork of the [Ranvier](https://github.com/shawncplus/ranviermud) MUD engine.
 
-Pinwheel is a [MUD](https://en.wikipedia.org/wiki/MUD) engine built on [Shawn Biddle](http://shawnbiddle.com)'s [Ranvier](https://github.com/shawncplus/ranviermud) codebase.
+Pinwheel is a *new* [MUD](https://www.andrewzigler.com/blog/2018/06/27/the-case-for-muds-in-modern-times/) engine built entirely in JavaScript. It doesn't require a database and can be ready for players within minutes of downloading.
+
+Originally based on [Shawn Biddle](http://shawnbiddle.com)'s [Ranvier](http://ranviermud.com/), Pinwheel is a full rewrite of the engine and its bundles.
 
 ## :house_with_garden: Example Game
 
@@ -23,14 +32,43 @@ Coming soon...
 
 Coming soon...
 
-## :octocat: Maintainer
+## :horse_racing: Maintainer
+
+[![@andrewzigler](https://img.shields.io/twitter/follow/andrewzigler.svg?label=@andrewzigler&style=social)](https://twitter.com/andrewzigler)
 
 Coming soon...
 
 ## :inbox_tray: Contributing
 
+
+
+
 Coming soon...
 
 ## :bookmark_tabs: License
 
-Coming soon...
+Copyright © 2018-2019 [Andrew Zigler](https://www.andrewzigler.com)
+
+Copyright © 2012 [Shawn Biddle](http://shawnbiddle.com)
+
+[MIT License](https://github.com/azigler/pinwheel/blob/master/LICENSE)
+
+```
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
