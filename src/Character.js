@@ -51,7 +51,7 @@ class Character extends Metadatable(EventEmitter) {
 
     // initialize profile
     this.species = def.species || 'human';
-    this.archetypes = def.archetype || ['townie'];
+    this.archetypes = def.archetypes || ['townie'];
 
     // assign attributes, skills, and traits
     this.attributes = def.attributes || null;

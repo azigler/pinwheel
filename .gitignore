@@ -3,7 +3,9 @@ node_modules
 bundles/irondale-*
 data/area/*.json
 data/player/*.json
+!data/player/Admin.json
 data/account/*.json
+!data/account/Admin.json
 data/bug/*.txt
 data/banned.json
 *.swp

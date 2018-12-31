@@ -1,0 +1,84 @@
+{
+  "name": "Admin",
+  "description": "This average male human has reddish skin, green round eyes, and short brown hair.",
+  "inventory": null,
+  "species": "administrator",
+  "archetypes": [
+    "tester"
+  ],
+  "traits": [
+    "immortal"
+  ],
+  "attributes": {
+    "health": {
+      "delta": 0,
+      "base": 100
+    },
+    "energy": {
+      "delta": 0,
+      "base": 100
+    },
+    "mana": {
+      "delta": 0,
+      "base": 100
+    },
+    "favor": {
+      "delta": -99,
+      "base": 100
+    },
+    "brawn": {
+      "delta": 0,
+      "base": 10
+    },
+    "endurance": {
+      "delta": 0,
+      "base": 10
+    },
+    "reflexes": {
+      "delta": 0,
+      "base": 10
+    },
+    "perception": {
+      "delta": 0,
+      "base": 10
+    },
+    "intellect": {
+      "delta": 0,
+      "base": 10
+    },
+    "charisma": {
+      "delta": 0,
+      "base": 10
+    },
+    "luck": {
+      "delta": 0,
+      "base": 10
+    },
+    "armor": {
+      "delta": 0,
+      "base": 5
+    },
+    "critical": {
+      "delta": 0,
+      "base": 5
+    },
+    "fatigue": {
+      "delta": 0,
+      "base": 0
+    }
+  },
+  "skills": {},
+  "effects": [],
+  "metadata": {},
+  "equipment": null,
+  "combatants": [],
+  "following": null,
+  "followers": [],
+  "prompt": "[ <b><red>%health.current%</b></red>/<b><red>%health.max%</red></b> <b>health</b> <b><yellow>%energy.current%</yellow></b>/<b><yellow>%energy.max%</yellow></b> <b>energy</b> <b><blue>%mana.current%</blue></b>/<b><blue>%mana.max%</b></blue> <b>mana</b> <b><green>%favor.current%</green></b>/<b><green>%favor.max%</green></b> <b>favor</b> ]",
+  "room": "start:1",
+  "quests": {
+    "completed": [],
+    "active": []
+  },
+  "role": 2
+}

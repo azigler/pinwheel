@@ -1,0 +1,13 @@
+{
+  "username": "Admin",
+  "characters": [
+    {
+      "name": "Admin",
+      "active": true
+    }
+  ],
+  "password": "$2a$10$3YePQfvQ5A2euEFQruLdpOW4sjNYpVbiM9L0Xd54JI7MKb0lqc7AG",
+  "active": true,
+  "banned": false,
+  "metadata": {}
+}
