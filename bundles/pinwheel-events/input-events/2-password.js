@@ -16,6 +16,7 @@ module.exports = (srcPath) => {
   return {
     event: state => (socket, args) => {
       const write = EventUtil.genWrite(socket);
+      const say = EventUtil.genSay(socket);
 
       // get account name
       let name = args.account.username;
@@ -36,7 +37,7 @@ module.exports = (srcPath) => {
       }
 
       // prompt the user for their password
-      write("<b><white>Enter your password<yellow>:</b></yellow> ");
+      say("<b><white>Enter your password<yellow>:</b></yellow> ");
       socket.command('toggleEcho');
 
       socket.once('data', pass => {

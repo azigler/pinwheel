@@ -11,11 +11,10 @@ module.exports = (srcPath) => {
 
   return {
     event: state => (socket, args) => {
-      const write = EventUtil.genWrite(socket);
       const say = EventUtil.genSay(socket);
 
       if (!args.dontwelcome) {
-        write("<white><b>Confirm your password<yellow>:</yellow></b> ");
+        say("<white><b>Confirm your password<yellow>:</yellow></b> ");
         socket.command('toggleEcho');
       }
 

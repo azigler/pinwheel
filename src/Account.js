@@ -18,7 +18,7 @@ class Account {
     this.username = data.username;
     this.characters = data.characters || [];
     this.password = data.password;
-    this.active = data.active || true;
+    this.active = data.active;
     this.banned = data.banned || false;
 
     // Arbitrary data bundles are free to shove whatever they want in

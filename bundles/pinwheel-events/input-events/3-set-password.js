@@ -10,12 +10,11 @@ module.exports = (srcPath) => {
   return {
     event: state => (socket, args) => {
       const say = EventUtil.genSay(socket);
-      const write = EventUtil.genWrite(socket);
 
       const minPasswordLength = Config.get('minPasswordLength', 6)
 
       say(`<cyan><b>Your password must be at least ${minPasswordLength} characters<yellow>.</b>`);
-      write('<white><b>Enter your account password<yellow>:</yellow></b> ');
+      say('<white><b>Enter your account password<yellow>:</yellow></b> ');
 
       socket.command('toggleEcho');
       socket.once('data', pass => {

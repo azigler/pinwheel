@@ -9,12 +9,11 @@ module.exports = (srcPath) => {
 
   return {
     event: (state) => (socket, name) => {
-      const write = EventUtil.genWrite(socket);
       const say = EventUtil.genSay(socket);
       let newAccount = null;
 
       // confirm the desired account username
-      write(`<bold><white>Do you want your account<yellow>'</yellow>s public username to be <cyan>${name}</cyan><yellow>?</yellow></bold> [<green>y</green>/<red>n</red>]`);
+      say(`<bold><white>Do you want your account<yellow>'</yellow>s public username to be <cyan>${name}</cyan><yellow>?</yellow></bold> [<green>y</green>/<red>n</red>]`);
 
       socket.once('data', data => {
         data = data.toString('utf8').trim();
