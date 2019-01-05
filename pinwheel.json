@@ -1,44 +1,57 @@
 {
-  "telnetPort": 4000,
-  "webSocketPort": 4001,
-  "webPort": 80,
-  "bundles": [
-    "pinwheel-combat",
-    "pinwheel-communication",
-    "pinwheel-debug",
-    "pinwheel-events",
-    "pinwheel-interface",
-    "pinwheel-manipulation",
-    "pinwheel-movement",
-    "pinwheel-streams",
-    "pinwheel-web"
-  ],
-  "introEvent": "intro",
-  "startingTraits": 1,
-  "entityTick": 500,
-  "playerTick": 500,
-  "logLevel": "verbose",
-  "minNameLength": 3,
-  "maxNameLength": 20,
-  "maxCharacters": 3,
-  "minPasswordLength": 6,
-  "allowMultiplay": true,
-  "reportBugsToAdmins": true,
-  "startingRoom": "start:1",
-  "maxFailedLoginAttempts": 3,
-  "aspects": [
-    "species",
-    "archetype",
-    "trait"
-  ],
-  "motd": "pinwheel",
-  "moveCommand": "move",
-  "skillLag": 1000,
-  "maxPlayerInventory": 16,
-  "maxIdleMinutes": 20,
-  "gossip": {
-    "url": "wss://gossip.haus/socket",
-    "clientId": "YOUR-CLIENT-ID",
-    "clientSecret": "YOUR-CLIENT-SECRET"
-  }
+    "allowMultiplay": true,
+    "aspects": [
+        "archetype",
+        "species",
+        "trait"
+    ],
+    "bundles": [
+        "pinwheel-combat",
+        "pinwheel-communication",
+        "pinwheel-debug",
+        "pinwheel-events",
+        "pinwheel-interface",
+        "pinwheel-manipulation",
+        "pinwheel-movement",
+        "pinwheel-streams",
+        "pinwheel-web"
+    ],
+    "creation": {
+        "archetype": [
+            "tester"
+        ],
+        "species": [
+            "administrator"
+        ],
+        "trait": [
+            "immortal"
+        ]
+    },
+    "currency": "cowries",
+    "debugArea": "start",
+    "entityTick": 500,
+    "gossip": {
+      "url": "wss://gossip.haus/socket",
+      "clientId": "YOUR-CLIENT-ID",
+      "clientSecret": "YOUR-CLIENT-SECRET"
+    },
+    "introEvent": "intro",
+    "logLevel": "verbose",
+    "maxCharacters": 3,
+    "maxFailedLoginAttempts": 3,
+    "maxIdleMinutes": 20,
+    "maxNameLength": 20,
+    "maxPlayerInventory": 16,
+    "minNameLength": 3,
+    "minPasswordLength": 6,
+    "motd": "pinwheel",
+    "moveCommand": "move",
+    "playerTick": 500,
+    "reportBugsToAdmins": true,
+    "skillLag": 1000,
+    "startingRoom": "start:1",
+    "startingTraits": 1,
+    "telnetPort": 4000,
+    "webPort": 80,
+    "webSocketPort": 4001
 }
