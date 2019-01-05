@@ -17,12 +17,8 @@ module.exports = (srcPath) => {
       const currentAspect = args.aspects.shift();
 
       // pull a list of the current aspect's options
-      let aspect;
-      switch (currentAspect) {
-        case 'species': aspect = [...state.SpeciesManager]; break;
-        case 'archetype': aspect = [...state.ArchetypeManager]; break;
-        case 'trait': aspect = [...state.TraitManager]; break;
-      }
+      let aspect = Config.get('creation');
+      aspect = aspect[currentAspect];
 
       // prompt the player to pick their aspect
       if (currentAspect !== 'archetype') {
@@ -39,17 +35,18 @@ module.exports = (srcPath) => {
       if ((currentAspect === 'trait')) {
         if (args.traits === undefined) { args.traits = []; }
 
-        aspect = aspect.filter(asp => !args.traits.includes(asp[0]));
+        // filter out the most recently chosen trait
+        aspect = aspect.filter(asp => !args.traits.includes(asp));
 
         say(`      <b><cyan>${Config.get('startingTraits', 3) - args.traits.length}</cyan> <white>remaining<yellow>...</yellow></b>`);
         say('');
       }
 
       // add aspects to selection menu
-      aspect.forEach(asp => {
+      Array.from(aspect).forEach(asp => {
         options.push({
-          display: asp[0],
-          onSelect: asp[0]
+          display: asp,
+          onSelect: asp
         });
       });
 

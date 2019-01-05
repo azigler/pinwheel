@@ -63,13 +63,13 @@ class BundleManager {
     if (!this.state.RoomManager.startingRoom) {
       throw new Error('You must define a valid starting room in pinwheel.json');
     }
-    Logger.log(`${chalk.bold.yellow('CONFIG')}${chalk.bold.white(':')} starting room is ${chalk.bold.magenta(this.state.RoomManager.startingRoom.entityReference)}`);
+    Logger.log(`${chalk.bold.yellow('CONFIG')}${chalk.bold.white(':')} starting room is ${chalk.bold.magenta(this.state.RoomManager.startingRoom.entityReference)}.`);
 
     // load the intro event from config
     if (!this.state.Config.get('introEvent', false)) {
       throw new Error('You must define an intro event in pinwheel.json');
     }
-    Logger.log(`${chalk.bold.yellow('CONFIG')}${chalk.bold.white(':')} intro event is ${chalk.bold.magenta(this.state.Config.get('introEvent'))}`);
+    Logger.log(`${chalk.bold.yellow('CONFIG')}${chalk.bold.white(':')} intro event is ${chalk.bold.magenta(this.state.Config.get('introEvent'))}.`);
   }
 
   /**

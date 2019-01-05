@@ -7,6 +7,7 @@ const SkillUtil = require('./Util/SkillUtil');
 const CombatErrors = require('./Error/CombatErrors');
 const Parser = require('./CommandParser');
 const Broadcast = require('./Broadcast');
+const Config = require('./Config');
 
 /**
  * Turn-based combat system. Combatants attack and then have some amount of lag applied to them
@@ -64,7 +65,7 @@ class Combat {
     }
     
     // enable combat debugging in the debug dojo
-    if (attacker.room.area.name === "dojo") {
+    if (attacker.room.area.name === Config.get('debugArea', 'dojo')) {
       attacker.combatData.meta = 'debug';
     } else {
       attacker.combatData.meta = '';
