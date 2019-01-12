@@ -151,6 +151,9 @@ class ItemUtil {
       );
     }
 
+    // BOTTOM OF BOX
+    buf += this.qualityColorize(item, "'" + B.line(38) + "'") + '\r\n';
+
     // ON USE
     const usable = item.getBehavior('usable');
     if (usable) {
@@ -158,21 +161,18 @@ class ItemUtil {
         const useSpell = state.SpellManager.get(usable.spell);
         if (useSpell) {
           useSpell.options = usable.options;
-          buf += B.wrap('&lt;b>On Use&lt;/b>: ' + useSpell.info(player), 80) + '\r\n';
+          buf += B.wrap('&lt;b>On Use&lt;/b>: ' + useSpell.info(player), 75) + '\r\n';
         }
       }
 
       if (usable.effect &amp;&amp; usable.config.description) {
-        buf += B.wrap('&lt;b>Effect&lt;/b>: ' + usable.config.description, 80) + '\r\n';
+        buf += B.wrap('&lt;b>Effect&lt;/b>: ' + usable.config.description, 75) + '\r\n';
       }
 
       if (usable.charges) {
         buf += B.wrap(`${usable.charges} Charges`, 80) + '\r\n';
       }
     }
-
-    // BOTTOM OF BOX
-    buf += this.qualityColorize(item, "'" + B.line(38) + "'") + '\r\n';
 
     // colorize border according to item quality
     buf = buf.replace(/\|/g, this.qualityColorize(item, '|'));
@@ -194,7 +194,7 @@ module.exports = ItemUtil;
 
 <footer>
     <img class="logo" src="../_static/images/logo.png" style="width: 120px; height: 120px">
-    <div class="footer-text">Copyright © 2018, Andrew Zigler</div>
+    <div class="footer-text">Copyright © 2019, Andrew Zigler</div>
 </footer>
 <script>prettyPrint();</script>
 <script src="scripts/jquery.min.js"></script>

@@ -118,7 +118,7 @@ class Channel {
    * @param {string}    message
    */
   send(state, sender, message) {
-    // if they don't include a message, explain how to use the channel.
+    // if they don't include a message, explain how to use the channel
     if (!message.length) {
       return this.describeSelf(sender);
     }
@@ -160,9 +160,7 @@ class Channel {
     }
 
     // send to audience targets
-    Broadcast.sayAt(this.audience, message, (target, message) => {
-      return this.formatter.target(sender, target, message, this.colorify.bind(this));
-    });
+    Broadcast.sayAt(this.audience, this.formatter.target(sender, targets, message, this.colorify.bind(this)));
   }
 
   /**
@@ -170,10 +168,10 @@ class Channel {
    * @param {Player}    sender
    */
   describeSelf(sender) {
-    Broadcast.sayAt(sender, `\r\nChannel: ${this.name}`);
-    Broadcast.sayAt(sender, 'Syntax: ' + this.getUsage());
+    Broadcast.sayAt(sender, `\r\n&lt;b>&lt;white>Channel&lt;/white>&lt;yellow>:&lt;/yellow>&lt;/b> ${this.name}`);
+    Broadcast.sayAt(sender, '&lt;b>&lt;white>Syntax&lt;/white>&lt;yellow>:&lt;/yellow>&lt;/b> ' + this.getUsage());
     if (this.description) {
-      Broadcast.sayAt(sender, this.description);
+      Broadcast.sayAt(sender, `&lt;b>&lt;cyan>${this.description}&lt;/cyan>&lt;/b>`);
     }
   }
 
@@ -226,7 +224,7 @@ module.exports = Channel;
 
 <footer>
     <img class="logo" src="../_static/images/logo.png" style="width: 120px; height: 120px">
-    <div class="footer-text">Copyright © 2018, Andrew Zigler</div>
+    <div class="footer-text">Copyright © 2019, Andrew Zigler</div>
 </footer>
 <script>prettyPrint();</script>
 <script src="scripts/jquery.min.js"></script>

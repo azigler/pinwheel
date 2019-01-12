@@ -115,13 +115,13 @@ class BundleManager {
     if (!this.state.RoomManager.startingRoom) {
       throw new Error('You must define a valid starting room in pinwheel.json');
     }
-    Logger.log(`${chalk.bold.yellow('CONFIG')}${chalk.bold.white(':')} starting room is ${chalk.bold.magenta(this.state.RoomManager.startingRoom.entityReference)}`);
+    Logger.log(`${chalk.bold.yellow('CONFIG')}${chalk.bold.white(':')} starting room is ${chalk.bold.magenta(this.state.RoomManager.startingRoom.entityReference)}.`);
 
     // load the intro event from config
     if (!this.state.Config.get('introEvent', false)) {
       throw new Error('You must define an intro event in pinwheel.json');
     }
-    Logger.log(`${chalk.bold.yellow('CONFIG')}${chalk.bold.white(':')} intro event is ${chalk.bold.magenta(this.state.Config.get('introEvent'))}`);
+    Logger.log(`${chalk.bold.yellow('CONFIG')}${chalk.bold.white(':')} intro event is ${chalk.bold.magenta(this.state.Config.get('introEvent'))}.`);
   }
 
   /**
@@ -779,7 +779,7 @@ module.exports = BundleManager;
 
 <footer>
     <img class="logo" src="../_static/images/logo.png" style="width: 120px; height: 120px">
-    <div class="footer-text">Copyright © 2018, Andrew Zigler</div>
+    <div class="footer-text">Copyright © 2019, Andrew Zigler</div>
 </footer>
 <script>prettyPrint();</script>
 <script src="scripts/jquery.min.js"></script>
