@@ -60,8 +60,8 @@ module.exports = (srcPath) => {
       }
 
       // report success
-      Broadcast.sayAt(character, `<b><white>You equip</white></b> ${ItemUtil.display(item)}<b><white>.</white></b>`);
-      Broadcast.sayAtExcept(character.room, Broadcast.capitalize(`${character.name} equips ${ItemUtil.display(item)}.`), character);
+      Broadcast.sayAt(character, `You equip ${ItemUtil.display(item)}.`);
+      Broadcast.sayAtExcept(character.room, Broadcast.capitalize(`<b><white>${character.name}</white></b> equips ${ItemUtil.display(item)}.`), character);
     }
   };
 };

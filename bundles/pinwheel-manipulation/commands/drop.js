@@ -77,8 +77,8 @@ module.exports = (srcPath) => {
         }
 
         // report success
-        Broadcast.sayAt(character, `<b><white>You drop</white></b> ${ItemUtil.display(item)}<b><white>.</white></b>`);
-        Broadcast.sayAtExcept(character.room, `${character.name} drops ${ItemUtil.display(item)}.`, character);
+        Broadcast.sayAt(character, `You drop ${ItemUtil.display(item)}<b><white>.</white></b>`);
+        Broadcast.sayAtExcept(character.room, `<b><white>${character.name}</white></b> drops ${ItemUtil.display(item)}.`, [character]);
       }
     }
   };
