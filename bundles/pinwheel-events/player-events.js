@@ -97,9 +97,15 @@ module.exports = (srcPath) => {
           } else {
             // look for the target
             try {
-              const targetSearch = args.split(' ').pop();
-              // search for a target with the same rules as initiating combat
-              target = Combat.findCombatant(this, targetSearch);
+              // if they targeted themselves
+              if (args === 'me' || targetArgs === 'self') {
+                target = this;
+              // otherwise, find the target
+              } else {
+                const targetSearch = args.split(' ').pop();
+                // search for a target with the same rules as initiating combat
+                target = Combat.findCombatant(this, targetSearch);
+              }
             } catch (e) {
               // if the target throws a known combat error, report that error
               if (
