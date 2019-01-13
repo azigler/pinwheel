@@ -37,7 +37,8 @@ class CommandParser {
       return {
         type: CommandType.COMMAND,
         command: state.CommandManager.get('look'),
-        args: args
+        args: args,
+        originalCommand: 'look'
       };
     }
 
@@ -59,22 +60,12 @@ class CommandParser {
       'up':  'up',
       'down':  'down',
 
-      'northeast': 'northeast',
-      'southeast': 'southeast',
-      'northwest': 'northwest',
-      'southwest': 'southwest',
-
       'n':  'north',
       'e':  'east',
       's':  'south',
       'w':  'west',
       'u':  'up',
       'd':  'down',
-
-      'ne': 'northeast',
-      'se': 'southeast',
-      'nw': 'northwest',
-      'sw': 'southwest',
     };
 
     // get move command from `pinwheel.json`

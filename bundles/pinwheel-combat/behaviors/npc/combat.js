@@ -163,7 +163,7 @@ module.exports = (srcPath) => {
             description: `This is the rotting corpse of ${this.name}.`,
             keywords: this.keywords.concat(['corpse']),
             metadata: {
-              noPickup: true,
+              noRetrieve: true,
             },
             behaviors: {
               decay: {

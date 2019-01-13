@@ -132,6 +132,7 @@ class Character extends Metadatable(EventEmitter) {
    * @return {Item|boolean}
    */
   hasItem(itemReference) {
+    this._setupInventory();
     for (const [ uuid, item ] of this.inventory) {
       if (item.entityReference === itemReference) {
         return item;

@@ -110,7 +110,7 @@ module.exports = (srcPath) => {
           buf += (damage.attacker ? "<b>'s</b> " : " ") + `<b><yellow>${damage.source.name}</yellow></b>`;
         } 
 
-        buf += ` hits <b>You</b> for <b><red>${damage.finalAmount}</red></b> damage.`;
+        buf += ` hits <b>you</b> for <b><red>${damage.finalAmount}</red></b> damage.`;
 
         // if critical
         if (damage.critical) {
@@ -207,7 +207,7 @@ module.exports = (srcPath) => {
         }
 
         // use correct word for 'you', depending on tense
-        you = (heal.healer === this) ? `Yourself` : `You`;
+        you = (heal.healer === this) ? `yourself` : `you`;
 
         // use correct statement depending on attribute
         if (heal.attribute === 'health') {
@@ -245,7 +245,7 @@ module.exports = (srcPath) => {
        * @param {Character} target
        */
       dodged: state => function (target) {
-        let buf = `<b>${B.capitalize(target.name)}</b> dodges <b>Your</b> attack.`;
+        let buf = `<b>${B.capitalize(target.name)}</b> dodges <b>your</b> attack.`;
 
         // tell player
         B.sayAt(this, buf);
@@ -276,7 +276,7 @@ module.exports = (srcPath) => {
        * @param {Character} target
        */
       blocked: state => function (target) {
-        let buf = `<b>${B.capitalize(target.name)}</b> blocks <b>Your</b> attack.`;
+        let buf = `<b>${B.capitalize(target.name)}</b> blocks <b>your</b> attack.`;
 
         // tell player
         B.sayAt(this, buf);
@@ -317,7 +317,7 @@ module.exports = (srcPath) => {
           description: `This is the rotting corpse of ${this.name}.`,
           keywords: this.name.concat(['corpse']),
           metadata: {
-            noPickup: true,
+            noRetrieve: true,
           },
           behaviors: {
             decay: {

@@ -65,18 +65,21 @@ class ItemUtil {
     // pull metadata from the item
     const props = item.metadata;
 
-    // WEARABLE OR WEAPON
-    buf += sprintf('| %-36s |\r\n', item.type === ItemType.WEARABLE ? 'Wearable' : 'Weapon');
-
     // ITEM TYPE PROPERTIES
     switch (item.type) {
       case ItemType.WEAPON:
+        buf += sprintf('| %-36s |\r\n', 'Weapon');
         buf += sprintf('| %-34s   %-33s   %-27s |\r\n', `<b><red>${props.minDamage} - ${props.maxDamage} Damage</red></b>`, `<b><magenta>${B.capitalize(props.type)}</magenta></b>`, `<b><cyan>Lag ${props.lag}</cyan></b>`);
         break;
       case ItemType.WEARABLE:
+        buf += sprintf('| %-36s |\r\n', 'Wearable');
         buf += sprintf('| %-36s |\r\n', item.metadata.slot[0].toUpperCase() + item.metadata.slot.slice(1));
         break;
+      case ItemType.OBJECT:
+        buf += sprintf('| %-36s |\r\n', 'Object');
+        break;
       case ItemType.CONTAINER:
+        buf += sprintf('| %-36s |\r\n', 'Container');
         buf += sprintf('| %-36s |\r\n', `Holds ${item.maxItems} items`);
         break;
     }
@@ -99,6 +102,9 @@ class ItemUtil {
       );
     }
 
+    // BOTTOM OF BOX
+    buf += this.qualityColorize(item, "'" + B.line(38) + "'") + '\r\n';
+
     // ON USE
     const usable = item.getBehavior('usable');
     if (usable) {
@@ -106,21 +112,18 @@ class ItemUtil {
         const useSpell = state.SpellManager.get(usable.spell);
         if (useSpell) {
           useSpell.options = usable.options;
-          buf += B.wrap('<b>On Use</b>: ' + useSpell.info(player), 80) + '\r\n';
+          buf += ' ' + B.wrap('<b><white>On Use</white><yellow>:</yellow></b> ' + useSpell.info(player), 60) + '\r\n';
         }
       }
 
       if (usable.effect && usable.config.description) {
-        buf += B.wrap('<b>Effect</b>: ' + usable.config.description, 80) + '\r\n';
+        buf += B.wrap('<b><white>Effect</white><yellow>:</yellow></b> ' + usable.config.description, 60) + '\r\n';
       }
 
       if (usable.charges) {
-        buf += B.wrap(`${usable.charges} Charges`, 80) + '\r\n';
+        buf += B.wrap(`<b><white>Charges</white><yellow>:</yellow></b> ${usable.charges}`, 60) + '\r\n';
       }
     }
-
-    // BOTTOM OF BOX
-    buf += this.qualityColorize(item, "'" + B.line(38) + "'") + '\r\n';
 
     // colorize border according to item quality
     buf = buf.replace(/\|/g, this.qualityColorize(item, '|'));

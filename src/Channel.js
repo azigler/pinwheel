@@ -116,10 +116,10 @@ class Channel {
    * @param {Player}    sender
    */
   describeSelf(sender) {
-    Broadcast.sayAt(sender, `\r\nChannel: ${this.name}`);
-    Broadcast.sayAt(sender, 'Syntax: ' + this.getUsage());
+    Broadcast.sayAt(sender, `\r\n<b><white>Channel</white><yellow>:</yellow></b> ${this.name}`);
+    Broadcast.sayAt(sender, '<b><white>Syntax</white><yellow>:</yellow></b> ' + this.getUsage());
     if (this.description) {
-      Broadcast.sayAt(sender, this.description);
+      Broadcast.sayAt(sender, `<b><cyan>${this.description}</cyan></b>`);
     }
   }
 

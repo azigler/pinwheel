@@ -21,14 +21,14 @@ module.exports = srcPath => {
           entityReference: 'spawn:99',
           id: 99,
           name: `corpse of ${this.name}`,
-          roomDesc: `the corpse of ${this.name}`,
+          roomDesc: `corpse of ${this.name}`,
           uuid: this.uuid,
           type: 'CONTAINER',
           maxItems: items.length,
           description: `This is the rotting corpse of ${this.name}.`,
           keywords: this.keywords.concat(['corpse']),
           metadata: {
-            noPickup: true,
+            noRetrieve: true,
           },
           behaviors: {
             decay: {

@@ -13,6 +13,7 @@ const Damage = require('./Damage');
  * @property {string}             name              Name of skill
  * @property {GameState}          state             Game state
  * @property {?SkillType}         type              Type of skill
+ * @property {string}             usage             Syntax instructions for skill
  * @property {?Object}            options           Options for skill
  * @property {?Array<SkillFlag>}  flags             Array of skill flags
  * @property {?function (Effect)} configureEffect   Function to modify the skill's effect before adding to player (passive only)
@@ -44,13 +45,14 @@ class Skill {
 
     // assign remaining properties
     this.type = def.type || SkillType.ABILITY;
+    this.usage = def.usage || this.name.toLowerCase();
     this.options = def.options || {};
     this.flags = def.flags || [];
     this.configureEffect = def.configureEffect || (_ => _);
     this.effect = def.effect || null;
     this.resource = def.resource || null;
     this.initiatesCombat = def.initiatesCombat || false;
-    this.requiresTarget = def.requiresTarget || true;
+    this.requiresTarget = def.requiresTarget || false;
     this.targetSelf = def.targetSelf || false;
 
     // define skill branches
