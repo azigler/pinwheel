@@ -98,7 +98,7 @@ module.exports = (srcPath) => {
             // look for the target
             try {
               // if they targeted themselves
-              if (args === 'me' || targetArgs === 'self') {
+              if (args === 'me' || args === 'self' || args === 'myself') {
                 target = this;
               // otherwise, find the target
               } else {
