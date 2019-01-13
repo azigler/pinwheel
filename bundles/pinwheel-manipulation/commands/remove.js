@@ -22,6 +22,8 @@ module.exports = (srcPath) => {
         return Broadcast.sayAt(character, 'Remove what?');
       }
 
+      // TODO: account for 'all' as argument
+
       // determine the item and its slot from the character's equipment
       const result =  Parser.parseDot(arg, character.equipment, true);
 
