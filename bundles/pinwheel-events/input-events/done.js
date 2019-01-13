@@ -38,7 +38,7 @@ module.exports = (srcPath) => {
       // announce player character login to server
       const loginReporter = {
         name: 'MUD',
-        // implements Broadcastable interface
+        // implement Broadcastable interface
         getBroadcastTargets() {
           return [];
         }

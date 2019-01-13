@@ -58,7 +58,7 @@ module.exports = (srcPath) => {
             // announce player timeout to server
             const timeoutReporter = {
               name: 'MUD',
-              // implements Broadcastable interface
+              // implement Broadcastable interface
               getBroadcastTargets() {
                 return [];
               }
