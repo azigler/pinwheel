@@ -65,7 +65,7 @@ module.exports = (srcPath) => {
 
         target: function (sender, target, message, colorify) {
           // check if the target is in the same room as the sender
-          if (target.room.getBroadcastTargets().indexOf(sender) > -1) {
+          if (target[0].room.getBroadcastTargets().indexOf(sender) > -1) {
             return colorify(`${sender.name} yells, '<yellow>${message}</yellow>'`);
           } else {
             return colorify(`Someone yells, '<yellow>${message}</yellow>'`);
