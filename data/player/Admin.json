@@ -75,7 +75,7 @@
   "following": null,
   "followers": [],
   "prompt": "[ <b><red>%health.current%</b></red>/<b><red>%health.max%</red></b> <b>health</b> <b><yellow>%energy.current%</yellow></b>/<b><yellow>%energy.max%</yellow></b> <b>energy</b> <b><blue>%mana.current%</blue></b>/<b><blue>%mana.max%</b></blue> <b>mana</b> <b><green>%favor.current%</green></b>/<b><green>%favor.max%</green></b> <b>favor</b> ]",
-  "room": "start:1",
+  "room": "start:spawn",
   "quests": {
     "completed": [],
     "active": []
