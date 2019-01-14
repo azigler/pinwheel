@@ -7,7 +7,6 @@ data/player/*.json
 data/account/*.json
 !data/account/Admin.json
 data/bug/*.txt
-data/banned.json
 *.swp
 coverage/
 *.logs
