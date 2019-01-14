@@ -60,8 +60,18 @@ module.exports = (srcPath) => {
     B.sayAt(character, `<b><magenta>${B.line(60)}</magenta></b>` + B.line(2, ' ') + line2);
 
     // print room description wrapping around the compass
-    B.at(character, sprintf('%-60s',room.description.substr(0, 60)) + '  <black><b>' + line3 + '</b></black>');
-    if (room.description.length > 60) { B.sayAt(character, room.description.substr(60), 73); }
+    let descriptionLines = B.wrap(room.description, 60).split(/[\n\r]/);
+    B.at(character, sprintf('%-60s',B.wrap(descriptionLines[0], 60)) + '  <black><b>' + line3 + '</b></black>');
+    if (room.description.length > 60) {
+      delete descriptionLines[0];
+      let remDesc = '';
+      for (let i in descriptionLines) {
+        if (i % 2 === 0) {
+          remDesc += ' ' + descriptionLines[i];
+        }
+      }
+      B.sayAt(character, remDesc, 73);
+    }
 
     // print the room's exits
     B.sayAt(character, '');
