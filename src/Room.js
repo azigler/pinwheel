@@ -204,7 +204,7 @@ class Room extends Metadatable(EventEmitter) {
   }
 
   /**
-   * Return the door in this room between `fromRoom` amd here
+   * Return the door in this room between `fromRoom` and here
    * TIP: doors are always in the room being blocked
    * @param {Room} fromRoom
    * @return {{lockedBy: EntityReference, locked: boolean, closed: boolean}}

@@ -155,9 +155,9 @@ module.exports = (srcPath) => {
         if (!this.behaviors.get('lootable')) {
           // produce a corpse
           const corpseData = {
-            entityReference: 'spawn:99',
+            entityReference: 'start:corpse',
             uuid: this.uuid,
-            id: 99,
+            id: 'corpse',
             name: `corpse of ${this.name}`,
             roomDesc: `the corpse of ${this.name}`,
             description: `This is the rotting corpse of ${this.name}.`,

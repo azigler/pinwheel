@@ -310,8 +310,8 @@ module.exports = (srcPath) => {
 
         // produce a corpse
         const corpseData = {
-          entityReference: 'spawn:99',
-          id: '99',
+          entityReference: 'start:corpse',
+          id: 'corpse',
           name: `corpse of ${this.name}`,
           roomDesc: `the corpse of ${this.name}`,
           description: `This is the rotting corpse of ${this.name}.`,

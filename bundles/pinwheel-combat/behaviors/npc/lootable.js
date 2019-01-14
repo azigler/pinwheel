@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = srcPath => {
-  const Player = require(srcPath + 'Player');
+  const Broadcast = require(srcPath + 'Broadcast');
   const Loot = require(srcPath + 'Loot');
   const Item = require(srcPath + 'Item');
   const Logger = require(srcPath + 'Logger');
@@ -18,8 +18,8 @@ module.exports = srcPath => {
 
         // produce a lootable corpse
         const corpseData = {
-          entityReference: 'spawn:99',
-          id: 99,
+          entityReference: 'start:corpse',
+          id: 'corpse',
           name: `corpse of ${this.name}`,
           roomDesc: `corpse of ${this.name}`,
           uuid: this.uuid,
@@ -59,6 +59,7 @@ module.exports = srcPath => {
           
           for (const winner of winners) {
             // force the winner(s) to look at the new corpse (to see the items contained)
+            Broadcast.sayAt(winner, "<b><black>You look over the remains...</black></b>");
             state.CommandManager.get('look').execute(corpse.uuid, winner);
           }
 

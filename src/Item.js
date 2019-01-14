@@ -57,7 +57,7 @@ class Item extends Metadatable(EventEmitter) {
     this.id = def.id;
 
     // all items have an entityReference set on their definition via EntityFactory's setDefinition method
-    this.entityReference = def.entityReference || 'spawn:99';
+    this.entityReference = def.entityReference || 'start:placeholder';
 
     // set identifying properties
     this.keywords = def.keywords || this.name.split(' ');
