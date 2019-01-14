@@ -25,20 +25,20 @@ module.exports = srcPath => {
           uuid: this.uuid,
           type: 'CONTAINER',
           maxItems: items.length,
-          description: `This is the rotting corpse of ${this.name}.`,
+          description: `This is the corpse of ${this.name}.`,
           keywords: this.keywords.concat(['corpse']),
           metadata: {
             noRetrieve: true,
           },
           behaviors: {
             decay: {
-              duration: 20
+              // decay in 2 minutes
+              duration: 120
             }
           },
         };
         const corpse = new Item(this.area, corpseData);
         corpse.hydrate(state, corpseData);
-        Logger.log(`Generated corpse: ${corpse.uuid}`);
 
         // add loot to corpse
         items.forEach(item => {

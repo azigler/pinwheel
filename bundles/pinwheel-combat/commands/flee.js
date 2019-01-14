@@ -62,10 +62,12 @@ module.exports = srcPath => {
       const door = player.room.getDoor(randomRoom) || randomRoom.getDoor(player.room);
       if (randomRoom && door && (door.locked || door.closed)) {
         say(player, "<bold><red>In a panic, you run into a closed door</bold>!</red>");
+        Broadcast.sayAtExcept(player.room, `<b><white>${player.name}</white></b> runs into a closed door while trying to flee!`, [player]);
         return;
       }
 
       say(player, "<bold>You flee from the battle</bold>!");
+      Broadcast.sayAtExcept(player.room, `<b><white>${player.name}</white></b> flees!`, [player])
       player.removeFromCombat();
       state.CommandManager.get('move').execute(direction, player);
     }

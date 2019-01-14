@@ -160,7 +160,7 @@ module.exports = (srcPath) => {
             id: 'corpse',
             name: `corpse of ${this.name}`,
             roomDesc: `the corpse of ${this.name}`,
-            description: `This is the rotting corpse of ${this.name}.`,
+            description: `This is the corpse of ${this.name}.`,
             keywords: this.keywords.concat(['corpse']),
             metadata: {
               noRetrieve: true,
@@ -173,7 +173,6 @@ module.exports = (srcPath) => {
           };
           const corpse = new Item(this.area, corpseData);
           corpse.hydrate(state, corpseData);
-          Logger.verbose(`Generated corpse: ${corpse.uuid}`);
 
           // add corpse to room
           this.room.addItem(corpse);

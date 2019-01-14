@@ -504,9 +504,9 @@ class Combat {
     }
 
     let possibleTargets = [...attacker.room.npcs];
-    if (attacker.getMeta('pvp')) {
+    //if (attacker.getMeta('pvp')) {
       possibleTargets = [...possibleTargets, ...attacker.room.players];
-    }
+    //}
 
     const target = Parser.parseDot(search, possibleTargets);
 
@@ -522,9 +522,10 @@ class Combat {
       throw new CombatErrors.CombatInvalidTargetError("You can't attack that target");
     }
 
-    if (!target.isNpc && !target.getMeta('pvp')) {
-      throw new CombatErrors.CombatNonPvpError(`${target.name} has not opted into PvP.`, target);
-    }
+    // TODO: configure PvP
+    //if (!target.isNpc && !target.getMeta('pvp')) {
+    //  throw new CombatErrors.CombatNonPvpError(`${target.name} has not opted into PvP.`, target);
+    //}
 
     if (target.getMeta('pacifist')) {
       throw new CombatErrors.CombatPacifistError(`${target.name} is a pacifist and will not fight you.`, target);
