@@ -1,0 +1,6 @@
+- id: placeholder
+  name: "placeholder"
+  description: "Item placeholder."
+- id: corpse
+  name: "corpse"
+  description: "Default corpse item."
