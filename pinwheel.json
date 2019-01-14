@@ -49,7 +49,7 @@
     "playerTick": 500,
     "reportBugsToAdmins": true,
     "skillLag": 1000,
-    "startingRoom": "start:1",
+    "startingRoom": "start:spawn",
     "startingTraits": 1,
     "telnetPort": 4000,
     "webPort": 80,
