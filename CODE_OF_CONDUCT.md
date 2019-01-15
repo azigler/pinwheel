@@ -42,7 +42,9 @@ response to any instances of unacceptable behavior.
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to andrewzigler@gmail.com. All complaints will be reviewed and
 investigated and will result in a response that is deemed necessary and
-appropriate to the circumstances.
+appropriate to the circumstances. The project team is obligated to maintain
+confidentiality with regard to the reporter of an incident. Further details of
+specific enforcement policies may be posted separately.
 
 ## Attribution
 
