@@ -7,6 +7,8 @@ assignees: ''
 
 ---
 
+:warning: Submit any security bugs or vulnerabilities directly to andrewzigler@gmail.com instead of opening an issue.
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
