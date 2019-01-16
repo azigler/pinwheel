@@ -6,7 +6,7 @@
 [![standard-readme](https://img.shields.io/badge/readme%20style-standard-DF1464.svg?style=popout-square)](https://github.com/RichardLitt/standard-readme)
 
 [![MIT License](https://img.shields.io/badge/license-MIT-DF1464.svg?style=popout-square)](https://github.com/azigler/pinwheel/blob/master/LICENSE)
-![azigler/pinwheel Repository Hit Count](http://hits.dwyl.io/azigler/pinwheel.svg)
+[![](http://hits.dwyl.io/azigler/pinwheel.svg)](#)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-DF1464.svg?style=popout-square)](https://github.com/azigler/pinwheel/issues)
 [![](https://img.shields.io/badge/powered%20by-Node.js-brightgreen.svg?style=popout-square)](https://nodejs.org/en/about/)
 
