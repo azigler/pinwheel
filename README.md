@@ -7,7 +7,7 @@
 
 [![MIT License](https://img.shields.io/badge/license-MIT-DF1464.svg?style=popout-square)](https://github.com/azigler/pinwheel/blob/master/LICENSE)
 [![](http://hits.dwyl.io/azigler/pinwheel.svg)](#)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-DF1464.svg?style=popout-square)](https://github.com/azigler/pinwheel/issues)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-DF1464.svg?style=popout-square)](https://github.com/azigler/pinwheel/blob/master/CONTRIBUTING.md)
 [![](https://img.shields.io/badge/powered%20by-Node.js-brightgreen.svg?style=popout-square)](https://nodejs.org/en/about/)
 
 > A highly opinionated fork of the [Ranvier](https://github.com/shawncplus/ranviermud) MUD engine.
