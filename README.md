@@ -16,28 +16,36 @@ Pinwheel is a *new* [MUD](https://www.andrewzigler.com/blog/2018/06/27/the-case-
 
 Originally based on [Shawn Biddle](http://shawnbiddle.com)'s [Ranvier](http://ranviermud.com/), Pinwheel is a full rewrite of the engine and its bundles.
 
-## :house_with_garden: Example Game
+## Example Game :house_with_garden:
 
 Coming soon...
 
-## :floppy_disk: Install
+## Install :floppy_disk:
 
 Coming soon...
 
-## :rocket: Usage
+## Usage :rocket:
 
 Coming soon...
 
-## :horse_racing: Maintainer
+## Features :round_pushpin:
+
+Coming soon...
+
+## Roadmap :chart_with_upwards_trend:
+
+Coming soon...
+
+## Maintainer :horse_racing:
 
 [![@andrewzigler](https://img.shields.io/twitter/follow/andrewzigler.svg?label=@andrewzigler&style=social)](https://twitter.com/andrewzigler)
 
 Coming soon...
 
-## :inbox_tray: Contributing
+## Contributing :inbox_tray:
 Feedback and contributions are encouraged! After reading our [Code of Conduct](https://github.com/azigler/pinwheel/blob/master/CODE_OF_CONDUCT.md), use the [*Bug Report*](https://github.com/azigler/pinwheel/issues/new?assignees=&labels=&template=bug-report.md&title=) or [*Feature Request*](https://github.com/azigler/pinwheel/issues/new?assignees=&labels=&template=feature-request.md&title=) issue templates to discuss any bugs or potential contributions to Pinwheel. For more information, please read our [Contributing Guide](https://github.com/azigler/pinwheel/blob/master/CONTRIBUTING.md).
 
-## :bookmark_tabs: License
+## License :bookmark_tabs:
 
 Copyright © 2018-2019 [Andrew Zigler](https://www.andrewzigler.com)
 
