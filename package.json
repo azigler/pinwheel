@@ -12,14 +12,14 @@
   "scripts": {
     "start": "gulp && ./pinwheel",
     "dev": "./pinwheel --loglevel none",
-    "test": "gulp && npm run-script istanbul",
     "istanbul": "istanbul --include-all-sources cover _mocha -- -R dot --recursive ./test/**/*.spec.js",
+    "test": "gulp && npm run-script istanbul",
     "build-docs": "jsdoc -c jsdoc.conf",
     "bundle-install": "node setup-bundles",
     "postinstall": "npm run-script bundle-install",
-    "clean-logs": "gulp clean-logs",
-    "clean-bugs": "gulp clean-bugs",
     "clean-areas": "gulp clean-areas",
+    "clean-bugs": "gulp clean-bugs",
+    "clean-logs": "gulp clean-logs",
     "clean-all": "gulp clean-all"
   },
   "dependencies": {
