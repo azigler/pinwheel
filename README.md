@@ -38,7 +38,18 @@ Coming soon...
 
 ## :round_pushpin: Features
 
-Coming soon...
+- Full game state persistence across sessions (areas, NPCs, players, and items)
+- [Diku](http://mud.wikia.com/wiki/DikuMUD)-esque commands
+- Customization of players and NPCs with species, archetypes, and traits
+- Usage of human-readable YAML for game data in bundles
+- Entity-based scripting with few differences between NPCs and players
+- Turn-based combat with abilities, spells, and disciplines
+- Usage-based improvement of skills with branching skill trees
+- Communication channels and player parties
+- Compatibility with the [Gossip MUD Chat Network](https://gossip.haus/)
+- Player accounts
+- Telnet and [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) support
+- Data storage in JSON files, no database required
 
 ## :house_with_garden: Example Game
 
