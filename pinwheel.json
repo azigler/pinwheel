@@ -39,7 +39,7 @@
     "logLevel": "verbose",
     "maxCharacters": 3,
     "maxFailedLoginAttempts": 3,
-    "maxIdleMinutes": 20,
+    "maxIdleMinutes": 0,
     "maxNameLength": 20,
     "maxPlayerInventory": 16,
     "minNameLength": 3,
