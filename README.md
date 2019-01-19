@@ -30,7 +30,7 @@ Originally based on [Shawn Biddle](http://shawnbiddle.com)'s [Ranvier](http://ra
 
 ## :floppy_disk: Install
 
-Coming soon...
+[![](https://asciinema.org/a/BRALVMJrijFT7MlviLe8R9VJk.svg)](#)
 
 ## :rocket: Usage
 
