@@ -46,7 +46,20 @@ Coming soon...
 
 ## :chart_with_upwards_trend: Roadmap
 
-Coming soon...
+- [x] Refactor [Ranvier](http://ranviermud.com/) into Pinwheel
+- [x] Reduce the differences between player characters and NPCs
+- [x] Convert class system into aspects, allowing fine-tuned customization of players and NPCs alike with stackable components (e.g., species, archetypes, and traits)
+- [x] Rewrite foundation for new combat system
+- [ ] Add configurable time, seasons, and weather
+- [ ] Implement hot reloading of bundles and core
+- [ ] Enable [online creation (OLC)](http://mud.wikia.com/wiki/Online_Creation) of bundle content
+- [ ] Create customizable player organizations
+- [ ] Redesign quests into [dynamic events](https://wiki.guildwars2.com/wiki/Dynamic_event)
+- [ ] Add crafting, resources, and a basic economy
+- [ ] Expand emoting complexity with syntax for referencing the world
+- [ ] Build an API with [Express](https://expressjs.com/) for the engine and game state, allowing extensibility beyond the original platform (e.g., apps, widgets, and third-party clients)
+- [ ] Mount a web server that allows gameplay, building, and administration in the browser
+- [ ] Convert to [NPM package](https://docs.npmjs.com/about-packages-and-modules)
 
 ## :horse_racing: Maintainer
 
