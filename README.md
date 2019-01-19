@@ -51,7 +51,7 @@ Coming soon...
 - [x] Convert class system into aspects, allowing fine-tuned customization of players and NPCs alike with stackable components (e.g., species, archetypes, and traits)
 - [x] Rewrite foundation for new combat system
 - [ ] Add configurable time, seasons, and weather
-- [ ] Implement hot reloading of bundles and core
+- [ ] Implement [hot reloading](http://mud.wikia.com/wiki/Copyover_Recover) of bundles and core
 - [ ] Enable [online creation (OLC)](http://mud.wikia.com/wiki/Online_Creation) of bundle content
 - [ ] Create customizable player organizations
 - [ ] Redesign quests into [dynamic events](https://wiki.guildwars2.com/wiki/Dynamic_event)
