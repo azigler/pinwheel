@@ -13,14 +13,18 @@
 
 > A highly opinionated fork of the [Ranvier](https://github.com/shawncplus/ranviermud) MUD engine.
 
-Pinwheel is a *new* [MUD](https://www.andrewzigler.com/blog/2018/06/27/the-case-for-muds-in-modern-times/) engine built entirely in JavaScript. It doesn't require a database and can be ready for players within minutes of downloading.
+**Current Version: `0.5.0`**
 
-Originally based on [Shawn Biddle](http://shawnbiddle.com)'s [Ranvier](http://ranviermud.com/), Pinwheel is a full rewrite of the engine and its bundles.
+Pinwheel is a *new* [MUD](https://www.andrewzigler.com/blog/2018/06/27/the-case-for-muds-in-modern-times/) engine built entirely in ES6 (JavaScript). It doesn't require a database and can be online for players within moments of downloading. Originally based on [Shawn Biddle](http://shawnbiddle.com)'s [Ranvier](http://ranviermud.com/), Pinwheel is a rewrite of the engine and its bundles into a highly opinionated format. The engine makes decisions about world persistence and core features so you can focus on building your world and community.
+
+Pinwheel is an experimental game engine that aims to fuse MUD and browser gameplay. To get an idea of what version `1.0.0` of Pinwheel will entail, check out our [Roadmap](#chart_with_upwards_trend-roadmap).
 
 ## :book: Table of Contents
 
 - [Install](#floppy_disk-install)
 - [Usage](#rocket-usage)
+  - [Package Scripts](#nut_and_bolt-package-scripts)
+  - [JSON Configuration](#zap-json-configuration)
 - [Features](#round_pushpin-features)
 - [Example Game](#house_with_garden-example-game)
 - [Roadmap](#chart_with_upwards_trend-roadmap)
@@ -47,7 +51,52 @@ Pinwheel can get up and running immediately, but it's recommended to configure y
 
 ## :rocket: Usage
 
-Coming soon...
+Pinwheel has several built-in scripts that you can use with `npm run`. To launch the server, use `npm run start`. To launch the server quicker and without logging to a file (useful for development), use `npm run dev`.
+
+### :nut_and_bolt: Package Scripts
+- `start`: launches the server
+- `dev`: launches the server without logging to a file or running the `default` [gulp task](https://github.com/azigler/pinwheel/blob/master/gulpfile.js) (useful for development)
+- `istanbul`: uses [Istanbul](https://istanbul.js.org/) to test coverage with [Chai](https://www.chaijs.com/)
+- `test`: runs the `default` [gulp task](https://github.com/azigler/pinwheel/blob/master/gulpfile.js) and fires the `istanbul` script
+- `build-docs`: uses [JSDoc](http://usejsdoc.org/) to build documentation in `docs/jsdoc/` from `src/`
+- `bundle-install`: installs npm packages for all bundles
+- `postinstall`: *automatically fires `bundle-install` after `npm install`*
+- `clean-areas`: deletes the files in `data/area/` (useful for rapid testing)
+- `clean-bugs`: deletes the files in `data/bug/` (useful for rapid testing)
+- `clean-logs`: deletes the files in `data/log/` (useful for rapid testing)
+- `clean-all`: fires all of the cleaning scripts (`clean-logs`, `clean-bugs`, `clean-areas`, and `clean-all`)
+
+Many elements of Pinwheel can be configured via the [`pinwheel.json`](https://github.com/azigler/pinwheel/blob/master/pinwheel.json) file.
+
+### :zap: JSON Configuration
+*(in alphabetical order)*
+- `allowMultiplay`: whether accounts can have multiple characters logged in at once *(default: `true`)*
+- `aspects`: array of [`Aspect`](https://github.com/azigler/pinwheel/blob/master/src/Aspect.js) names *(default: `["archetype", "species", "trait"]`)*
+- `bundles`: array of bundle names to include at runtime *(default: all bundles in this repository)*
+- `creation`: object with properties whose values indicate default [`Aspect`](https://github.com/azigler/pinwheel/blob/master/src/Aspect.js) options available at character creation *(default: `{"archetype": ["tester"], "species": ["administrator"], "trait": ["immortal"]}`)*
+- `currency`: name of default currency *(default: `"cowries"`)*
+- `debugArea`: name of area where combat debugging will output *(default: `"start"`)*
+- `entityTick`: time between entity update ticks, in miliseconds *(default: `500`)*
+- `gossip`: object with [your game's authentication details](https://gossip.haus/register/new) for [Gossip](https://gossip.haus/) *(default: `{"url": "wss://gossip.haus/socket", "clientId": "YOUR-CLIENT-ID", "clientSecret": "YOUR-CLIENT-SECRET"}`)*
+- `introEvent`: initial `input-event` shown on connection *(default: `"intro"`)*
+- `logLevel`: configures logging to file, either `"verbose"` or `"none"` *(default: `"verbose"`)*
+- `maxCharacters`: number of active characters allowed on an account *(default: `3`)*
+- `maxFailedLoginAttempts`: number of failed login attempts allowed before being kicked *(default: `3`)*
+- `maxIdleMinutes`: number of minutes a character can idle before being kicked, 0 if disabled *(default: `0`)*
+- `maxNameLength`: maximum name length for an account or character *(default: `20`)*
+- `maxPlayerInventory`: maximum number of items that can be carried by a player *(default: `16`)*
+- `minNameLength`: minimum name length for an account or character *(default: `3`)*
+- `minPasswordLength`: minimum character length for an account password *(default: `6`)*
+- `motd`: filename in `data/motd/` to show on `intro` event *(default: `"pinwheel"`)*
+- `moveCommand`: default command used to navigate a character *(default: `"move"`)*
+- `playerTick`: time between player update ticks, in miliseconds *(default: `500`)*
+- `reportBugsToAdmins`: whether to notify valid online users of reported bugs, typos, and suggestions *(default: `true`)*
+- `skillLag`: default lag after skill use, in miliseconds *(default: `1000`)*
+- `startingRoom`: entity reference for room in which all characters start after creation *(default: `"start:spawn"`)*
+- `startingTraits`: number of traits that can be chosen at character creation *(default: `1`)*
+- `telnetPort`: port for Telnet server *(default: `4000`)*
+- `webPort`: port for web server *(default: `80`)*
+- `webSocketPort`: port for [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) server *(default: `4001`)*
 
 ## :round_pushpin: Features
 
