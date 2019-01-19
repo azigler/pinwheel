@@ -30,7 +30,20 @@ Originally based on [Shawn Biddle](http://shawnbiddle.com)'s [Ranvier](http://ra
 
 ## :floppy_disk: Install
 
-[![](https://asciinema.org/a/BRALVMJrijFT7MlviLe8R9VJk.svg)](#)
+[![](https://media.giphy.com/media/41xcuRfmo3Mmsi8mYz/giphy.gif)](#)
+
+Pinwheel requires [Node v8.9.4](https://nodejs.org/en/blog/release/v8.9.4/) or greater.
+
+To install, run the following commands from your terminal:
+
+```shell
+git clone https://github.com/azigler/pinwheel/
+cd pinwheel
+npm install
+npm run
+```
+
+Pinwheel can get up and running immediately, but it's recommended to configure your game via the [`pinwheel.json`](https://github.com/azigler/pinwheel/blob/master/pinwheel.json) file. For more information, see the [Usage](#rocket-usage) section.
 
 ## :rocket: Usage
 
