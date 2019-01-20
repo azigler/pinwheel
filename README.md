@@ -77,7 +77,7 @@ Many elements of Pinwheel can be configured via the [`pinwheel.json`](https://gi
 - `currency`: name of default currency *(default: `"cowries"`)*
 - `debugArea`: name of area where combat debugging will output *(default: `"start"`)*
 - `entityTick`: time between entity update ticks, in miliseconds *(default: `500`)*
-- `gossip`: object with [your game's authentication details](https://gossip.haus/register/new) for [Gossip](https://gossip.haus/) *(default: `{"url": "wss://gossip.haus/socket", "clientId": "YOUR-CLIENT-ID", "clientSecret": "YOUR-CLIENT-SECRET"}`)*
+- `gossip`: false if disabled, or object with [your game's authentication details](https://gossip.haus/register/new) for [Gossip](https://gossip.haus/) *(example: `{"clientId": "YOUR-CLIENT-ID", "clientSecret": "YOUR-CLIENT-SECRET"}`), (default: `false`)*
 - `introEvent`: initial `input-event` shown on connection *(default: `"intro"`)*
 - `logLevel`: configures logging to file, either `"verbose"` or `"none"` *(default: `"verbose"`)*
 - `maxCharacters`: number of active characters allowed on an account *(default: `3`)*
@@ -95,7 +95,7 @@ Many elements of Pinwheel can be configured via the [`pinwheel.json`](https://gi
 - `startingRoom`: entity reference for room in which all characters start after creation *(default: `"start:spawn"`)*
 - `startingTraits`: number of traits that can be chosen at character creation *(default: `1`)*
 - `telnetPort`: port for Telnet server *(default: `4000`)*
-- `webPort`: port for web server *(default: `80`)*
+- `web`: object with properties for web server *(example: `"web": {"https": {"cert": "/full/path/to/fullchain.pem", "port": 443, "key": "/full/path/to/privkey.pem"}, "port": 80},`), (default: `"web": {"https": false, "port": 80}`)*
 - `webSocketPort`: port for [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) server *(default: `4001`)*
 
 ## :round_pushpin: Features
