@@ -30,11 +30,7 @@
     "currency": "cowries",
     "debugArea": "start",
     "entityTick": 500,
-    "gossip": {
-      "url": "wss://gossip.haus/socket",
-      "clientId": "YOUR-CLIENT-ID",
-      "clientSecret": "YOUR-CLIENT-SECRET"
-    },
+    "gossip": false,
     "introEvent": "intro",
     "logLevel": "verbose",
     "maxCharacters": 3,
@@ -52,6 +48,9 @@
     "startingRoom": "start:spawn",
     "startingTraits": 1,
     "telnetPort": 4000,
-    "webPort": 80,
+    "web": {
+        "https": false,
+        "port": 80
+    },
     "webSocketPort": 4001
 }
