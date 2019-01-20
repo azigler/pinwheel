@@ -55,7 +55,7 @@ Pinwheel has several built-in scripts that you can use with `npm run`. To launch
 
 ### :nut_and_bolt: Package Scripts
 - `start`: launches the server
-- `dev`: launches the server without logging to a file or running the `default` [gulp task](https://github.com/azigler/pinwheel/blob/master/gulpfile.js) (useful for development)
+- `dev`: launches the server without logging to a file, connecting to [Gossip](https://gossip.haus/), or running the `default` [gulp task](https://github.com/azigler/pinwheel/blob/master/gulpfile.js) (useful for development)
 - `istanbul`: uses [Istanbul](https://istanbul.js.org/) to test coverage with [Chai](https://www.chaijs.com/)
 - `test`: runs the `default` [gulp task](https://github.com/azigler/pinwheel/blob/master/gulpfile.js) and fires the `istanbul` script
 - `build-docs`: uses [JSDoc](http://usejsdoc.org/) to build documentation in `docs/jsdoc/` from `src/`
