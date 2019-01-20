@@ -26,7 +26,7 @@ Pinwheel is an experimental game engine that aims to fuse MUD and browser gamepl
   - [Package Scripts](#nut_and_bolt-package-scripts)
   - [JSON Configuration](#zap-json-configuration)
 - [Features](#round_pushpin-features)
-- [Example Game *(Snakelines)*](snake-example-game-snakelines)
+- [Example Game *(Snakelines)*](#snake-example-game-snakelines)
 - [Roadmap](#chart_with_upwards_trend-roadmap)
 - [Maintainer](#horse_racing-maintainer)
 - [Contributing](#inbox_tray-contributing)
