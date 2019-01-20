@@ -26,7 +26,7 @@ module.exports = (srcPath) => {
         web.set('view engine', 'html');
 
         // set directories for public pages
-        web.set('views', 'public');
+        web.set('views', 'public/');
         web.use('/assets', express.static('public/assets'));
 
         // connect routes to server

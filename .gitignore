@@ -18,3 +18,4 @@ log/*.log
 
 # ignore api.ai key
 bundles/ranvier-npc-behaviors/APIAIKEY
+deploy.sh
