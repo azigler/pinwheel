@@ -21,12 +21,12 @@ module.exports = srcPath => {
           telnetSocket.telnetCommand(Telnet.Sequences.WILL, Telnet.Options.OPT_EOR);
 
           const banned = Data.parseFile(srcPath + '/../data/banned.json');
-          if (banned.includes(telnetSocket.address().address)) {
+          if (banned.includes(rawSocket.remoteAddress)) {
             return telnetSocket.destroy();
           }
 
           const stream = new TelnetStream();
-          stream.ipAddress = telnetSocket.address().address;
+          stream.ipAddress = rawSocket.remoteAddress;
           stream.attach(telnetSocket);
 
           stream.on('interrupt', () => {

@@ -21,6 +21,11 @@ module.exports = srcPath => {
         // This creates a super basic "echo" WebSocket server
         wss.on('connection', function connection(ws) {
 
+          const banned = Data.parseFile(srcPath + '/../data/banned.json');
+          if (banned.includes(ws._socket.remoteAddress)) {
+            return ws.terminate();
+          }
+
           // create our adapter
           const stream = new WebSocketStream();
           stream.ipAddress = ws._socket.remoteAddress;
