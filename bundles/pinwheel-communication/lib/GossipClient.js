@@ -61,7 +61,8 @@ class GossipClient {
     this.state.GossipEmitter = this.gossipEmitter;
 
     // create a new websocket server using the port command line argument
-    this.ws = new WebSocket(this.config.url);
+    const gossipUrl = 'wss://gossip.haus/socket';
+    this.ws = new WebSocket(gossipUrl);
 
     // when a player signs in
     // (https://gossip.haus/docs#players-sign-in)

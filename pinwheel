@@ -10,9 +10,10 @@
  *
  *  -V, --version                     output the version number
  *  -s, --save [time]                 seconds between auto-save ticks (default: 10)
- *  -p, --telnetport [portNumber]     port to host the telnet server (default: 4000)
+ *  -t, --telnetport [portNumber]     port to host the telnet server (default: 4000)
  *  -w, --websocketport [portNumber]  port to host the WebSocket server (default: 4001)
- *  -h, --webport [portNumber]        port to host the HTTP web server (default: 80)
+ *  -h, --httpport [portNumber]       port to host the HTTP web server (default: 80)
+ *  -o, --httpsport [portNumber]      port to host the HTTPS web server (default: 443)
  *  -e, --entitytick [seconds]        miliseconds between entity ticks (default: 500)
  *  -p, --playertick [seconds]        miliseconds between player ticks (default: 500)
  *  -l, --loglevel [level]            log level (or none) (default: verbose)
@@ -70,14 +71,18 @@ const now = new Date().toLocaleDateString('en-US', {
   minute : 'numeric'
 });
 
+const webConfig = Config.get('web');
+
 // parse command arguments
 commander
   .version(pkg.version)
   .description('A highly opinionated fork of the Ranvier MUD engine.')
   .option('-s, --save [time]', 'seconds between auto-save ticks', 10)
-  .option('-p, --telnetport [portNumber]', 'port to host the telnet server', Config.get('telnetPort', 4000))
+  .option('--no-gossip', 'launch server without Gossip (useful for development)')
+  .option('-t, --telnetport [portNumber]', 'port to host the telnet server', Config.get('telnetPort', 4000))
   .option('-w, --websocketport [portNumber]', 'port to host the WebSocket server', Config.get('webSocketPort', 4000))
-  .option('-h, --webport [portNumber]', 'port to host the HTTP web server', Config.get('webPort', 4000))
+  .option('-h, --httpport [portNumber]', 'port to host the HTTP web server', webConfig.port)
+  .option('-o, --httpsport [portNumber]', 'port to host the HTTPS web server', webConfig.https.port)
   .option('-e, --entitytick [seconds]', 'miliseconds between entity ticks', Config.get('entityTick', 500))
   .option('-p, --playertick [seconds]', 'miliseconds between player ticks', Config.get('playerTick', 500))
   .option('-l, --loglevel [level]', 'log level (or none)', Config.get('logLevel', 'verbose'))

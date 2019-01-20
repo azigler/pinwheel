@@ -1,6 +1,7 @@
 'use strict';
 
 const GossipClient = require("../lib/GossipClient");
+const Config = require('../../../src/Config');
 
 module.exports = srcPath => {
   return {
@@ -10,9 +11,11 @@ module.exports = srcPath => {
        * (https://gossip.haus/)
        */
       startup: state => (commander) => {
-        let gossipClient = new GossipClient(state, commander.version());
-        state.GossipClient = gossipClient;
-        gossipClient.connect();
+        if ((Config.get("gossip") && commander.gossip) !== false) {
+          let gossipClient = new GossipClient(state, commander.version());
+          state.GossipClient = gossipClient;
+          gossipClient.connect();
+        }
       },
 
       shutdown: state => function () {
