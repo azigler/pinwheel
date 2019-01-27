@@ -36,7 +36,7 @@ Pinwheel is an experimental game engine that aims to fuse MUD and browser gamepl
 
 ## :floppy_disk: Install
 
-[![](https://media.giphy.com/media/8PgTtwgwXd1GkJXU1e/giphy.gif)](#) [![](https://i.imgur.com/4PHUzHx.png)](#)
+[![](https://media.giphy.com/media/1etm4ODOpz5MUF4Kx2/giphy.gif)](#) [![](https://i.imgur.com/4PHUzHx.png)](#)
 
 Pinwheel requires [Node v8.9.4](https://nodejs.org/en/blog/release/v8.9.4/) or greater.
 
