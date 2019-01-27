@@ -19,7 +19,7 @@ Pinwheel is a *new* [MUD](https://www.andrewzigler.com/blog/2018/06/27/the-case-
 
 Pinwheel is an experimental game engine that aims to fuse MUD and browser gameplay. To get an idea of what version `1.0.0` of Pinwheel will entail, check out our [Roadmap](#chart_with_upwards_trend-roadmap).
 
-:pencil2: Latest devlog post: [Initial Release of Pinwheel - 01/26/19](https://www.andrewzigler.com/blog/2019/01/26/initial-release-of-pinwheel/)
+:pencil2: Latest devlog post: [Initial Release of Pinwheel - January 26, 2019](https://www.andrewzigler.com/blog/2019/01/26/initial-release-of-pinwheel/)
 
 ## :book: Table of Contents
 
