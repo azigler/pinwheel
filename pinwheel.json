@@ -30,7 +30,7 @@
     "currency": "cowries",
     "debugArea": "start",
     "entityTick": 500,
-    "gossip": false,
+    "grapevine": false,
     "introEvent": "intro",
     "logLevel": "verbose",
     "maxCharacters": 3,
@@ -38,6 +38,7 @@
     "maxIdleMinutes": 0,
     "maxNameLength": 20,
     "maxPlayerInventory": 16,
+    "meta": false,
     "minNameLength": 3,
     "minPasswordLength": 6,
     "motd": "pinwheel",
@@ -49,6 +50,7 @@
     "startingTraits": 1,
     "telnetPort": 4000,
     "web": {
+        "header": false,
         "https": false,
         "port": 80
     },
