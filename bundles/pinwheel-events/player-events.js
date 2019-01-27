@@ -52,7 +52,7 @@ module.exports = (srcPath) => {
             // close the socket
             this.socket.emit('close');
 
-            // report player quit to Gossip
+            // report player quit to Grapevine
             this.emit('quit');
 
             // announce player timeout to server

@@ -6,7 +6,7 @@ const chalk = require('chalk');
 
 const Logger = require('../../../src/Logger');
 
-class GossipClient {
+class GrapevineClient {
   constructor(state, version) {
     this.state = state;
     this.pinwheelVersion = version;
@@ -19,13 +19,13 @@ class GossipClient {
       }
     });
 
-    // retrieve Gossip configuration
-    this.config = this.state.Config.get("gossip");
+    // retrieve Grapevine configuration
+    this.config = this.state.Config.get("grapevine");
     this.active = true;
   }
 
   /**
-   * Attempt to reconnect to Gossip
+   * Attempt to reconnect to Grapevine
    */
   reconnect() {
     if (this.active === false) {
@@ -37,15 +37,15 @@ class GossipClient {
         clearTimeout(this.reconnectTimer);
       }
 
-      Logger.verbose(chalk.white.bold('Reconnecting to Gossip...'));
+      Logger.verbose(chalk.white.bold('Reconnecting to Grapevine...'));
 
       this.connect();
     }, 5 * 1000);
   }
 
   /**
-   * Send a payload to the Gossip server
-   * @param {Object} event  Payload for Gossip
+   * Send a payload to the Grapevine server
+   * @param {Object} event  Payload for Grapevine
    */
   send(event) {
     if (this.ws.readyState === WebSocket.OPEN) {
@@ -54,19 +54,19 @@ class GossipClient {
   }
 
   /**
-   * Connect to Gossip and set up events
+   * Connect to Grapevine and set up events
    */
   connect() {
-    this.gossipEmitter = new EventEmitter();
-    this.state.GossipEmitter = this.gossipEmitter;
+    this.grapevineEmitter = new EventEmitter();
+    this.state.GrapevineEmitter = this.grapevineEmitter;
 
     // create a new websocket server using the port command line argument
-    const gossipUrl = 'wss://gossip.haus/socket';
-    this.ws = new WebSocket(gossipUrl);
+    const grapevineUrl = 'wss://grapevine.haus/socket';
+    this.ws = new WebSocket(grapevineUrl);
 
     // when a player signs in
-    // (https://gossip.haus/docs#players-sign-in)
-    this.gossipEmitter.on('players/sign-in', (player) => {
+    // (https://grapevine.haus/docs#players-sign-in)
+    this.grapevineEmitter.on('players/sign-in', (player) => {
       let event = {
         "event": "players/sign-in",
         "payload": {
@@ -78,8 +78,8 @@ class GossipClient {
     });
 
     // when a player signs out
-    // (https://gossip.haus/docs#players-sign-out)
-    this.gossipEmitter.on('players/sign-out', (player) => {
+    // (https://grapevine.haus/docs#players-sign-out)
+    this.grapevineEmitter.on('players/sign-out', (player) => {
       let event = {
         "event": "players/sign-out",
         "payload": {
@@ -90,9 +90,9 @@ class GossipClient {
       this.send(event);
     });
 
-    // when a player sends a message on a Gossip channel
-    // (https://gossip.haus/docs#channels-send)
-    this.gossipEmitter.on("channels/send", (channel, sender, message) => {
+    // when a player sends a message on a Grapevine channel
+    // (https://grapevine.haus/docs#channels-send)
+    this.grapevineEmitter.on("channels/send", (channel, sender, message) => {
       let event = {
         "event": "channels/send",
         "payload": {
@@ -105,14 +105,14 @@ class GossipClient {
       this.send(event);
     });
 
-    // when an error occurs while connecting to Gossip
+    // when an error occurs while connecting to Grapevine
     this.ws.on("error", (err) => {
-      Logger.error(chalk.red.bold('Gossip ' + err));
+      Logger.error(chalk.red.bold('Grapevine ' + err));
     });
 
-    // when the connection with Gossip is initiated
+    // when the connection with Grapevine is initiated
     this.ws.on('open', () => {
-      Logger.verbose(chalk.green.bold("Successfully connected to Gossip!"));
+      Logger.verbose(chalk.green.bold("Successfully connected to Grapevine!"));
 
       let auth = {
         "event": "authenticate",
@@ -128,13 +128,13 @@ class GossipClient {
       this.ws.send(JSON.stringify(auth));
     });
 
-    // when a payload arrives from Gossip
+    // when a payload arrives from Grapevine
     this.ws.on('message', data => {
       let event = JSON.parse(data);
 
       switch (event["event"]) {
         // process authentication response
-        // (https://gossip.haus/docs#authenticate)
+        // (https://grapevine.haus/docs#authenticate)
         case "authenticate":
           Logger.verbose(chalk.green.bold(`Authenticating server... ${event["status"]}!`));
 
@@ -143,7 +143,7 @@ class GossipClient {
           break;
 
         // process reponse to heartbeat
-        // (https://gossip.haus/docs#heartbeat)
+        // (https://grapevine.haus/docs#heartbeat)
         case "heartbeat":
           let players = [];
           this.state.PlayerManager.players.forEach(player => {
@@ -161,14 +161,14 @@ class GossipClient {
           break;
 
         // process reponse to channel broadcast
-        // (https://gossip.haus/docs#channels-broadcast)
+        // (https://grapevine.haus/docs#channels-broadcast)
         case "channels/broadcast":
           let payload = event["payload"];
 
           Logger.verbose(`${chalk.white.bold('<G>')}${payload["name"]}@${payload["game"]}: "${payload["message"]}"`);
 
           let player = {
-            isGossip: true,
+            isGrapevine: true,
             name: `${payload["name"]}@${payload["game"]}`,
             getBroadcastTargets: () => {
               return [];
@@ -190,4 +190,4 @@ class GossipClient {
   }
 }
 
-module.exports = GossipClient;
+module.exports = GrapevineClient;

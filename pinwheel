@@ -78,7 +78,7 @@ commander
   .version(pkg.version)
   .description('A highly opinionated fork of the Ranvier MUD engine.')
   .option('-s, --save [time]', 'seconds between auto-save ticks', 10)
-  .option('--no-gossip', 'launch server without Gossip (useful for development)')
+  .option('--no-grapevine', 'launch server without Grapevine (useful for development)')
   .option('-t, --telnetport [portNumber]', 'port to host the telnet server', Config.get('telnetPort', 4000))
   .option('-w, --websocketport [portNumber]', 'port to host the WebSocket server', Config.get('webSocketPort', 4000))
   .option('-h, --httpport [portNumber]', 'port to host the HTTP web server', webConfig.port)

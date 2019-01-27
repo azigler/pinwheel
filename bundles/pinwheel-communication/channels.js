@@ -12,7 +12,7 @@ module.exports = (srcPath) => {
   const PartyAudience = require(srcPath + 'ChannelAudience/PartyAudience');
   const PlayerRole = require(srcPath + 'PlayerRole');
   const Channel = require(srcPath + 'Channel');
-  const GossipChannel = require("./lib/GossipChannel");
+  const GrapevineChannel = require("./lib/GrapevineChannel");
 
   return [
     new Channel({
@@ -103,12 +103,12 @@ module.exports = (srcPath) => {
       audience: new RoleAudience({ minRole: PlayerRole.TESTER })
     }),
 
-    new GossipChannel({
-      name: 'gossip',
+    new GrapevineChannel({
+      name: 'grapevine',
       aliases: [','],
       color: ['bold', 'magenta'],
-      remoteChannel: 'gossip',
-      description: 'Send a message on the Gossip network',
+      remoteChannel: 'grapevine',
+      description: 'Send a message on the Grapevine network',
       audience: new WorldAudience()
     })
   ];

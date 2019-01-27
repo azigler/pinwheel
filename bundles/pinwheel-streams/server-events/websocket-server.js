@@ -9,6 +9,7 @@ const WebSocketStream = require('../lib/WebSocketStream');
 const chalk = require('chalk');
 
 module.exports = srcPath => {
+  const Data = require(srcPath + 'Data');
   const Logger = require(srcPath + 'Logger');
   const Config = require(srcPath + 'Config');
 

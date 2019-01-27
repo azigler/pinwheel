@@ -3,10 +3,10 @@
 const BaseChannel = require('../../../src/Channel');
 
 /**
- * Wrapper around `Channel` for Gossip network
+ * Wrapper around `Channel` for Grapevine network
  * @see {@link Broadcast#atExcept}
  */
-class GossipChannel extends BaseChannel {
+class GrapevineChannel extends BaseChannel {
   constructor(config) {
     super(config);
 
@@ -23,14 +23,14 @@ class GossipChannel extends BaseChannel {
     // send the message over the internal channel
     super.send(state, sender, message);
 
-    // if the message came from Gossip, don't report it back
-    if (sender.isGossip) {
+    // if the message came from Grapevine, don't report it back
+    if (sender.isGrapevine) {
       return;
     }
 
-    // otherwise, send the message along to Gossip
-    state.GossipEmitter.emit("channels/send", this.remoteChannel, sender.name, message);
+    // otherwise, send the message along to Grapevine
+    state.GrapevineEmitter.emit("channels/send", this.remoteChannel, sender.name, message);
   }
 }
 
-module.exports = GossipChannel;
+module.exports = GrapevineChannel;

@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "gulp && ./pinwheel",
-    "dev": "./pinwheel --loglevel none --no-gossip",
+    "dev": "./pinwheel --loglevel none --no-grapevine",
     "istanbul": "istanbul --include-all-sources cover _mocha -- -R dot --recursive ./test/**/*.spec.js",
     "test": "gulp && npm run-script istanbul",
     "build-docs": "jsdoc -c jsdoc.conf",
