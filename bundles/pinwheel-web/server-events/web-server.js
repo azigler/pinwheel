@@ -34,7 +34,8 @@ module.exports = (srcPath) => {
         web.use('/api', api);
 
         // start web server
-        const port = Config.get('web-port', 80)
+        const webConfig = Config.get('web');
+        const port = webConfig.port;
         web.listen(port, () => Logger.log(`Web server started on port: ${chalk.green.bold(port)}...`))
       },
 
