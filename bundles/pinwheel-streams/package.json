@@ -8,7 +8,7 @@
     "node": ">= 8.9.4"
   },
   "dependencies": {
-    "ranvier-telnet": "^1.0.1",
+    "ranvier-telnet": "^1.0.3",
     "ws": "^5.2.0"
   }
 }
