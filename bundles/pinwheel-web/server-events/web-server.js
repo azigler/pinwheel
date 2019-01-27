@@ -9,6 +9,8 @@ module.exports = (srcPath) => {
   return {
     listeners: {
       startup: state => function (commander) {
+        const https = require('https');
+        const fs = require('fs');
         const express = require('express')
         const es6Renderer = require('express-es6-template-engine')
         const web = express()
@@ -33,10 +35,22 @@ module.exports = (srcPath) => {
         web.use('/', views);
         web.use('/api', api);
 
-        // start web server
         const webConfig = Config.get('web');
+        const certExists = fs.existsSync(webConfig.https.key) && fs.readFileSync(webConfig.https.fullchain);
+
+        if ((webConfig.https && certExists) !== false) {
+          // start HTTPS server
+          https.createServer({
+            key: fs.readFileSync(webConfig.https.key),
+            cert: fs.readFileSync(webConfig.https.fullchain)
+          }, web).listen(webConfig.https.port, () => {
+            Logger.log(`HTTPS server started on port: ${chalk.green.bold(webConfig.https.port)}...`)
+          })
+        }
+
+        // start HTTP server
         const port = webConfig.port;
-        web.listen(port, () => Logger.log(`Web server started on port: ${chalk.green.bold(port)}...`))
+        web.listen(port, () => Logger.log(`HTTP server started on port: ${chalk.green.bold(port)}...`))
       },
 
       shutdown: state => function () {

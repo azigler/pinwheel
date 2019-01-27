@@ -159,7 +159,7 @@ module.exports = (srcPath) => {
             uuid: this.uuid,
             id: 'corpse',
             name: `corpse of ${this.name}`,
-            roomDesc: `the corpse of ${this.name}`,
+            roomDesc: `corpse of ${this.name}`,
             description: `This is the corpse of ${this.name}.`,
             keywords: this.keywords.concat(['corpse']),
             metadata: {

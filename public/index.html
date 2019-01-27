@@ -1,9 +1,55 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link href="assets/style.css" type="text/css" rel="stylesheet" />
-  </head>
-  <body>
-    <h1>Connected Users: ${WHO_COUNT}</h1>
-  </body>
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>${gameName}</title>
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata|Open+Sans" rel="stylesheet">
+  <link href="assets/style.css" type="text/css" rel="stylesheet" />
+	${author ? `<meta name="author" content="${author}">` : ''}
+  <link rel="canonical" href="${finalUrl}">
+  <meta name="description" content="${header.description}">
+  <meta property="og:locale" content="en_US">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="${gameName}">
+	<meta property="og:url" content="${finalUrl}">
+	<meta property="og:site_name" content="${gameName}">
+	<meta property="og:description" content="${header.description}">
+	${header.image ? `<meta property="og:image" content="${header.image}">` : ''}
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="${gameName}">
+	<meta name="twitter:description" content="${header.description}">
+  ${header.image ? `<meta name="twitter:image" content="${header.image}">` : ''}
+  ${twitterHandle ? `<meta name="twitter:site" content="${twitterHandle}">` : ''}
+	${twitterHandle ? `<meta name="twitter:creator" content="${twitterHandle}">` : ''}
+	${header.faviconUrl ? `<link rel="icon" href="${header.faviconUrl}">` : `<link rel="icon" href="/assets/pinwheel.ico">`}
+  ${header.googleId ? `<script async src="https://www.googletagmanager.com/gtag/js?id=${header.googleId}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${header.googleId}');
+  </script>` : ''}
+</head>
+<body>
+  <header>
+    ${header.image ? `<img class="header-image" src="${header.image}">` : ''}
+    <h1 class="game-name">${gameName}</h1>
+  </header>
+  <main>
+    <p class="game-description">${header.description}</p>
+    <div class="who">
+      <p class="count">${whoCount} Connected</p>
+      <p class="list">${whoList}</p>
+    </div>
+  </main>
+  <footer>
+      ${author ? `<p class="copyright">© ${(new Date()).getFullYear()} ${author}</p>` : ''}
+      <a class="engine" target="_blank" href="https://github.com/azigler/pinwheel">
+          <p class="pinwheel-name">Powered by Pinwheel</p>
+          <img class="pinwheel-icon" src="/assets/pinwheel.png">
+      </a>
+  </footer>
+</body>
 </html>

@@ -313,7 +313,7 @@ module.exports = (srcPath) => {
           entityReference: 'start:corpse',
           id: 'corpse',
           name: `corpse of ${this.name}`,
-          roomDesc: `the corpse of ${this.name}`,
+          roomDesc: `corpse of ${this.name}`,
           description: `This is the rotting corpse of ${this.name}.`,
           keywords: this.name.concat(['corpse']),
           metadata: {
