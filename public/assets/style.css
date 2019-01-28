@@ -52,6 +52,18 @@ main {
   }
 }
 
+.telnet-address {
+  font-style: italic;
+  font-family: Courier;
+  color: #d0001c;
+  background: #70cd67;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.2rem;
+  font-weight: bold;
+  width: fit-content;
+  margin: 0 auto;
+}
+
 .description {
   text-align: center;
 }

@@ -25,6 +25,7 @@ if ((webConfig.https && certExists) !== false) {
 views.get('/', (req, res) => {
   // pass anything needed from state or config to the page for rendering
   const locals = {};
+  console.log(req.headers.host);
 
   let whoList = '';
   let multiArch = '';
@@ -61,7 +62,9 @@ views.get('/', (req, res) => {
   Object.assign(locals, {
     finalUrl: httpString + req.headers.host + req.url,
     whoCount: `${views.state.PlayerManager.players.size}`,
-    whoList
+    whoList,
+    serverUrl: req.headers.host,
+    telnetPort: Config.get('telnetPort')
   })
 
   // render the HTML's variables
