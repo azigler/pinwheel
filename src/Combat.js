@@ -369,7 +369,7 @@ class Combat {
   static getWeaponSpeed(attacker) {
     const weapon = attacker.equipment.get('wield');
     const reflexes = attacker.getAttribute('reflexes');
-    let speed = 5,
+    let speed = attacker.getAttribute('speed', 5),
     discName,
     weaponMastery,
     formula;

@@ -25,7 +25,6 @@ if ((webConfig.https && certExists) !== false) {
 views.get('/', (req, res) => {
   // pass anything needed from state or config to the page for rendering
   const locals = {};
-  console.log(req.headers.host);
 
   let whoList = '';
   let multiArch = '';

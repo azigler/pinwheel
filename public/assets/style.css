@@ -33,7 +33,7 @@ header {
 main {
   width: 90%;
   max-height: 45vh;
-  overflow: scroll;
+  overflow: auto;
   text-align: center;
   margin: 0 auto;
   background: #00B945;
@@ -62,6 +62,15 @@ main {
   font-weight: bold;
   width: fit-content;
   margin: 0 auto;
+  box-shadow: 0px 0px 17px 0px #23dc11;
+  transition-duration: 1s;
+  text-decoration: none;
+}
+
+.telnet-address:hover {
+  background: white;
+  transition-duration: 1s;
+  text-decoration: underline;
 }
 
 .description {
