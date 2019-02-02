@@ -51,9 +51,9 @@ views.get('/', (req, res) => {
   if (webConfig.header === false) {
     webConfig.header = {
       description: 'Powered by Pinwheel, a JavaScript MUD engine.',
-      faviconUrl: false,
+      faviconUrl: '/assets/pinwheel.ico',
       googleId: false,
-      image: false
+      image: '/assets/pinwheel-header.png'
     };
   }
   Object.assign(locals, webConfig);
