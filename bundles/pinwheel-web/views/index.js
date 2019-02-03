@@ -35,7 +35,7 @@ views.get('/', (req, res) => {
       multiArch += `${arch}-`;
     }
     multiArch = multiArch.slice(0, -1);
-    whoList += `${whoPlayer.name} the ${whoPlayer.species} ${multiArch}\n`;
+    whoList += `${whoPlayer.name} the ${whoPlayer.species} ${multiArch}<br/>`;
   });
 
   let gameMeta = Config.get('meta');
