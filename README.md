@@ -34,7 +34,6 @@ Pinwheel is an experimental game engine that aims to fuse MUD and browser gamepl
 - [Roadmap](#chart_with_upwards_trend-roadmap)
 - [Maintainer](#horse_racing-maintainer)
 - [Contributing](#inbox_tray-contributing)
-- [License](#bookmark_tabs-license)
 
 ## :floppy_disk: Install
 
@@ -155,31 +154,3 @@ Pinwheel is maintained by [Andrew Zigler](https://www.andrewzigler.com/), a memb
 
 ## :inbox_tray: Contributing
 Feedback and contributions are encouraged! After reading our [Code of Conduct](https://github.com/azigler/pinwheel/blob/master/CODE_OF_CONDUCT.md), use the [*Bug Report*](https://github.com/azigler/pinwheel/issues/new?assignees=&labels=&template=bug-report.md&title=) or [*Feature Request*](https://github.com/azigler/pinwheel/issues/new?assignees=&labels=&template=feature-request.md&title=) issue templates to discuss any bugs or potential contributions to Pinwheel. For more information, please read our [Contributing Guide](https://github.com/azigler/pinwheel/blob/master/CONTRIBUTING.md).
-
-## :bookmark_tabs: License
-
-Copyright © 2018-2019 [Andrew Zigler](https://www.andrewzigler.com)
-
-Copyright © 2012 [Shawn Biddle](http://shawnbiddle.com)
-
-[MIT License](https://github.com/azigler/pinwheel/blob/master/LICENSE)
-
-```
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
