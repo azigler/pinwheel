@@ -30,7 +30,6 @@ Pinwheel is an experimental game engine that aims to fuse MUD and browser gamepl
   - [Package Scripts](#nut_and_bolt-package-scripts)
   - [JSON Configuration](#zap-json-configuration)
 - [Features](#round_pushpin-features)
-- [Example Game *(Snakelines)*](#snake-example-game-snakelines)
 - [Roadmap](#chart_with_upwards_trend-roadmap)
 - [Maintainer](#horse_racing-maintainer)
 - [Contributing](#inbox_tray-contributing)
@@ -124,12 +123,6 @@ Many elements of Pinwheel can be configured via the [`pinwheel.json`](https://gi
 - Telnet and [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) support
 - Data storage in JSON files, no database required
 - Web server bound to state (for a website and/or API)
-
-## :snake: Example Game *(Snakelines)*
-
-A dedicated development server for Pinwheel can be found at [https://mud.andrewzigler.com](https://mud.andrewzigler.com), called *Snakelines*. This game is the most up-to-date version of Pinwheel that's available and has many experimental features not yet commited to the repository. For now, the best way to access it is by connecting your favorite telnet client to `mud.andrewzigler.com`, `port 4000`.
-
-This server is an easy way to try out the engine without downloading it, and the environment is intended as a sandbox. During the development of Pinwheel, *[Snakelines](https://mud.andrewzigler.com)* will serve as a catalyst for engine's opinions. Even though it's being used to showcase the features of the engine, *Snakelines* is also a game being developed in earnest. The development of *Snakelines* is in its infancy and drives many of the decisions behind this project. *Snakelines* is based on worldbuilding materials that have been crafted for nearly a decade and applied in various mediums.
 
 ## :chart_with_upwards_trend: Roadmap
 
