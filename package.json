@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.0",
     "gulp-eslint": "^5.0.0",
     "gulp-todo": "^4.1.0",
     "istanbul": "^0.4.5",
