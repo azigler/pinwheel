@@ -1,6 +1,6 @@
 ![](https://repository-images.githubusercontent.com/142938382/711ca600-2655-11ea-95f8-84f896671ff3)
 
-# <img src="/resources/icon.png"> Pinwheel MUD Engine *\*\*(deprecated)\*\**
+# <img src="/resources/icon.png"> Pinwheel MUD Engine
 
 [![Grapevine](https://img.shields.io/badge/Grapevine-MUD%20Chat%20Network-brightgreen.svg)](https://grapevine.haus/)
 [![MUD Coders Slack](https://slack.mudcoders.com/badge.svg)](https://slack.mudcoders.com/)
